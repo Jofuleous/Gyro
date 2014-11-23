@@ -30,6 +30,7 @@
 # Visual Studio shit
 *.suo
 *.sdf
+*.opensdf
 
 #Built Files
 Debug/
