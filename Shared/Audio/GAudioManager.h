@@ -1,8 +1,8 @@
 #ifndef __GAUDIOMANAGER_H_
 #define __GAUDIOMANAGER_H_
 
-#include "C:\Users\Jofu\Desktop\SomeGame\External\FMOD\Windows\api\inc\fmod.hpp"
-#include "C:\Users\Jofu\Desktop\SomeGame\External\FMOD\Windows\api\inc\fmod_errors.h"
+#include "..\..\External\FMOD\Windows\api\inc\fmod.hpp"
+#include "..\..\External\FMOD\Windows\api\inc\fmod_errors.h"
 #include <iostream>
 #include <Windows.h>
 #include "Utility/Singleton.h"

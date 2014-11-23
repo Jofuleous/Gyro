@@ -29,7 +29,7 @@
 			when you are changing code for an asset-building executable, however,
 			you will want to change this default behavior so that assets always get built
 			regardless of dependencies.
-]]
+]]--
 
 -- The following does the same thing that is documented above,
 -- but it applies to _all_ asset types.

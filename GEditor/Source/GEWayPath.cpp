@@ -217,7 +217,7 @@ Entity* GEWayPath::LoadNodeEntity( )
 	FbxImporter* pImporter = FbxImporter::Create( FBXProcessor::g_FbxSdkManager,"The BroShow Importer");
 	FbxScene* fbxScene = FbxScene::Create( FBXProcessor::g_FbxSdkManager,"Scene of a Magnificent Bro");
 
-	bool succeeded = pImporter->Initialize( "C:/Users/Jofu/Desktop/SomeGame/Assets/FBXScenes/10x10_cube.fbx", -1, FBXProcessor::g_FbxSdkManager->GetIOSettings() );
+	bool succeeded = pImporter->Initialize( "../Assets/FBXScenes/10x10_cube.fbx", -1, FBXProcessor::g_FbxSdkManager->GetIOSettings() );
 	if( !succeeded )
 	{
 		assert( 0 );

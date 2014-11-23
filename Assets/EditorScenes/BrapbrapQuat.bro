@@ -1191,7 +1191,7 @@ BrapbrapQuat =
 			{
 				CharacterFile = "Prototype/QuaternTest",
 			},
-			Fbx = "C:\\Users\\Jofu\\Desktop\\SomeGame\\Assets\\Models\\AxisMarker.fbx",
+			Fbx = "../Assets/Models/AxisMarker.fbx",
 			RotationY = 0,
 			Scale = 
 			{
@@ -1319,7 +1319,7 @@ BrapbrapQuat =
 		},
 		Static = 
 		{
-			Fbx = "C:\\Users\\Jofu\\Desktop\\SomeGame\\Assets\\FBXScenes\\ctf_v12-MeshOnly-NoEmbed.fbx",
+			Fbx = "../Assets/FBXScenes/ctf_v12-MeshOnly-NoEmbed.fbx",
 			RotationY = 0,
 			Scale = 
 			{
@@ -1341,7 +1341,7 @@ BrapbrapQuat =
 			{
 				CharacterFile = "Enemies/CtfAiPlayer",
 			},
-			Fbx = "C:\\Users\\Jofu\\Desktop\\SomeGame\\Assets\\Models\\Player.fbx",
+			Fbx = "../Assets/Models/Player.fbx",
 			RotationY = 0,
 			Scale = 
 			{
