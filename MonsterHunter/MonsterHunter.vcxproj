@@ -94,7 +94,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Audio.lib;Math.lib;libconfig++_Debug.lib;Renderer.lib;Gyro.lib;d3dx9d.lib;dxerr.lib;comctl32.lib;d3d9.lib;d3dx9.lib;Lua.lib;kernel32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Audio.lib;Math.lib;Renderer.lib;Gyro.lib;d3dx9d.lib;dxerr.lib;comctl32.lib;d3d9.lib;d3dx9.lib;Lua.lib;kernel32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-lconfig++ %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
