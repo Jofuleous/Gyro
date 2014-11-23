@@ -26,8 +26,20 @@
 *.suo
 *.sdf
 *.opensdf
+*.pdb
+*.ilk
 
 #Built Files
-Debug/
-Release/
-ipch/
+Debug/data
+Debug/intermediate
+Debug/lib
+Debug/tools
+Debug/fmodex.dll
+Debug/libfbxsdk.dll
+External/LuaPlus/Debug
+External/LuaPlus/Release
+Shared/Navigation/Debug
+Shared/Navigation/Release
+Shared/TerrainGen/Debug
+Shared/TerrainGen/Release
+
