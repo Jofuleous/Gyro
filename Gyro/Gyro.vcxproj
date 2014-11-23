@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Win32 Profile|Win32">
+      <Configuration>Win32 Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4DBED837-BB8A-4103-B169-7E971C679F00}</ProjectGuid>
+    <RootNamespace>Gyro</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)\lib\</LibraryPath>
+    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)$(Configuration)\intermediate\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)/lib/</LibraryPath>
+    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'">
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)\$(Configuration)\lib\</LibraryPath>
+    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\libconfig-1.4.9\lib\;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>LIBCONFIGXX_STATIC;WIN32;_DEBUG;DEBUG_LEVEL=2;%(PreprocessorDefinitions);_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib;Navigation.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>LIBCONFIGXX_STATIC;_MBCS;%(PreprocessorDefinitions);_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>LIBCONFIGXX_STATIC;_MBCS;%(PreprocessorDefinitions);_WIN32;ENABLE_PROFILING</PreprocessorDefinitions>
+      <ForcedIncludeFiles>;$(MSBuildProjectDirectory)\Source\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>..\External\Cheesy\Exports\Cheesy;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Actor\ComponentManager.h" />
+    <ClInclude Include="Source\Actor\GActor.h" />
+    <ClInclude Include="Source\Actor\IActorComponent.h" />
+    <ClInclude Include="Source\Collision\CollisionManager.h" />
+    <ClInclude Include="Source\Collision\CollisionUtil.h" />
+    <ClInclude Include="Source\Collision\GCollisionMesh.h" />
+    <ClInclude Include="Source\Collision\GMessageCallback.h" />
+    <ClInclude Include="Source\Collision\GTriggerCallback.h" />
+    <ClInclude Include="Source\Collision\ICollisionCallback.h" />
+    <ClInclude Include="Source\Components\GCollisionComp.h" />
+    <ClInclude Include="Source\Components\GGroundFollowerComp.h" />
+    <ClInclude Include="Source\Components\GTriggerComponent.h" />
+    <ClInclude Include="Source\Components\GTriggerFunctions.h" />
+    <ClInclude Include="Source\Components\GRenderComponent.h" />
+    <ClInclude Include="Source\Components\HealthComponent.h" />
+    <ClInclude Include="Source\Core\GMessageManager.h" />
+    <ClInclude Include="Source\Core\Loop.h" />
+    <ClInclude Include="Source\Core\World.h" />
+    <ClInclude Include="Source\Misc\DebugConsole.h" />
+    <ClInclude Include="Source\Misc\GMouse.h" />
+    <ClInclude Include="Source\Misc\RBuffer.h" />
+    <ClInclude Include="Source\Misc\UserSettings.h" />
+    <ClInclude Include="Source\Physics\GPhysics.h" />
+    <ClInclude Include="Source\Renderer\GRenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Actor\ComponentManager.cpp" />
+    <ClCompile Include="Source\Actor\GActor.cpp" />
+    <ClCompile Include="Source\Collision\CollisionManager.cpp" />
+    <ClCompile Include="Source\Collision\CollisionUtil.cpp" />
+    <ClCompile Include="Source\Collision\GCollisionMesh.cpp" />
+    <ClCompile Include="Source\Collision\GMessageCallback.cpp" />
+    <ClCompile Include="Source\Components\GCollisionComp.cpp" />
+    <ClCompile Include="Source\Components\GGroundFollowerComp.cpp" />
+    <ClCompile Include="Source\Components\GTriggerComponent.cpp" />
+    <ClCompile Include="Source\Components\GRenderComponent.cpp" />
+    <ClCompile Include="Source\Components\HealthComponent.cpp" />
+    <ClCompile Include="Source\Core\GMessageManager.cpp" />
+    <ClCompile Include="Source\Core\Loop.cpp" />
+    <ClCompile Include="Source\Core\World.cpp" />
+    <ClCompile Include="Source\Misc\DebugConsole.cpp" />
+    <ClCompile Include="Source\Misc\GMouse.cpp" />
+    <ClCompile Include="Source\Misc\UserSettings.cpp" />
+    <ClCompile Include="Source\Physics\GPhysics.cpp" />
+    <ClCompile Include="Source\Renderer\GRenderer.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

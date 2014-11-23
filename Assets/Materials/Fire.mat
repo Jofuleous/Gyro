@@ -1,0 +1,9 @@
+NAME Fire
+EFFECT SpecularUVScroll.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 20
+PFLOAT g_scrollX 0.06
+PFLOAT g_scrollY 0
+TEXTURE g_diffuseMap water.png
+TEXTURE g_normalMap waternormalmap.png
+</PARAMETERS>

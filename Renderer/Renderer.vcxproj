@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5BAB0E7C-578F-4D5D-A20A-F82AAECF2C6E}</ProjectGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>Renderer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir)Shared\;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)lib\;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir)Shared\;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <TargetExt>.lib</TargetExt>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)lib\;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ForcedIncludeFiles>$(SolutionDir)\Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAsManaged>
+      </CompileAsManaged>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles>$(SolutionDir)\Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resources\resource.h" />
+    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\cTime.h" />
+    <ClInclude Include="Source\RenderDevices.h" />
+    <ClInclude Include="Source\MainWindow.h" />
+    <ClInclude Include="Source\Initialization.h" />
+    <ClInclude Include="Source\Logging.h" />
+    <ClInclude Include="Source\RenderManager.h" />
+    <ClInclude Include="Source\ResourceLoader.h" />
+    <ClInclude Include="Source\ResourceManager.h" />
+    <ClInclude Include="Source\ResourceMaster.h" />
+    <ClInclude Include="Source\ResourcePtr.h" />
+    <ClInclude Include="Source\ResourceTypes\Effect.h" />
+    <ClInclude Include="Source\ResourceTypes\Entity.h" />
+    <ClInclude Include="Source\ResourceTypes\EnviroMap.h" />
+    <ClInclude Include="Source\ResourceTypes\HUDElements.h" />
+    <ClInclude Include="Source\ResourceTypes\Lines.h" />
+    <ClInclude Include="Source\ResourceTypes\Material.h" />
+    <ClInclude Include="Source\ResourceTypes\Mesh.h" />
+    <ClInclude Include="Source\ResourceTypes\PixelShader.h" />
+    <ClInclude Include="Source\ResourceTypes\PointLight.h" />
+    <ClInclude Include="Source\ResourceTypes\Technique.h" />
+    <ClInclude Include="Source\ResourceTypes\Texture.h" />
+    <ClInclude Include="Source\ResourceTypes\VertexShader.h" />
+    <ClInclude Include="Source\Scene.h" />
+    <ClInclude Include="Source\VertexDeclarations.h" />
+    <ClInclude Include="Source\VertexStructs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\cTime.cpp" />
+    <ClCompile Include="Source\RenderDevices.cpp" />
+    <ClCompile Include="Source\MainWindow.cpp" />
+    <ClCompile Include="Source\Logging.cpp" />
+    <ClCompile Include="Source\RenderManager.cpp" />
+    <ClCompile Include="Source\ResourcePtr.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Effect.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Entity.cpp" />
+    <ClCompile Include="Source\ResourceTypes\EnviroMap.cpp" />
+    <ClCompile Include="Source\ResourceTypes\HUDElements.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Lines.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Material.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Mesh.cpp" />
+    <ClCompile Include="Source\ResourceTypes\Texture.cpp" />
+    <ClCompile Include="Source\Scene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Renderer.aps" />
+    <None Include="Resources\Renderer.ico" />
+    <None Include="Resources\small.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

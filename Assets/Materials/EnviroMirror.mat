@@ -1,0 +1,9 @@
+NAME EnviroMirror
+EFFECT SpecularEnvironmentNoNormal.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 8
+PFLOAT g_environmentReflection 0.7
+TEXTURE g_diffuseMap steel.png
+SCENETEXTURE g_environmentMap
+CAMERA g_cameraPosition
+</PARAMETERS>

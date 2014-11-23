@@ -1,0 +1,10 @@
+<Technique Opaque>
+VERTEXSHADER basicvertex.vp
+PIXELSHADER diffuse.fp
+<RENDERSTATE>
+ALPHA Test
+</RENDERSTATE>
+<PARAMETERS>
+TEXTURE g_diffuseMap
+</PARAMETERS>
+</Technique>

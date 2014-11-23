@@ -1,0 +1,31 @@
+EnemySpawner=
+{
+	Components =
+	{
+		Collision =
+		{
+			CollisionBits = { "ENEMY", },
+			CollidesWith = { "PLAYER", "PROJECTILE", },
+			IsTrigger = true,
+			AABB =
+			{
+				Center = { 0.0, 784.6275, 0.0, },
+				HalfX = 584.436,
+				HalfY = 784.6275,
+				HalfZ = 584.436,
+			},
+		},
+		EnemySpawner=
+		{
+		},
+		Health =
+		{
+			MaxHealth = 300.0,
+			KillOnZero = true,
+		},
+		Renderer=
+		{
+			Entity = "OrangePyramid.entityb",
+		},
+	},
+}

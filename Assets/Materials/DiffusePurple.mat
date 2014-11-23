@@ -1,0 +1,5 @@
+NAME DiffusePurple
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap PurplePink.png
+</PARAMETERS>

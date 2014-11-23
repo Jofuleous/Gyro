@@ -1,0 +1,5 @@
+NAME SpiralGround
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap spiralground.png
+</PARAMETERS>

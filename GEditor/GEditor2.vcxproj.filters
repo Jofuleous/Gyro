@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Source\GEditorD3DPanel.h" />
+    <ClInclude Include="Source\GEditorObject.h" />
+    <ClInclude Include="Source\GEditorScene.h" />
+    <ClInclude Include="Source\FBXProcessor.h" />
+    <ClInclude Include="Source\GEditorApp.h" />
+    <ClInclude Include="Source\GEditorCamera.h" />
+    <ClInclude Include="Source\GETypeData.h" />
+    <ClInclude Include="Source\GETypeFrame.h" />
+    <ClInclude Include="Source\TypeFrames\GETriggerFrame.h">
+      <Filter>TypeFrames</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TypeFrames\GECharacterFrame.h">
+      <Filter>TypeFrames</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ObjectTypes\GECharacterData.h">
+      <Filter>ObjectTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ObjectTypes\GETriggerData.h">
+      <Filter>ObjectTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TypeFrames\GEStaticFrame.h">
+      <Filter>TypeFrames</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GEAxisMarker.h" />
+    <ClInclude Include="Source\GEditorFrame.h" />
+    <ClInclude Include="Source\GEWayPath.h" />
+    <ClInclude Include="Source\TypeFrames\GEWaypointFrame.h">
+      <Filter>TypeFrames</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\GEditorObject.cpp" />
+    <ClCompile Include="Source\GEditorScene.cpp" />
+    <ClCompile Include="Source\FBXProcessor.cpp" />
+    <ClCompile Include="Source\GEditorApp.cpp" />
+    <ClCompile Include="Source\GEditorCamera.cpp" />
+    <ClCompile Include="Source\GEditorD3DPanel.cpp" />
+    <ClCompile Include="Source\TypeFrames\GETriggerFrame.cpp">
+      <Filter>TypeFrames</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TypeFrames\GECharacterFrame.cpp">
+      <Filter>TypeFrames</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TypeFrames\GEStaticFrame.cpp">
+      <Filter>TypeFrames</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GEAxisMarker.cpp" />
+    <ClCompile Include="Source\GEditorFrame.cpp" />
+    <ClCompile Include="Source\GEWayPath.cpp" />
+    <ClCompile Include="Source\TypeFrames\GEWaypointFrame.cpp">
+      <Filter>TypeFrames</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TypeFrames">
+      <UniqueIdentifier>{98dac52e-8e24-4425-9a9b-5d66586b4fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjectTypes">
+      <UniqueIdentifier>{d259e7c3-9bdc-40a0-a38f-af6e2f2a9166}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

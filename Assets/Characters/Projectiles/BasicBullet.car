@@ -1,0 +1,55 @@
+BasicBullet=
+{
+	Components =
+	{
+		Collision =
+		{
+			RigidBody =
+			{
+				Mass = 1.0,
+				Gravity = { 0.0, 0.0, 0.0, },
+			},
+			
+			CollisionBits = { "PROJECTILE", },
+			CollidesWith = { "ENEMY", "TRIGGER", },
+			IsTrigger = true,
+			Callback =
+			{
+				Messages =
+				{
+					Follower =
+					{
+						CollidedWith = "Follower",
+						Message = "BulletCollided",
+					},
+					Hopper =
+					{
+						CollidedWith = "HopperEnemy",
+						Message = "BulletCollided",
+					},
+					Spinner =
+					{
+						CollidedWith = "SpinnerEnemy",
+						Message = "BulletCollided",
+					},
+					EnemySpawner =
+					{
+						CollidedWith = "EnemySpawner",
+						Message = "BulletCollided",
+					},
+				},
+			},
+			AABB =
+			{
+				Center = { 0.0, 0.0, 0.0, },
+				HalfX = 25.0,
+				HalfY = 25.318,
+				HalfZ = 25.0,
+			},
+		},
+		Renderer =
+		{
+			Entity = "Bullet.entityb",
+		},
+	},
+}

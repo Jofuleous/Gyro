@@ -1,0 +1,5 @@
+NAME KarateMaterial
+EFFECT Diffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap example1.png
+</PARAMETERS>

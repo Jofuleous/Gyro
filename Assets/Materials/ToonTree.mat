@@ -1,0 +1,5 @@
+NAME Bark
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap outUV4.png
+</PARAMETERS>

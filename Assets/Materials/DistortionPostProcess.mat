@@ -1,0 +1,6 @@
+NAME DistortionPostProcess
+EFFECT DistortionPostProcess.efxb
+<PARAMETERS>
+PFLOAT g_Distortion 10
+SCENETEXTURE g_postTexture
+</PARAMETERS>

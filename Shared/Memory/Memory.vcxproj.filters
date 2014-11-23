@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GMemoryPool.cpp" />
+    <ClCompile Include="GBitField.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GMemoryPool.h" />
+    <ClInclude Include="GBitField.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GMemoryPool.inl" />
+    <None Include="GBitField.inl" />
+  </ItemGroup>
+</Project>

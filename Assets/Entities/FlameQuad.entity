@@ -1,0 +1,3 @@
+NAME FlameQuad
+MESH UnitQuad.bmod
+MATERIAL AdditiveFlame.matb

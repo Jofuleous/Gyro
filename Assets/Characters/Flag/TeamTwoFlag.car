@@ -1,0 +1,43 @@
+TeamTwoFlag=
+{
+	Components =
+	{
+		Collision =
+		{
+			IsTrigger = false,
+			CollisionBits = { "FLAG", },
+			CollidesWith = { "PLAYER", "ENEMY", "TRIGGER", },
+			Callback = 
+			{
+				Messages =
+				{
+					Message1 =
+					{
+						CollidedWith = "PlayerOne",
+						Message = "FlagCollidedWithPlayer",
+					},
+					Message2 =
+					{
+						CollidedWith = "CtfAiPlayer",
+						Message = "FlagCollidedWithPlayer",
+					},
+				},
+			},
+			AABB =
+			{
+				Center = { 0.0, 108.0, 0.0, },
+				HalfX = 15.0,
+				HalfY = 108.0,
+				HalfZ = 15.0,
+			},
+		},
+		Flag=
+		{
+			Number = 2,
+		},
+		Renderer=
+		{
+			Entity = "FlagBlue.entityb",
+		},
+	},
+}

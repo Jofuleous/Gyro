@@ -1,0 +1,5 @@
+NAME Bark
+EFFECT Diffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap bark.png
+</PARAMETERS>

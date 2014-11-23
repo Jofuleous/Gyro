@@ -1,0 +1,5 @@
+NAME GrassMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap ground.png
+</PARAMETERS>

@@ -1,0 +1,36 @@
+SideWall:
+{
+	Components =
+	(
+		{
+			Name = "Physics";
+			Attributes =
+			{
+				Collider =
+				{
+					IsTrigger = false;
+					CollisionBits = [ "STATIC" ];
+					CollidesWith = [ "ENEMY", "PLAYER" ];
+					AABB =
+					{
+						Center = { x = 0.0; y = 0.0; z = 0.0; };
+						HalfX = 10.0;
+						HalfY = 250.0;
+						HalfZ = 1.0;
+					};
+				};
+			};
+		},
+		{
+			Name = "Renderer";
+			Attributes =
+			{
+				Entity = "IceCube.entityb";
+				//Color = { r = 0; g = 0; b = 255; };
+				//Width = 20.0; // this is bad, but i'm killing this later.
+				//Height = 500.0;
+				//Depth = 0.1;
+			};
+		}
+	);
+};

@@ -1,0 +1,6 @@
+NAME RaisedSunkenMat
+EFFECT DiffuseNormal.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap raisedsunken.png
+TEXTURE g_normalMap raisedsunkennormalmap.png
+</PARAMETERS>

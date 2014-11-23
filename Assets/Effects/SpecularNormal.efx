@@ -1,0 +1,16 @@
+<Technique Depth>
+VERTEXSHADER depthvertex.vp
+PIXELSHADER depthshade.fp
+</Technique>
+<Technique Opaque>
+VERTEXSHADER basicvertex.vp
+PIXELSHADER specularNormalMap.fp
+<RENDERSTATE>
+</RENDERSTATE>
+<PARAMETERS>
+PFLOAT g_specularPower
+FPLANE g_farPlaneDistance
+TEXTURE g_diffuseMap
+TEXTURE g_normalMap
+</PARAMETERS>
+</Technique>

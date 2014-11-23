@@ -1,0 +1,7 @@
+NAME EnvironmentMapStone
+EFFECT SpecularEnvironmentMap.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 20
+TEXTURE g_diffuseMap mossystonepath.png
+TEXTURE g_normalMap mossystonepathnormalmap.png
+</PARAMETERS>

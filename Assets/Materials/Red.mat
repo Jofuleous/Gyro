@@ -1,0 +1,6 @@
+NAME Red
+EFFECT AlphaPartial.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap red.png
+ALPHA 0.7
+</PARAMETERS>

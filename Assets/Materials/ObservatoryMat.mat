@@ -1,0 +1,5 @@
+NAME ObservatoryMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap observatory2.png
+</PARAMETERS>

@@ -1,0 +1,12 @@
+NAME SpecularWaterRefraction
+EFFECT SpecularUVScrollRefraction.efxb
+<PARAMETERS>
+ALPHA 0.4
+PFLOAT g_specularPower 20
+PFLOAT g_scrollX 0.09
+PFLOAT g_scrollY 0
+TEXTURE g_diffuseMap water.png
+TEXTURE g_normalMap waternormalmap.png
+SCENETEXTURE g_opaque
+SCENETEXTURE g_depth
+</PARAMETERS>

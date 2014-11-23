@@ -1,0 +1,6 @@
+NAME SkyMaskMat
+EFFECT AlphaBlendBasic.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap skymask.png
+ALPHA 1.0
+</PARAMETERS>

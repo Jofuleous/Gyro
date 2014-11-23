@@ -1,0 +1,6 @@
+NAME AlphaOrbPurple
+EFFECT AlphaPartial.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap PurplePink.png
+ALPHA 0.4
+</PARAMETERS>

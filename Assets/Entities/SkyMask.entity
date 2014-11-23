@@ -1,0 +1,4 @@
+NAME SkyMask
+MESH skymask.bmod
+MATERIAL SkyMaskMat.matb
+CAMERABOUNDPOSITION

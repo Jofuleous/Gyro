@@ -1,0 +1,7 @@
+NAME ceiling_m
+EFFECT SpecularNormal.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 20
+TEXTURE g_diffuseMap cement_wall_D.png
+TEXTURE g_normalMap cement_wall_NRM.png
+</PARAMETERS>

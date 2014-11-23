@@ -1,0 +1,7 @@
+NAME ShineyWood
+EFFECT Specular.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap wood.png
+PFLOAT g_specularPower 20
+CAMERA g_cameraPosition
+</PARAMETERS>

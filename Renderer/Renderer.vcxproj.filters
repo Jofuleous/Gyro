@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{81cee7df-7415-432f-bb2d-1dda051f14e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceTypes">
+      <UniqueIdentifier>{14e11cf1-a630-4772-a0a7-cd9c85c78983}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Initialization.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Logging.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cTime.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MainWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderDevices.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VertexDeclarations.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceLoader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceMaster.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Entity.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourcePtr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Mesh.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Material.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Effect.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Technique.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\VertexShader.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\PixelShader.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Texture.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\PointLight.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\EnviroMap.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\Lines.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceTypes\HUDElements.h">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VertexStructs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Entity.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourcePtr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Mesh.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Material.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Effect.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Texture.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\EnviroMap.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderDevices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\Lines.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceTypes\HUDElements.cpp">
+      <Filter>Source Files\ResourceTypes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Renderer.aps">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\Renderer.ico">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\small.ico">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

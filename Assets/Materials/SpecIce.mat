@@ -1,0 +1,7 @@
+NAME SpecIce
+EFFECT Specular.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap ice.png
+PFLOAT g_specularPower 1
+CAMERA g_cameraPosition
+</PARAMETERS>

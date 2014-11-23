@@ -1,0 +1,53 @@
+KillTrigger:
+{
+	Components =
+	(
+		{
+			Name = "Physics";
+			Attributes =
+			{
+				RigidBody = 
+				{
+					IsKinematic = false;
+					IgnoresGravity = true;
+					Collider =
+					{
+						IsTrigger = true; // collision resolution will not occur.
+						CollisionBits = [ "STATIC" ];
+						CollidesWith = [ "PLAYER", "ENEMY" ];
+						Callback = 
+						{
+							Trigger =
+							{
+							}
+						}
+						AABB =
+						{
+							Center = { x = 0.0; y = 0.0; z = 0.0; };
+							HalfX = 80.0;
+							HalfY = 80.0;
+							HalfZ = 1.0;
+						};
+					};
+				};
+			};
+		},
+		{
+			Name = "Renderer";
+			Attributes =
+			{
+				Color = { r = 200; g = 0; b = 100; };
+				Width = 160.0; // this is bad, but i'm killing this later.
+				Height = 160.0;
+				Depth = 0.0;
+			};
+		},
+		{
+			Name = "Trigger";
+			Triggers =
+			{
+				OnEnter = [ "Kill" ];
+			};
+		}
+	);
+};

@@ -1,0 +1,5 @@
+NAME TreeTop
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap treetop.png
+</PARAMETERS>

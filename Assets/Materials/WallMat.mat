@@ -1,0 +1,5 @@
+NAME WallMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap wall.png
+</PARAMETERS>

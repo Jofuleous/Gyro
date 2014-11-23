@@ -1,0 +1,6 @@
+NAME CloudMat
+EFFECT AlphaBlendBasic.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap cloud.png
+ALPHA 1.0
+</PARAMETERS>

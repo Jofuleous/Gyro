@@ -1,0 +1,97 @@
+QuakePlayer=
+{
+	Components =
+	{
+		GroundFollower =
+		{
+			RayOrigin = { 0.0, 300.0, 0.0, }, --from the actor position
+			RayDownLength = 300.0,
+			RayForwardLength = 50.0,
+			MaxSpeedXZ = 3000.0,
+			MaxSpeedY = 13000.0,
+			AccelerationXZ = 12000.0,
+			Gravity = { 0.0, -5000.0, 0.0, },
+		},
+		Collision =
+		{
+			CollisionBits = { "PLAYER" },
+			CollidesWith = { "PLAYER", "TRIGGER", "ENEMY", },
+			Callback = -- dirty...
+			{
+				Messages =
+				{
+					Follower =
+					{
+						CollidedWith = "Follower",
+						Message = "EnemyCollided",
+					},
+					Hopper =
+					{
+						CollidedWith = "HopperEnemy",
+						Message = "EnemyCollided",
+					},
+					Spinner =
+					{
+						CollidedWith = "SpinnerEnemy",
+						Message = "EnemyCollided",
+					},
+					EnemySpawner =
+					{
+						CollidedWith = "EnemySpawner",
+						Message = "EnemyCollided",
+					},
+				},
+			},
+			AABB =
+			{
+				Center = { 0.0, 79.318, 0.0, },
+				HalfX = 31.7215,
+				HalfY = 79.318,
+				HalfZ = 15.0,
+			},
+		},
+		QuakePlayer=
+		{
+			MaxSpeed = 400.0,
+			Decelerate = 0.3, -- in seconds.  how fast to slow down to zero from max speed?
+			CameraOffsetY = 200.0,
+			PlayerWeaponInv =
+			{
+				Blasters =
+				{
+					One =
+					{
+						FireRate = 0.25,
+						Spread = 0.0,
+						Projectiles = 1,
+						Character = "Projectiles/BasicBullet",
+						Speed = 7000.0,
+						Unlock = 50,
+					},
+					Two =
+					{
+						FireRate = 0.333,
+						Spread = 10.0,
+						Projectiles = 2,
+						Character = "Projectiles/BasicBullet",
+						Speed = 8000.0,	
+						Unlock = 150,
+					},
+					Three =
+					{
+						FireRate = 0.15,
+						Projectiles = 3,
+						Spread = 20.0,
+						Character = "Projectiles/BasicBullet",
+						Speed = 8000.0,
+						Unlock = 300,
+					},
+				},
+			},
+		},
+		Renderer=
+		{
+			Entity = "Guy.entityb",
+		},
+	},
+}

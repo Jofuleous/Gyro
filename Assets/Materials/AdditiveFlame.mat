@@ -1,0 +1,5 @@
+NAME AdditiveFlame
+EFFECT AlphaAdditive.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap flame.png
+</PARAMETERS>

@@ -1,0 +1,13 @@
+QuaternTest=
+{
+	Components =
+	{
+		QuatTest=
+		{
+		},
+		Renderer=
+		{
+			Entity = "Axis.entityb",
+		},
+	},
+}

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{db8ceed3-28b7-4bfe-a89c-b0df9b616bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{ea68dc71-6dc4-4287-a1d0-05b8efbc3cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{5a0d6a6c-cd38-447c-8788-5d5a951252c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{4ce3fc74-0044-4fff-8b5a-ed7d71d2d794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{25e4855c-76c4-41e9-9844-afbd58301468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{7bc7673f-9cd7-4f69-8bd1-2e080f9df1bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{c3e2b6ba-0862-4b77-93da-00ca2f1e0a2b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Actor\IActorComponent.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Misc\RBuffer.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\World.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Loop.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Actor\ComponentManager.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Misc\UserSettings.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\CollisionUtil.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\GPhysics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\GMessageManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\ICollisionCallback.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\GMessageCallback.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\GTriggerCallback.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GTriggerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GTriggerFunctions.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GRenderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Misc\DebugConsole.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\CollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GGroundFollowerComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision\GCollisionMesh.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Misc\GMouse.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\GRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GCollisionComp.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\HealthComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Actor\GActor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Core\World.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Loop.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Actor\ComponentManager.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\UserSettings.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision\CollisionUtil.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\GPhysics.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\GMessageManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision\GMessageCallback.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GTriggerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GRenderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\DebugConsole.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision\CollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GGroundFollowerComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision\GCollisionMesh.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\GMouse.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\GRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GCollisionComp.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\HealthComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Actor\GActor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

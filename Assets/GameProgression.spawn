@@ -1,0 +1,140 @@
+Progression =
+{
+	CharacterFiles = 
+	{
+		Follower = "GeoEnemies/Follower",
+		HopperEnemy = "GeoEnemies/HopperEnemy",
+		SpinnerEnemy = "GeoEnemies/SpinnerEnemy",
+		EnemySpawner = "GeoEnemies/EnemySpawner",
+	},
+	
+	Bounds =
+	{
+		AABB = 
+		{
+			Center = { 0.0, 3700.0, 0.0, },
+			HalfX = 5300.0,
+			HalfY = 3800.0,
+			HalfZ = 5300.0,
+		},
+	},
+
+	Spawns =
+	{
+		One =
+		{
+			Type = "Location",
+			Time = 5.0,
+			Frequency = 1.5,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { -5423.76, 115.42, -5219.797363, },
+		},
+		Two =
+		{
+			Type = "Location",
+			Time = 15.0,
+			Frequency = 2.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { 5158.69, 115.42, -5219.79, },
+		},
+		Three =
+		{
+			Type = "Location",
+			Time = 25.0,
+			Frequency = 2.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { 5158.7, 115.42, 5356.93, },
+		},
+		Four =
+		{
+			Type = "Location",
+			Time = 40.0,
+			Frequency = 2.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { -5317.04, 115.42, 5356.9, },
+		},
+		
+		
+		Five =
+		{
+			Type = "Location",
+			Time = 40.0,
+			Frequency = 1.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { -5423.76, 115.42, -5219.797363, },
+		},
+		Two =
+		{
+			Type = "Location",
+			Time = 45.0,
+			Frequency = 1.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { 5158.69, 115.42, -5219.79, },
+		},
+		Three =
+		{
+			Type = "Location",
+			Time = 50.0,
+			Frequency = 1.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { 5158.7, 115.42, 5356.93, },
+		},
+		Four =
+		{
+			Type = "Location",
+			Time = 60.0,
+			Frequency = 2.0,
+			Count = 20,
+			Enemies = { "GeoEnemies/SpinnerEnemy", },	
+			Radius = 200.0,
+			Location = { -5322.8, 0.0, -5183.5, },
+		},
+		Six =
+		{
+			Type = "EnemySpawner",
+			Time = 75.0,
+			Frequency = 0.5,
+			Count = 200,
+			Enemies = { "GeoEnemies/Follower", },
+			Spawner = "GeoEnemies/EnemySpawner",
+			Radius = 200.0,
+			Location = { -5317.04, 115.42, 5356.9, },
+		},		
+		
+		Seven =
+		{
+			Type = "Location",
+			Time = 75.0,
+			Frequency = 0.5,
+			Count = 200,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { -5322.8, 0.0, -5183.5, },
+		},		
+		
+		Eight =
+		{
+			Type = "Location",
+			Time = 85.0,
+			Frequency = 0.5,
+			Count = 200,
+			Enemies = { "GeoEnemies/Follower", },	
+			Radius = 200.0,
+			Location = { 5158.7, 115.42, 5356.93, },
+		},	
+	},
+}

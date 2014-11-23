@@ -1,0 +1,4 @@
+#ifndef __GCOMPONENTREGISTRY_H_
+#define __GCOMPONENTREGISTRY_H_
+
+#endif

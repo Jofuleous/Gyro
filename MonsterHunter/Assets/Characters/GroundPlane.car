@@ -1,0 +1,41 @@
+GroundPlane:
+{
+	Components =
+	(
+		{
+			Name = "Physics";
+			Attributes =
+			{
+				RigidBody = 
+				{
+					Mass = 100000.0;
+					IsKinematic = false;
+					IgnoresGravity = true;
+					Collider =
+					{
+						IsTrigger = false;
+						CollisionBits = [ "STATIC" ];
+						CollidesWith = [ "ENEMY", "PLAYER" ];
+						AABB =
+						{
+							Center = { x = 0.0; y = 0.0; z = 0.0; };
+							HalfX = 600.0;
+							HalfY = 10.0;
+							HalfZ = 1.0;
+						};
+					};
+				};
+			};
+		},
+		{
+			Name = "Renderer";
+			Attributes =
+			{
+				Color = { r = 0; g = 0; b = 255; };
+				Width = 1000.0; // this is bad, but i'm killing this later.
+				Height = 20.0;
+				Depth = 0.1;
+			};
+		}
+	);
+};

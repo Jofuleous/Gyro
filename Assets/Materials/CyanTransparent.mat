@@ -1,0 +1,6 @@
+NAME CyanTransparent
+EFFECT AlphaPartial.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap cyan.png
+ALPHA 0.4
+</PARAMETERS>

@@ -1,0 +1,7 @@
+NAME SpecBlueIce
+EFFECT Specular.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap blueice.png
+PFLOAT g_specularPower 14
+CAMERA g_cameraPosition
+</PARAMETERS>

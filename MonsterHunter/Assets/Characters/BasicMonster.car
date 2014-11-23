@@ -1,0 +1,59 @@
+BasicMonster:
+{
+	Components =
+	(
+		{
+			Name = "Physics";
+			Attributes =
+			{
+				RigidBody = 
+				{
+					Mass = 10.0;
+					IsKinematic = false;
+					Collider =
+					{
+						IsTrigger = false;
+						CollisionBits = [ "ENEMY" ];
+						CollidesWith = [ "PLAYER", "ENEMY", "STATIC" ];
+						Callback = 
+						{
+							Messages =
+							{
+								Message =
+								{
+									CollidedWith = "Player"; // i kind of hate this.  may do away...
+									Message = "MonsterCollidedWithPlayer"	
+								}
+							}
+						}
+						OBB =
+						{
+							Center = { x = 0.0; y = 0.0; z = 0.0; };
+							HalfX = 20.0;
+							HalfY = 20.0;
+							HalfZ = 1.0;
+							RotationZ = 60.0;
+						};
+					};
+				};
+			};
+		},
+		{
+			Name = "Monster";
+			Attributes =
+			{
+				MaxSpeed = 20.0;
+			};
+		},
+		{
+			Name = "Renderer";
+			Attributes =
+			{
+				Color = { r = 0; g = 255; b = 0; };
+				Width = 40.0;
+				Height = 40.0;
+				Depth = 0.1;
+			};
+		}
+	);
+};

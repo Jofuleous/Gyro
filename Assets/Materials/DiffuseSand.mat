@@ -1,0 +1,5 @@
+NAME DiffuseSand
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap sand.png
+</PARAMETERS>

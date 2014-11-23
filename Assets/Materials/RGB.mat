@@ -1,0 +1,5 @@
+NAME RGB
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap rgb.png
+</PARAMETERS>

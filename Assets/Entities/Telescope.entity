@@ -1,0 +1,3 @@
+NAME Telescope
+MESH telescope.bmod
+MATERIAL TelescopeMat.matb

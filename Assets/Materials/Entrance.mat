@@ -1,0 +1,5 @@
+NAME Entrance
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap entrance.png
+</PARAMETERS>

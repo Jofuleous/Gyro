@@ -1,0 +1,7 @@
+NAME lambert1
+EFFECT SpecularNormal.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 20
+TEXTURE g_diffuseMap marble.png
+TEXTURE g_normalMap mossystonepathnormalmap.png
+</PARAMETERS>

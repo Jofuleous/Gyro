@@ -1,0 +1,36 @@
+/*
+	This class builds entities..
+*/
+
+#ifndef __SCENE_BUILDER_H_
+#define __SCENE_BUILDER_H_
+
+// Header Files
+//=============
+
+#include "../GenericBuilder/cbGenericBuilder.h"
+
+// Class Definition
+//=================
+
+namespace cs6963
+{
+	class SceneBuilder : public cbGenericBuilder
+	{
+		// Inherited Interface
+		//====================
+
+	private:
+
+		virtual const char* GetToolName() const { return "SceneBuilder"; }
+
+		// Inherited Rendererlementation
+		//=========================
+
+	private:
+
+		virtual bool Build_derived( const char* i_fileName_source, const char* i_fileName_target ) const;
+	};
+}
+
+#endif	// CS6963_CTEXTUREBUILDER_H

@@ -1,0 +1,5 @@
+NAME DiffuseWood
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap wood.png
+</PARAMETERS>

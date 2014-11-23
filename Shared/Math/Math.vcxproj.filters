@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GMatrix4.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="GAABB.cpp" />
+    <ClCompile Include="GVector3.cpp" />
+    <ClCompile Include="GQuat.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GMatrix4.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="AlignVector3.h" />
+    <ClInclude Include="GMath.h" />
+    <ClInclude Include="GAABB.h" />
+    <ClInclude Include="GVector3.h" />
+    <ClInclude Include="GQuat.h" />
+    <ClInclude Include="GTransform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GMatrix4.inl" />
+    <None Include="Utilities.inl" />
+    <None Include="AlignVector3.inl" />
+    <None Include="GMath.inl" />
+    <None Include="GAABB.inl" />
+    <None Include="GVector3.inl" />
+  </ItemGroup>
+</Project>

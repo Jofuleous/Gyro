@@ -1,0 +1,27 @@
+Player=
+{
+	Components =
+	{
+		GroundFollower =
+		{
+			RayOrigin = { 0.0, 100.0, 0.0, }, --from the actor position
+			RayDownLength = 100.0,
+			RayForwardLength = 50.0,
+			
+			MaxSpeedXZ = 400.0,
+			MaxSpeedY = 1000.0,
+			AccelerationXZ = 2000.0,
+			Gravity = { 0.0, -500.0, 0.0, },
+		},
+		Player=
+		{
+			MaxSpeed = 400.0,
+			Acceleration = 2000.0,
+			CameraOffsetY = 200.0,
+		},
+		Renderer=
+		{
+			Entity = "Guy.entityb",
+		},
+	},
+}

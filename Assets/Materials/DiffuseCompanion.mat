@@ -1,0 +1,5 @@
+NAME DiffuseCompanion
+EFFECT Diffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap companioncube.png
+</PARAMETERS>

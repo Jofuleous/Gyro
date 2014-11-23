@@ -1,0 +1,5 @@
+NAME TelescopeMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap steelgrey.png
+</PARAMETERS>

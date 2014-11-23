@@ -1,0 +1,14 @@
+<Technique PostOpaque>
+VERTEXSHADER basicvertex.vp
+PIXELSHADER specularUVScroll.fp
+<RENDERSTATE>
+ALPHA Partial
+</RENDERSTATE>
+<PARAMETERS>
+PFLOAT g_specularPower
+PFLOAT g_scrollX
+PFLOAT g_scrollY
+TEXTURE g_diffuseMap
+TEXTURE g_normalMap
+</PARAMETERS>
+</Technique>

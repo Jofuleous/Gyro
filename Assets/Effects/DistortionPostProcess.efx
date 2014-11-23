@@ -1,0 +1,7 @@
+<Technique PostProcess>
+VERTEXSHADER postprocess.vp
+PIXELSHADER distortion.fp
+<PARAMETERS>
+PFLOAT g_Distortion
+</PARAMETERS>
+</Technique>

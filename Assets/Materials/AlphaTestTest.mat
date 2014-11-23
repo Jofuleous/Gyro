@@ -1,0 +1,5 @@
+NAME AlphaTestTest
+EFFECT AlphaTest.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap badgradesnoxbox.png
+</PARAMETERS>

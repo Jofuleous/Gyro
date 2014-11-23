@@ -1,0 +1,42 @@
+CtfAiPlayer=
+{
+	Components =
+	{
+		GroundFollower =
+		{
+			RayOrigin = { 0.0, 100.0, 0.0, }, --from the actor position
+			RayDownLength = 100.0,
+			RayForwardLength = 50.0,
+			
+			MaxSpeedXZ = 1000.0,
+			MaxSpeedY = 1000.0,
+			AccelerationXZ = 2000.0,
+			Gravity = { 0.0, -500.0, 0.0, },
+		},
+		Collision =
+		{
+			CollisionBits = { "ENEMY" },
+			CollidesWith = { "PLAYER", "FLAG", "ENEMY", },
+			Decelerate = 0.1, -- in seconds.  how fast to slow down to zero from max speed?
+			--Callback = "Trigger",
+			AABB =
+			{
+				Center = { 0.0, 79.318, 0.0, },
+				HalfX = 31.7215,
+				HalfY = 79.318,
+				HalfZ = 15.0,
+			},
+		},
+		Team=
+		{
+			Number = 2,
+		},
+		CtfAiPlayer=
+		{
+		},
+		Renderer=
+		{
+			Entity = "Guy.entityb",
+		},
+	},
+}

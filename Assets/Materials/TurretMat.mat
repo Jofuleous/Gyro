@@ -1,0 +1,5 @@
+NAME TurretMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap turret.png
+</PARAMETERS>

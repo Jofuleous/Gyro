@@ -1,0 +1,5 @@
+NAME Follower
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap follower.png
+</PARAMETERS>

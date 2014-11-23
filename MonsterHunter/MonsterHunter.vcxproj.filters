@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\MonsterHunter.cpp" />
+    <ClCompile Include="Source\Components\PlayerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\MonsterComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameInit.cpp" />
+    <ClCompile Include="Source\Components\FlagComponent.cpp" />
+    <ClCompile Include="Source\CaptureFlagManager.cpp" />
+    <ClCompile Include="Source\Components\TeamComponent.cpp" />
+    <ClCompile Include="Source\GeometryWars\SpawnManager.cpp" />
+    <ClCompile Include="Source\GeometryWars\SpawnData.cpp" />
+    <ClCompile Include="Source\GeometryWars\PlayerWeaponInv.cpp" />
+    <ClCompile Include="Source\GeometryWars\EnemySpawnerComp.cpp" />
+    <ClCompile Include="Source\GeometryWars\FollowEnemyComp.cpp" />
+    <ClCompile Include="Source\GeometryWars\HopperEnemyComp.cpp" />
+    <ClCompile Include="Source\GeometryWars\SpinnerEnemyComp.cpp" />
+    <ClCompile Include="Source\GeometryWars\QuakePlayerComp.cpp" />
+    <ClCompile Include="Source\GeometryWars\GameStateManager.cpp" />
+    <ClCompile Include="Source\Components\CtfAiPlayerComp.cpp" />
+    <ClCompile Include="Source\Components\QuatTestComp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\MonsterHunter.h" />
+    <ClInclude Include="Source\Components\PlayerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\MonsterComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameInit.h" />
+    <ClInclude Include="Source\Components\FlagComponent.h" />
+    <ClInclude Include="Source\CaptureFlagManager.h" />
+    <ClInclude Include="Source\Components\TeamComponent.h" />
+    <ClInclude Include="Source\GeometryWars\SpawnData.h" />
+    <ClInclude Include="Source\GeometryWars\SpawnManager.h" />
+    <ClInclude Include="Source\GeometryWars\LocationSpawn.h" />
+    <ClInclude Include="Source\GeometryWars\SpawnerSpawn.h" />
+    <ClInclude Include="Source\GeometryWars\IndividualSpawn.h" />
+    <ClInclude Include="Source\GeometryWars\LauncherSpawn.h" />
+    <ClInclude Include="Source\GeometryWars\PlayerWeaponInv.h" />
+    <ClInclude Include="Source\GeometryWars\EnemySpawnerData.h" />
+    <ClInclude Include="Source\GeometryWars\EnemySpawnerComp.h" />
+    <ClInclude Include="Source\GeometryWars\FollowEnemyComp.h" />
+    <ClInclude Include="Source\GeometryWars\HopperEnemyComp.h" />
+    <ClInclude Include="Source\GeometryWars\SpinnerEnemyComp.h" />
+    <ClInclude Include="Source\GeometryWars\QuakePlayerComp.h" />
+    <ClInclude Include="Source\GeometryWars\GameStateManager.h" />
+    <ClInclude Include="Source\Components\CtfAiPlayerComp.h" />
+    <ClInclude Include="Source\Components\QuatTestComp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Components">
+      <UniqueIdentifier>{6687183b-38b5-45c8-8ec4-f4673a3aa351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{9f80da91-590d-43a2-a8ae-adecd08f219c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Worlds">
+      <UniqueIdentifier>{7f961cfd-02a6-465f-9b9d-419c3d7a6522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Characters">
+      <UniqueIdentifier>{3db59bad-7aeb-4fba-a0fc-a5d6dae2b863}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Worlds\One.lvl">
+      <Filter>Assets\Worlds</Filter>
+    </None>
+    <None Include="Assets\Characters\BasicMonster.car">
+      <Filter>Assets\Characters</Filter>
+    </None>
+    <None Include="Assets\Characters\Player.car">
+      <Filter>Assets\Characters</Filter>
+    </None>
+  </ItemGroup>
+</Project>

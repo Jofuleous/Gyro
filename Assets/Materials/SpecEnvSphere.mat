@@ -1,0 +1,9 @@
+NAME AdditiveFlame
+EFFECT SpecularEnvironmentMap.efxb
+<PARAMETERS>
+PFLOAT g_specularPower
+PFLOAT g_scrollX
+PFLOAT g_scrollY
+TEXTURE g_diffuseMap 
+ENVIROMAP g_environmentMap
+</PARAMETERS>

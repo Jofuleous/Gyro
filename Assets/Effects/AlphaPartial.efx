@@ -1,0 +1,10 @@
+<Technique Alpha>
+VERTEXSHADER basicvertex.vp
+PIXELSHADER diffuse.fp
+<RENDERSTATE>
+ALPHA Partial
+</RENDERSTATE>
+<PARAMETERS>
+TEXTURE g_diffuseMap
+</PARAMETERS>
+</Technique>

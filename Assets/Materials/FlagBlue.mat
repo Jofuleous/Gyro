@@ -1,0 +1,6 @@
+NAME FlagBlue
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap blue.png
+ALPHA 1.0
+</PARAMETERS>

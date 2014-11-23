@@ -1,0 +1,6 @@
+NAME TriggerOrange
+EFFECT AlphaPartial.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap trigger_orange.png
+ALPHA 0.4
+</PARAMETERS>

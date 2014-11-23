@@ -1,0 +1,52 @@
+SideWall:
+{
+	Components =
+	(
+		{
+			Name = "Physics";
+			Attributes =
+			{
+				RigidBody = 
+				{
+					IsKinematic = false;
+					IgnoresGravity = true;
+					Collider =
+					{
+						IsTrigger = true;
+						CollisionBits = [ "STATIC" ];
+						CollidesWith = [ "ENEMY", "PLAYER" ];
+						Callback = 
+						{
+							Trigger =
+							{
+							}
+						}
+						AABB =
+						{
+							Center = { x = 0.0; y = 0.0; z = 0.0; };
+							HalfX = 10.0;
+							HalfY = 250.0;
+							HalfZ = 1.0;
+						};
+					};
+				};
+			};
+		},
+		{
+			Name = "Renderer";
+			Attributes =
+			{
+				Color = { r = 0; g = 0; b = 255; };
+				Width = 20.0; // this is bad, but i'm killing this later.
+				Height = 500.0;
+			};
+		},
+		{
+			Name = "Trigger";
+			Triggers =
+			[
+				"SpeedUp",
+			];
+		},
+	);
+};

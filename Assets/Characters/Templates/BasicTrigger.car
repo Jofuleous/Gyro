@@ -1,0 +1,23 @@
+BasicTrigger=
+{
+	Components =
+	{
+		Collision =
+		{
+			IsTrigger = true, --collision resolution will not occur.
+			CollisionBits = { "STATIC" },
+			CollidesWith = { "PLAYER", "ENEMY" },
+			Callback = "Trigger",
+			AABB =
+			{
+				Center = { x = 0.0, y = 0.0, z = 0.0, },
+				HalfX = 80.0,
+				HalfY = 80.0,
+				HalfZ = 1.0,
+			},
+		},
+		Trigger=
+		{
+		}
+	}
+};

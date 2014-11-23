@@ -1,0 +1,6 @@
+NAME Orange
+EFFECT BasicDiffuse.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap trigger_orange.png
+ALPHA 0.8
+</PARAMETERS>

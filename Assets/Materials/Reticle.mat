@@ -1,0 +1,5 @@
+NAME Reticle
+EFFECT HUDEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap Reticle.png
+</PARAMETERS>

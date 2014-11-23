@@ -1,0 +1,16 @@
+World:
+{
+	Characters =
+	(
+		{
+		type = "Player";
+		position = { x = 0.0; y = -100.0; z = 0.0; };
+		}/*,
+		{
+		type = "SideWall";
+		position = { x = 0.0; y = 8.0; z = -45.0; };
+		}
+		*/
+	);
+	Scene = "data/FBXScenes/ctf_v12-MeshOnly-NoEmbed.sceneb"; // gross for now.
+};

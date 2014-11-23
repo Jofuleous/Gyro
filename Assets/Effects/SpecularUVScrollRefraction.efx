@@ -1,0 +1,13 @@
+<Technique PostOpaque>
+VERTEXSHADER basicvertex.vp
+PIXELSHADER specularUVScrollRefraction.fp
+<PARAMETERS>
+PFLOAT g_specularPower
+PFLOAT g_scrollX
+PFLOAT g_scrollY
+TEXTURE g_diffuseMap
+TEXTURE g_normalMap
+SCENETEXTURE g_opaque
+SCENETEXTURE g_depth
+</PARAMETERS>
+</Technique>

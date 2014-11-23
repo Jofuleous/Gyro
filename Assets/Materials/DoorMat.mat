@@ -1,0 +1,5 @@
+NAME DoorMat
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap door.png
+</PARAMETERS>

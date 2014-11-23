@@ -1,0 +1,5 @@
+NAME SomeRock
+EFFECT toonEffect.efxb
+<PARAMETERS>
+TEXTURE g_diffuseMap brown.png
+</PARAMETERS>

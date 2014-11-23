@@ -1,0 +1,7 @@
+NAME floor_m
+EFFECT SpecularNormal.efxb
+<PARAMETERS>
+PFLOAT g_specularPower 20
+TEXTURE g_diffuseMap floor_D.png
+TEXTURE g_normalMap floor_NRM.png
+</PARAMETERS>
