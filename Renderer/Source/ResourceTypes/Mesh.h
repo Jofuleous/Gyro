@@ -12,6 +12,7 @@
 #include <vector>
 
 class Entity;
+class GSkeletonInstance;
 
 class MeshData
 {
@@ -29,6 +30,7 @@ public:
 
 	IDirect3DVertexBuffer9*		m_vertexBuffer;
 	IDirect3DIndexBuffer9*		m_indexBuffer;
+	GSkeletonInstance*			m_skeletonInstance;
 };
 
 class MeshReference : public ResourceMaster<MeshData>

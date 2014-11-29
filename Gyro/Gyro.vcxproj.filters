@@ -96,6 +96,9 @@
     <ClInclude Include="Source\Actor\GActor.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\GAnimComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\World.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Source\Actor\GActor.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GAnimComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

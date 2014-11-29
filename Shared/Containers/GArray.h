@@ -3,6 +3,8 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
 
 //#define _PROFILE
 #ifdef _PROFILE
@@ -21,8 +23,17 @@ public:
 	}
 
 	void	Push( const T& i_value );
-	u32		Count() { return m_count; }
-	u32		Size() { return m_size; }
+	u32		Count() const { return m_count; }
+	u32		Size() const { return m_size; }
+
+	// Make a deep copy.
+	void	Copy( const GArray<T>& i_other );
+	void	SetCount( int i_count );
+
+	// These are not portable.  Replace later...
+	void	Serialize( FILE* io_file );
+	void	DeSerialize(FILE * i_file);
+
 	void	Resize( u32 i_size )
 	{
 		if( i_size > m_size )
@@ -36,7 +47,8 @@ public:
 		else if( i_size == m_size ) {}
 		else if( i_size < m_size )
 		{
-			delete m_elements[ m_size - (m_size - i_size )]; // not sure that this is legal...
+			assert(0);
+			delete &m_elements[ m_size - (m_size - i_size )]; // not sure that this is legal...
 			if( i_size < m_count )
 				m_count = i_size;
 		}
@@ -93,6 +105,49 @@ void GArray<T>::Push( const T& i_value )
 
 	m_elements[m_count] = i_value;
 	m_count++;
+}
+
+// Create a deep copy.
+template<typename T>
+void GArray<T>::Copy( const GArray<T>& i_other )
+{
+	void* dest;
+	if (m_size < i_other.Size())
+		dest = m_elements;
+	else
+	{
+		if (m_elements)
+			delete m_elements;
+
+		dest = m_elements = new T[i_other.Size()];
+	}
+
+	memcpy( dest, i_other.m_elements, sizeof( T ) );
+}
+
+// Only use this if you know what you are doing.
+template<typename T>
+void GArray<T>::SetCount( int i_count)
+{
+	m_count = i_count;
+}
+
+template<typename T>
+void GArray<T>::Serialize( FILE* io_file )
+{
+	fwrite(&m_size, sizeof(u32), 1, io_file);
+	fwrite(&m_count, sizeof(u32), 1, io_file);
+	fwrite(m_elements, sizeof(T), m_count, io_file)
+}
+
+template<typename T>
+void GArray<T>::DeSerialize(FILE * i_file)
+{
+	u32 size;
+	fread(&size, sizeof(u32), 1, i_file );
+	Resize(size);
+	fread(&m_count, sizeof(u32), 1, i_file);
+	fread(m_elements, sizeof(T), m_count, i_file);
 }
 
 #ifdef _PROFILE

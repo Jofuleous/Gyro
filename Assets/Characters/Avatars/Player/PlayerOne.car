@@ -42,5 +42,9 @@ PlayerOne=
 		{
 			Entity = "Guy.entityb",
 		},
+		Anim =
+		{
+			
+		},
 	},
 }

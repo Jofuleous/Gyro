@@ -10,6 +10,7 @@
 
 #include <maya/MPxFileTranslator.h>
 #include <vector>
+#include "GMayaSkeleton.h"
 
 // Forward Declarations
 //=====================
@@ -52,7 +53,7 @@ namespace cs6963
 
 	private:
 
-		MStatus Export( const MString& i_fileName, std::vector<const s_vertex>& i_vertexBuffer, std::vector<unsigned int>& i_indexBuffer );
+		MStatus Export(const MString& i_fileName, std::vector<const s_vertex>& i_vertexBuffer, std::vector<unsigned int>& i_indexBuffer, const GMayaSkeleton& i_skelly );
 	};
 }
 

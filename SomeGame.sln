@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonsterHunter", "MonsterHunter\MonsterHunter.vcxproj", "{BEB811A2-9393-492E-A2E7-74CCE405933C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{80975809-F1EA-4AAC-BB24-A16CEFC4FFC8} = {80975809-F1EA-4AAC-BB24-A16CEFC4FFC8}
@@ -106,6 +108,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua", "External\Lua\Lua.vcxproj", "{441BD31B-4FC6-4A64-9B03-0CC94239D948}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Renderer", "Renderer\Renderer.vcxproj", "{5BAB0E7C-578F-4D5D-A20A-F82AAECF2C6E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0} = {3C07E1F1-58E3-436E-B467-70FD4ED353C0}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{1FF9DFD2-63B5-405B-85E8-37DFCEFF9BEF}"
 EndProject
@@ -160,6 +165,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio", "Shared\Audio\Audio.vcxproj", "{8FEC0D48-D5FD-4BAF-AA7C-A43C76170E68}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioBuilder", "Tools\AudioBuilder\AudioBuilder.vcxproj", "{05896A80-3985-4AFC-804D-59A7E05F4F90}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Animation", "Shared\Animation\Animation.vcxproj", "{3C07E1F1-58E3-436E-B467-70FD4ED353C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -330,6 +337,12 @@ Global
 		{05896A80-3985-4AFC-804D-59A7E05F4F90}.Release|Win32.Build.0 = Release|Win32
 		{05896A80-3985-4AFC-804D-59A7E05F4F90}.Win32 Profile|Win32.ActiveCfg = Release|Win32
 		{05896A80-3985-4AFC-804D-59A7E05F4F90}.Win32 Profile|Win32.Build.0 = Release|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Debug|Win32.Build.0 = Debug|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Release|Win32.ActiveCfg = Release|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Release|Win32.Build.0 = Release|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Win32 Profile|Win32.ActiveCfg = Release|Win32
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0}.Win32 Profile|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -359,5 +372,6 @@ Global
 		{45C2E0BF-5147-4982-8387-5E820FECAA41} = {1FF9DFD2-63B5-405B-85E8-37DFCEFF9BEF}
 		{5EA2B178-1859-43DC-B213-AEC7FADCFE2E} = {1FF9DFD2-63B5-405B-85E8-37DFCEFF9BEF}
 		{8FEC0D48-D5FD-4BAF-AA7C-A43C76170E68} = {1FF9DFD2-63B5-405B-85E8-37DFCEFF9BEF}
+		{3C07E1F1-58E3-436E-B467-70FD4ED353C0} = {1FF9DFD2-63B5-405B-85E8-37DFCEFF9BEF}
 	EndGlobalSection
 EndGlobal

@@ -76,17 +76,17 @@
     <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
     <TargetName>cs6963</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>$(maya);$(IncludePath)</IncludePath>
-    <LibraryPath>$(maya)../../lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(maya);$(SolutionDir)..\..\..\Shared\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(maya)../../lib;$(LibraryPath);$(SolutionDir)..\..\..\$(Configuration)\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\temp\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <TargetName>cs6963</TargetName>
+    <OutDir>$(SolutionDir)..\..\..\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <TargetName>GyroExporter</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>C:\Program Files\Autodesk\Maya2012\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Autodesk\Maya2012\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\..\Shared\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\..\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,17 +94,17 @@
     <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
     <TargetName>cs6963</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>$(maya);$(IncludePath)</IncludePath>
-    <LibraryPath>$(maya)../../lib</LibraryPath>
+    <IncludePath>$(maya);$(SolutionDir)..\..\..\Shared\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(maya)../../lib;;$(SolutionDir)..\..\..\$(Configuration)\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\temp\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
     <TargetName>GyroExporter</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\..\Shared\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\..\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -115,6 +115,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(MAYA_LOCATION)\include\</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)..\..\..\Shared\Platform\Target.Win32.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(MAYA_LOCATION)\include\</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)..\..\..\Shared\Platform\Target.Win32.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -172,6 +174,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(MAYA_LOCATION)\include\</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)..\..\..\Shared\Platform\Target.Win32.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,9 +188,11 @@
   <ItemGroup>
     <ClCompile Include="cMayaExporter.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="GMayaSkeleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cMayaExporter.h" />
+    <ClInclude Include="GMayaSkeleton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -439,15 +439,15 @@ inline GQuat& GQuat::Set( float x, float y, float z )
 {
 	float angle;
 
-	angle = x * 0.5;
+	angle = x * 0.5f;
 	const float sr = sinf(angle);
 	const float cr = cosf(angle);
 
-	angle = y * 0.5;
+	angle = y * 0.5f;
 	const float sp = sinf(angle);
 	const float cp = cosf(angle);
 
-	angle = z * 0.5;
+	angle = z * 0.5f;
 	const float sy = sinf(angle);
 	const float cy = cosf(angle);
 
@@ -581,16 +581,16 @@ inline void GQuat::ToEuler(GVector3& euler) const
 	const float sqx = m_X*m_X;
 	const float sqy = m_Y*m_Y;
 	const float sqz = m_Z*m_Z;
-	const float test = 2.0 * (m_Y*m_W - m_X*m_Z);
+	const float test = 2.0f * (m_Y*m_W - m_X*m_Z);
 
-	if( GMath::AlmostEqual( test, 1.0 ) )
+	if (GMath::AlmostEqual(test, 1.0f))
 	{
 		// heading = rotation about z-axis
-		euler._z = (float)(-2.0*atan2f(m_X, m_W));
+		euler._z = (float)(-2.0f*atan2f(m_X, m_W));
 		// bank = rotation about x-axis
 		euler._x = 0;
 		// attitude = rotation about y-axis
-		euler._y = (float)(GMath::Pi / 2.0);
+		euler._y = (float)(GMath::Pi / 2.0f);
 	}
 	else if( GMath::AlmostEqual( test, -1.0f ) )
 	{
@@ -604,9 +604,9 @@ inline void GQuat::ToEuler(GVector3& euler) const
 	else
 	{
 		// heading = rotation about z-axis
-		euler._z = (float) atan2f(2.0 * (m_X*m_Y + m_Z*m_W), (sqx - sqy - sqz + sqw));
+		euler._z = (float)atan2f(2.0f * (m_X*m_Y + m_Z*m_W), (sqx - sqy - sqz + sqw));
 		// bank = rotation about x-axis
-		euler._x = (float) atan2f(2.0 * (m_Y*m_Z + m_X*m_W), (-sqx - sqy + sqz + sqw));
+		euler._x = (float)atan2f(2.0f * (m_Y*m_Z + m_X*m_W), (-sqx - sqy + sqz + sqw));
 		// attitude = rotation about y-axis
 		float test2 = test;
 		GMath::Clamp( test2, -1.0, 1.0 ); // change clamp later..take in pointer...?

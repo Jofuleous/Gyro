@@ -132,6 +132,7 @@
     <ClInclude Include="Source\Collision\GMessageCallback.h" />
     <ClInclude Include="Source\Collision\GTriggerCallback.h" />
     <ClInclude Include="Source\Collision\ICollisionCallback.h" />
+    <ClInclude Include="Source\Components\GAnimComponent.h" />
     <ClInclude Include="Source\Components\GCollisionComp.h" />
     <ClInclude Include="Source\Components\GGroundFollowerComp.h" />
     <ClInclude Include="Source\Components\GTriggerComponent.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Source\Collision\CollisionUtil.cpp" />
     <ClCompile Include="Source\Collision\GCollisionMesh.cpp" />
     <ClCompile Include="Source\Collision\GMessageCallback.cpp" />
+    <ClCompile Include="Source\Components\GAnimComponent.cpp" />
     <ClCompile Include="Source\Components\GCollisionComp.cpp" />
     <ClCompile Include="Source\Components\GGroundFollowerComp.cpp" />
     <ClCompile Include="Source\Components\GTriggerComponent.cpp" />

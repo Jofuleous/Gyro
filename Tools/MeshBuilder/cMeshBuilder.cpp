@@ -9,6 +9,8 @@
 #include <malloc.h>
 #include <cstdint>
 
+#include "Animation/GSkeleton.h"
+
 #define UINT8 uint8_t
 #define UINT16 uint16_t
 
@@ -50,6 +52,7 @@ bool cs6963::cMeshBuilder::Build_derived( const char* i_fileName_source, const c
 
 	unsigned vertexCount;
 	unsigned triangleCount;
+	unsigned boneCount;
 
 	std::string ignore;
 
@@ -85,6 +88,30 @@ bool cs6963::cMeshBuilder::Build_derived( const char* i_fileName_source, const c
 		file >> indices[i];
 	}
 
+	// get skeletal data, if any...
+	file >> ignore >> boneCount;
+	GSkeleton skelly;
+	if (boneCount > 0 && ignore.compare("SkeletonBoneCount:") == 0)
+	{
+		skelly.m_RefBones.Resize(boneCount);
+		for (int i = 0; i < boneCount; i++)
+		{
+			GAnimBone bone;
+			file >> bone.m_BoneId; // bone id.
+			file >> bone.m_ParentId; // parent id
+			file >> bone.m_LocalRot.m_X >> bone.m_LocalRot.m_Y >> bone.m_LocalRot.m_Z >> bone.m_LocalRot.m_W; // local rot
+			file >> bone.m_LocalTranslation._x >> bone.m_LocalTranslation._y >> bone.m_LocalTranslation._z; // local translation
+			file >> bone.m_BindRot.m_X >> bone.m_BindRot.m_Y >> bone.m_BindRot.m_Z >> bone.m_BindRot.m_W; // bind rot
+			file >> bone.m_BindTranslation._x >> bone.m_BindTranslation._y >> bone.m_BindTranslation._z; // local translation
+			file >> bone.m_ChildCount; // child count.
+			for (int q = 0; q < bone.m_ChildCount; q++)
+				file >> bone.m_Children[q];
+			skelly.m_RefBones.Push(bone);
+		}
+	}
+	else
+		boneCount = 0;
+
 	file.close();
 
 	//copy should be faster than a ton of different file writes...i think?
@@ -95,8 +122,10 @@ bool cs6963::cMeshBuilder::Build_derived( const char* i_fileName_source, const c
 	//http://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array-c
 	fwrite( &vertexCount, sizeof( unsigned ), 1, targetFile );
 	fwrite( &triangleCount, sizeof( unsigned ), 1, targetFile );
-	fwrite(&vertices[0], sizeof( s_vertexTNTB ), vertices.size(), targetFile );
-	fwrite(&indices[0], sizeof( unsigned short ), indices.size(), targetFile );
+	fwrite( &boneCount, sizeof(unsigned), 1, targetFile);
+	fwrite( &vertices[0], sizeof( s_vertexTNTB ), vertices.size(), targetFile );
+	fwrite( &indices[0], sizeof( unsigned short ), indices.size(), targetFile );
+	fwrite(&skelly.m_RefBones[0], sizeof(GAnimBone), skelly.m_RefBones.Count(), targetFile);
 	fclose( targetFile );
 
 	return true;

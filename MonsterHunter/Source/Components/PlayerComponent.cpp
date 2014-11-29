@@ -97,11 +97,10 @@ void PlayerComponent::Initialize( GActorHandle i_actor, LuaPlus::LuaObject& i_ob
 	m_staminaMeter = 0.0f;
 	m_usingStamina = false;
 
+	DebugConsole::AddCheckBox("Player FreeCamera", &m_freeCam, FreeCamCallback);
 	DebugConsole::AddCheckBox( "Player PathToFlag", &m_drawPath, PlayerCallback );
 	DebugConsole::AddSlider( "Audio MusicVolume", &g_AudioManager.m_musicVolume, 0.0f, 1.0f, 0.2f, MusicCallback );
 	DebugConsole::AddSlider( "Audio SFXVolume", &g_AudioManager.m_sfxVolume, 0.0f, 1.0f, 0.2f, SFXCallback );
-	//
-	//DebugConsole::AddCheckBox( "Camera FreeCamera", &m_freeCam, FreeCamCallback );
 
 	m_walkOnGroundSlow = g_AudioManager.PlayEffect( "data/Audio/SFX/walkingonground.mp3", true, false, &m_walkOnGroundSound );
 	m_walkOnMetalSlow = g_AudioManager.PlayEffect( "data/Audio/SFX/walkingonmetal.mp3", true, false, &m_walkOnGroundSound );

@@ -13,5 +13,10 @@
 int main( int i_argumentCount, char** i_arguments )
 {
 	cs6963::cMeshBuilder meshBuilder;
-	return meshBuilder.Build( i_argumentCount, i_arguments ) ? 0 : -1;
+	//char* testArgs[3];
+	//testArgs[0] = "";
+	//testArgs[1] = "../../Assets/Meshes/Dude.mod";
+	//testArgs[2] = "../../Debug/data/Meshes/Dude.modb";
+	//int testCount = 3;
+	return meshBuilder.Build(i_argumentCount, i_arguments) ? 0 : -1;
 }

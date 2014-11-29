@@ -315,6 +315,7 @@ assets =
 			"rectangle",
 			"pyramid",
 			"Axis",
+			"Dude",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},
@@ -438,7 +439,7 @@ assets =
 			"Enemies/CtfAiPlayer",
 			"Prototype/QuaternTest",
 		},
-		shouldAssetsAlwaysBeBuilt = false,		
+		shouldAssetsAlwaysBeBuilt = true,		
 	},
 	Audio =
 	{

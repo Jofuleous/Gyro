@@ -16,6 +16,7 @@
 #include "Components/CtfAiPlayerComp.h"
 #include "CaptureFlagManager.h"
 #include "Components/QuatTestComp.h"
+#include "Components/GAnimComponent.h"
 
 namespace GameInit
 {
@@ -32,6 +33,7 @@ namespace GameInit
 		RegisterComponent<QuakePlayerComp>();
 		RegisterComponent<CtfAiPlayerComp>();
 		RegisterComponent<QuatTestComp>();
+		RegisterComponent<GAnimComponent>();
 	 }
 
 	 void RegisterTriggerFuncs(void)

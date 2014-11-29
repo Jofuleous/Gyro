@@ -1,0 +1,14 @@
+﻿Build started 11/29/2014 2:49:18 AM.
+     1>Project "C:\Users\sgts3_000\Desktop\Gyro\Shared\Animation\Animation.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /FIC:\Users\sgts3_000\Desktop\Gyro\\Shared\Platform\Target.h /analyze- /errorReport:prompt GSkeleton.cpp
+         GSkeleton.cpp
+     1>c:\users\sgts3_000\desktop\gyro\shared\animation\gskeleton.cpp(31): warning C4018: '<' : signed/unsigned mismatch
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\sgts3_000\Desktop\Gyro\Debug\lib\Animation.lib" /NOLOGO Debug\GSkeleton.obj
+         Animation.vcxproj -> C:\Users\sgts3_000\Desktop\Gyro\Debug\lib\Animation.lib
+     1>Done Building Project "C:\Users\sgts3_000\Desktop\Gyro\Shared\Animation\Animation.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.67

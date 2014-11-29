@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "../RenderDevices.h"
 #include "../VertexStructs.h"
+#include "Animation/GSkeleton.h"
 
 #include <stdio.h>   /* required for file operations */
 #include <conio.h>  /* for clrscr */
@@ -22,6 +23,7 @@ Mesh::Mesh( ) : m_meshLoader( Mesh::DefaultMeshLoader )
 {
 
 }
+
 MeshReference* StdMeshLoader::Load( const char* i_filename )
 {
 	MeshReference* reference = new MeshReference();
@@ -170,6 +172,7 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 	int size;
 	unsigned int vertexCount = 0;
 	unsigned int indexCount = 0;
+	unsigned int boneCount = 0;
 	unsigned int bytesRead = 0;
 
 	char filepath[128];
@@ -185,9 +188,11 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 	fseek( file, 0L, SEEK_SET);
 
 	//read vertex count
-	fread( &reference->rm_Reference.m_vertexCount, sizeof(unsigned int), 1, file );
+	fread( &reference->rm_Reference.m_vertexCount, sizeof(unsigned), 1, file );
 	//read triangle count
-	fread( &reference->rm_Reference.m_triangleCount, sizeof( unsigned int ), 1, file ) ;
+	fread( &reference->rm_Reference.m_triangleCount, sizeof( unsigned), 1, file ) ;
+	// read the bone count
+	fread( &boneCount, sizeof( unsigned ), 1, file );
 	reference->rm_Reference.m_indexCount = reference->rm_Reference.m_triangleCount * 3;
 
 	unsigned int vertexBufferSize = reference->rm_Reference.m_vertexCount * sizeof( GVertices::s_vertexTNTB );
@@ -323,6 +328,14 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 			return false;
 		}
 	}
+
+	// now let's read in the bones, if there are any.
+	if (boneCount > 0)
+	{
+		reference->rm_Reference.m_skeletonInstance = GSkeleton::LoadSkeleton(i_filename, file, boneCount);
+	}
+	else
+		reference->rm_Reference.m_skeletonInstance = NULL;
 
 	fclose( file );
 

@@ -11,6 +11,7 @@
 #include <maya/MFloatVector.h>
 #include <maya/MFloatVectorArray.h>
 #include <maya/MFnMesh.h>
+#include <maya/MFnIkJoint.h>
 #include <maya/MGlobal.h>
 #include <maya/MIntArray.h>
 #include <maya/MItDag.h>
@@ -23,6 +24,8 @@
 #include <string>
 #include <malloc.h>
 #include <stdio.h>
+#include "Math/GQuat.h"
+#include "Animation/GSkeleton.h"
 
 // Vertex Definition
 //==================
@@ -70,6 +73,7 @@ namespace
 		std::vector<const s_vertex>& o_vertexBuffer, std::vector<unsigned int>& o_indexBuffer );
 	MStatus FillVertexAndIndexBuffer( const MFnMesh& i_mesh,
 		std::vector<const s_vertex>& o_vertexBuffer, std::vector<unsigned int>& o_indexBuffer );
+	MStatus ProcessSkeleton( GMayaSkeleton& i_skeleton );
 }
 
 // Inherited Interface
@@ -83,6 +87,10 @@ MStatus cs6963::cMayaExporter::writer( const MFileObject& i_file, const MString&
 	// Gather the vertex and index buffer information
 	std::vector<const s_vertex> vertexBuffer;
 	std::vector<unsigned int> indexBuffer;
+
+	// Gather the skeletal data.
+	GMayaSkeleton skeleton;
+
 	{
 		// The user will decide whether to consider the entire scene or just a selection
 		MStatus status;
@@ -90,17 +98,15 @@ MStatus cs6963::cMayaExporter::writer( const MFileObject& i_file, const MString&
 		{
 			status = ProcessAllMeshes( vertexBuffer, indexBuffer );
 			if ( !status )
-			{
 				return status;
-			}
+			ProcessSkeleton( skeleton );
 		}
 		else if ( i_mode == MPxFileTranslator::kExportActiveAccessMode )
 		{
 			status = ProcessSelectedMeshes( vertexBuffer, indexBuffer );
 			if ( !status )
-			{
 				return status;
-			}
+			ProcessSkeleton( skeleton );
 		}
 		else
 		{
@@ -110,13 +116,13 @@ MStatus cs6963::cMayaExporter::writer( const MFileObject& i_file, const MString&
 	}
 
 	// Export the file
-	return Export( fileName, vertexBuffer, indexBuffer );
+	return Export( fileName, vertexBuffer, indexBuffer, skeleton );
 }
 
 // Implementation
 //===============
 
-MStatus cs6963::cMayaExporter::Export( const MString& i_fileName, std::vector<const s_vertex>& i_vertexBuffer, std::vector<unsigned int>& i_indexBuffer )
+MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<const s_vertex>& i_vertexBuffer, std::vector<unsigned int>& i_indexBuffer, const GMayaSkeleton& i_skelly )
 {
 
 	FILE* targetFile = fopen( i_fileName.asChar(), "w" );
@@ -129,7 +135,7 @@ MStatus cs6963::cMayaExporter::Export( const MString& i_fileName, std::vector<co
 	unsigned int size = 0;
 
 	//write header
-	char vertexCount[64];
+	char vertexCount[128];
 	size = sprintf(vertexCount, "VertexCount: %d\nTriangleCount: %d\nVertices\n", i_vertexBuffer.size(), i_indexBuffer.size() /3 );
 	fwrite( vertexCount, size, 1, targetFile );
 
@@ -138,99 +144,99 @@ MStatus cs6963::cMayaExporter::Export( const MString& i_fileName, std::vector<co
 	for(unsigned int i = 0; i < i_vertexBuffer.size(); i++ )
 	{
 		//X
-		if(i_vertexBuffer[i].x > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].x > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].x );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//Y
-		if(i_vertexBuffer[i].y > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].y > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].y );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//Z
-		if(i_vertexBuffer[i].z > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].z > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", -i_vertexBuffer[i].z ); //flip z because Maya is right handed...possibly.
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//U
-		if(i_vertexBuffer[i].u > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].u > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].u );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//V
-		if(i_vertexBuffer[i].v > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].v > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", 1 - i_vertexBuffer[i].v );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//NX
-		if(i_vertexBuffer[i].nx > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].nx > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].nx );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//NY
-		if(i_vertexBuffer[i].ny > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].ny > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].ny );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//NZ
-		if(i_vertexBuffer[i].nz > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].nz > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", -i_vertexBuffer[i].nz ); //flip z because Maya is right handed...possibly.
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//TX
-		if(i_vertexBuffer[i].tx > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].tx > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].tx );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//TY
-		if(i_vertexBuffer[i].ty > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].ty > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].ty );
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//TZ
-		if(i_vertexBuffer[i].tz > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].tz > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", -i_vertexBuffer[i].tz ); //flip z because Maya is right handed...possibly.
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//BX
-		if(i_vertexBuffer[i].bx > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].bx > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", -i_vertexBuffer[i].bx ); //negate these because of the right hand conversion
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//BY
-		if(i_vertexBuffer[i].by > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].by > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", -i_vertexBuffer[i].by ); //negate these because of the right hand conversion
 		vertexBuffer[position+size]=' '; //space..
 		position += (size + 1);
 
 		//BZ
-		if(i_vertexBuffer[i].bz > 9999999999)
-			return MStatus::kFailure;
+		//if(i_vertexBuffer[i].bz > 9999999999)
+		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].bz ); //negate these because of the right hand conversion
 		vertexBuffer[position+size]='\n'; //new line..
 		position += (size + 1);
@@ -245,8 +251,8 @@ MStatus cs6963::cMayaExporter::Export( const MString& i_fileName, std::vector<co
 	//maximum size for a u16 (which is what i read in..) is 65536.  maximum length of a number is 5, so...
 	// one line = 5 + 5 + 5 + null terminator(3) + spaces (2) + newline (1) = 21
 	position = 0;
-	if( i_indexBuffer.size() > 65536 )
-		return MStatus::kFailure;
+	//if( i_indexBuffer.size() > 65536 )
+	//	return MStatus::kFailure;
 	char* indexBuffer = (char*) malloc( 7 * i_indexBuffer.size() ); //because lazy..
 	for( unsigned int j = 0; j < i_indexBuffer.size(); j+=3 )
 	{
@@ -263,10 +269,127 @@ MStatus cs6963::cMayaExporter::Export( const MString& i_fileName, std::vector<co
 		position += (size + 1);
 	}
 	fwrite( indexBuffer, position-1, 1, targetFile );
-	
+
+
+	//write skeleton header
+	char boneCount[64];
+	size = sprintf( boneCount, "\nSkeletonBoneCount: %d\n", i_skelly.m_Skeleton.m_RefBones.Count() );
+	fwrite(boneCount, size, 1, targetFile);
+
+	// at max, we support 16 characters per value.  10 for the significand and 6 for the precision.
+	// we have a max bone size of
+	// bone id = 4
+	// parent id = 4
+	// qx = 16, qy = 16, qz = 16, qw = 16 --local rot = 64
+	// x = 16, y = 16, z = 16 = 112 bytes --local trans = 48
+	// qx = 16, qy = 16, qz = 16, qw = 16 -- absolute rot = 64
+	// x = 16, y = 16, z = 16 --absolute trans... = 48
+	// + spaces (10) + new line (6) =  240..round up to 256 for the children :)
+	position = 0;
+	char* skeletonBuffer = (char*) malloc(i_skelly.m_Skeleton.m_RefBones.Count() * 300);
+	for (int i = 0; i < i_skelly.m_Skeleton.m_RefBones.Count(); i++)
+	{
+		// bone id
+		size = sprintf(skeletonBuffer + position, "%d", i );
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// parent id
+		size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ParentId);
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// LOCAL ROTATION
+		// qx
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_X);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qy
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Y);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qz
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Z);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qw
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_W);
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// LOCAL TRANSLATION
+		// tx
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.x() );
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// ty
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.y());
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// tz
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.z());
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// BIND ROTATION.
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_X);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qy
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Y);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qz
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Z);
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// qw
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_W);
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// BIND TRANSLATION
+		// tx
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.x());
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// ty
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.y());
+		skeletonBuffer[position + size] = ' '; //space..
+		position += (size + 1);
+		// tz
+		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.z());
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		// now let's write out all the children...
+		size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount);
+		skeletonBuffer[position + size] = '\n'; //newline..
+		position += (size + 1);
+
+		for (int q = 0; q < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount; q++)
+		{
+			size = sprintf(skeletonBuffer + position, "%d", (int)i_skelly.m_Skeleton.m_RefBones[i].m_Children[q]);
+			if (q + 1 < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount)
+			{
+				skeletonBuffer[position + size] = ' '; //newline..
+				position += (size + 1);
+			}
+		}
+
+		if (i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount > 0)
+		{
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+		}
+	}
+
+	fwrite( skeletonBuffer, position-1, 1, targetFile );
+
+
 	free(indexBuffer);
 	free(vertexBuffer);
-
+	free(skeletonBuffer);
 
 	fclose( targetFile );
 
@@ -299,6 +422,14 @@ namespace
 		}
 
 		return MStatus::kSuccess;
+	}
+
+	MStatus ProcessSkeleton( GMayaSkeleton& i_skeleton )
+	{
+		if (i_skeleton.Extract())
+			return MStatus::kSuccess;
+
+		return MStatus::kFailure;
 	}
 
 	MStatus ProcessSelectedMeshes( std::vector<const s_vertex>& o_vertexBuffer, std::vector<unsigned int>& o_indexBuffer )

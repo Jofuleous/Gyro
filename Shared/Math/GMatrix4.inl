@@ -34,12 +34,6 @@ void GMatrix4::Concatenate( const GMatrix4& i_other )
 	*this = result;
 }
 
-void GMatrix4::ToD3DXMATRIX( D3DXMATRIX& o_matrix )
-{
-	//not sure if this is fastest :(
-	memcpy( &o_matrix, m_elements, sizeof(float) * 16 );
-}
-
 void GMatrix4::PokeTranslation( float i_x, float i_y, float i_z )
 {
 	m_elements[3][0] = i_x; // x
@@ -196,9 +190,9 @@ void GMatrix4::Identify( void )
 	*this = Identity;
 }
 
-void GMatrix4::ToD3DX( D3DXMATRIX& o_matrix )
+void GMatrix4::ToD3DX( void* o_d3dMatrix )
 {
-	memcpy( &o_matrix, this, sizeof( GMatrix4 ) );
+	memcpy(o_d3dMatrix, this, sizeof(GMatrix4));
 }
 
 /***********************
@@ -344,33 +338,6 @@ void GMatrix4::Invert( void )
 	D3DXMatrixInverse( &m_testMatrix, NULL, &m_testMatrix );
 	//ConfirmEqual();
 #endif
-}
-
-void GMatrix4::Inverse( GMatrix4& o_dest ) const
-{
-	//float temp;
-
-	//giant hack:
-	//o_dest = *this;
-
-	D3DXMATRIX* them = (D3DXMATRIX*) &o_dest;
-	D3DXMATRIX* us = (D3DXMATRIX*) this;
-	D3DXMatrixInverse( them, NULL, us );
-
-	/*
-	//rotation
-	temp = m_elements[0][1];
-	o_dest.m_elements[0][1] = m_elements[1][0];
-	o_dest.m_elements[1][0] = temp;
-	o_dest.m_elements[1][1] = m_elements[1][1];
-	temp = m_elements[2][0];
-	o_dest.m_elements[2][0] = m_elements[0][2];
-	o_dest.m_elements[2][2] = m_elements[2][2];
-	o_dest.m_elements[0][2] = temp;
-	temp = m_elements[2][1];
-	o_dest.m_elements[2][1] = m_elements[1][2];
-	o_dest.m_elements[1][2] = temp;
-	*/
 }
 
 float GMatrix4::operator() (unsigned i_row, unsigned i_col ) const

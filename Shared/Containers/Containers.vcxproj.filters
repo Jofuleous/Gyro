@@ -5,4 +5,7 @@
     <ClInclude Include="GLinkedList.h" />
     <ClInclude Include="GArray.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\SomeGame\Shared\Containers\GHashMap.cpp" />
+  </ItemGroup>
 </Project>

@@ -9,7 +9,6 @@
 //#define TEMP_MATRIX
 
 #include "GVector3.h"
-#include "d3dx9.h"
 
 
 // MATRIX LAYOUT
@@ -52,14 +51,13 @@ public:
 	inline void					SetRotY( float i_radians );
 	inline void					SetRotZ( float i_radians );
 	inline void					Identify( void );
-	inline void					ToD3DX( D3DXMATRIX& o_matrix );
+	inline void					ToD3DX( void* o_d3dmatrix );
 	inline GVector3				Left( ) const { return GVector3( m_elements[0][0], m_elements[0][1], m_elements[0][2] ); }
 	inline GVector3				Dir( ) const { return GVector3( m_elements[2][0], m_elements[2][1], m_elements[2][2] ); }
 	inline GVector3				Up( ) const { return GVector3( m_elements[1][0], m_elements[1][1], m_elements[1][2] ); }
-	inline void					ToD3DXMATRIX( D3DXMATRIX& o_matrix );
 
 	inline void					Invert( void );
-	inline void					Inverse( GMatrix4& o_dest ) const ;
+	/*inline*/ void				Inverse( GMatrix4& o_dest ) const ;
 
 
 	static void					OrientVector3( GVector3& o_dest, const GVector3& i_src, const GMatrix4& i_transform );
@@ -72,7 +70,7 @@ public:
 #endif
 
 #if defined(_DEBUG) && defined(_WIN32)
-	static void		Debug_PrintD3DMatrixToConsole( D3DMATRIX& i_matrix );
+	static void		Debug_PrintD3DMatrixToConsole(void* i_matrix);
 #endif 
 
 	float m_elements[4][4];
