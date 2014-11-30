@@ -59,6 +59,7 @@ public:
 	GSkeleton*					m_MasterSkeleton;
 	GArray<GAnimBoneInstance>	m_Bones;
 	void						BuildBindPose();
+	void						EvaluateFullInstance();
 };
 
 #endif

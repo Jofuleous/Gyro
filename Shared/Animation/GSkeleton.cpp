@@ -35,6 +35,20 @@ void GSkeletonInstance::BuildBindPose()
 	}
 }
 
+void GSkeletonInstance::EvaluateFullInstance( )
+{
+	if (m_MasterSkeleton->m_RefBones.Count() > 0)
+	{
+		m_Bones[0].m_AbsRot = m_Bones[0].m_LocalRot;
+		m_Bones[0].m_AbsTranslation = m_Bones[0].m_LocalTranslation;
+	}
+	for ( int i = 1; i < m_MasterSkeleton->m_RefBones.Count(); i++ )
+	{
+		m_Bones[i].m_AbsRot = m_Bones[i].m_LocalRot * m_Bones[m_Bones[i].m_ParentId].m_AbsRot;
+		m_Bones[i].m_AbsTranslation = m_Bones[m_Bones[i].m_ParentId].m_AbsTranslation + (m_Bones[m_Bones[i].m_ParentId].m_AbsRot * m_Bones[i].m_LocalTranslation);
+	}
+}
+
 GSkeletonInstance* GSkeleton::LoadSkeleton(const char* i_fileName, FILE* i_file, unsigned int i_boneCount)
 {
 	GHashNode<unsigned int, GSkeleton*>* node = s_SkeletonMap[GHashedString::Hash(i_fileName)];
