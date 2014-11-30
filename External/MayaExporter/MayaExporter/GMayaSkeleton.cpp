@@ -4,9 +4,12 @@
 #include <maya/MFnTransform.h>
 #include <maya/MFnTransform.h>
 #include <maya/MVector.h>
+#include "Animation/GAnimClip.h"
 
 bool GMayaSkeleton::Extract( MDagPath i_path, int i_parent )
 {
+	GAnimClip clip;
+
 	GAnimBone bone;
 	bone.m_ChildCount = 0;
 	bone.m_BoneId = m_Skeleton.m_RefBones.Count();

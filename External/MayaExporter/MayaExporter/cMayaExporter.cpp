@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include "Math/GQuat.h"
 #include "Animation/GSkeleton.h"
+#include "Animation/GAnimClip.h"
 
 // Vertex Definition
 //==================
@@ -81,6 +82,8 @@ namespace
 
 MStatus cs6963::cMayaExporter::writer( const MFileObject& i_file, const MString& i_options, FileAccessMode i_mode )
 {
+	GAnimClip clip;
+	clip.CreateTrack(0);
 	// Get the name of the file that should be exported
 	const MString fileName = i_file.fullName();
 

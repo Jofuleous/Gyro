@@ -2,8 +2,8 @@
 	This class defines a Maya file translator
 */
 
-#ifndef CS6963_CMAYAEXPORTER_H
-#define CS6963_CMAYAEXPORTER_H
+#ifndef __CMAYAEXPORTER_H
+#define __CMAYAEXPORTER_H
 
 // Header Files
 //=============
