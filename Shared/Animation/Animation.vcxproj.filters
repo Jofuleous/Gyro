@@ -2,10 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="GAnimationUtil.h" />
-    <ClInclude Include="GAnimationClip.h" />
     <ClInclude Include="GSkeleton.h" />
+    <ClInclude Include="GAnimStructs.h" />
+    <ClInclude Include="GAnimClip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GSkeleton.cpp" />
+    <ClCompile Include="GAnimStructs.cpp" />
+    <ClCompile Include="GAnimClip.cpp" />
   </ItemGroup>
 </Project>

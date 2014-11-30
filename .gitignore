@@ -30,6 +30,8 @@
 *.ilk
 
 #Built Files
+bin/Win32
+bin/x64
 Debug/data
 Debug/intermediate
 Debug/lib

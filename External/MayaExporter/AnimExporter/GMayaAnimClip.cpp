@@ -11,7 +11,6 @@
 #include <maya/MAnimUtil.h>
 #include <maya/MAnimControl.h>
 
-#include "Animation/GAnimClip.h"
 #include "GMayaAnimClip.h"
 
 
@@ -33,7 +32,7 @@ bool GMayaAnimClip::ProcessAnim( )
 		dagIt.prune();
 	}
 
-	if (m_Clip->m_Tracks.Count() <= 0)
+	if (m_Clip.m_Tracks.Count() <= 0)
 		return false;
 	
 	return true;
@@ -67,7 +66,7 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 
 	if (animatedPlugs.length() > 0)
 	{
-		u32 trackIndex = m_Clip->CreateTrack( m_BoneCount );
+		u32 trackIndex = m_Clip.CreateTrack( m_BoneCount );
 		MObjectArray curves;
 		// if any curve of this track is keyed, they're all gonna get that key, so long as the spline extends as far as other channel splines.
 		// so we only need to sample one curve with this constraint.  i hope the iter is in order.  if not, we have to get fancier...
@@ -85,7 +84,7 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 			GQuat quat(qx, qy, qz, qw);
 			MVector translation = transform.getTranslation( MSpace::kTransform );
 			GVector3 vTrans(translation.x, translation.y, translation.z);
-			m_Clip->PushRotKeyFrame( trackIndex, quat, (float) frame.value() ); // only push joint anims for now...
+			m_Clip.PushRotKeyFrame( trackIndex, quat, (float) frame.value() ); // only push joint anims for now...
 			//m_Clip->PushTransKeyFrame(vTrans, frame, (float)frame.value()); // push translation and rotation for now :(
 
 			iter.next();

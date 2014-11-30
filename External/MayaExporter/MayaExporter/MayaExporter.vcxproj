@@ -72,39 +72,39 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\temp\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <TargetName>cs6963</TargetName>
+    <OutDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <TargetName>GMayaExporter</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>$(maya);$(SolutionDir)..\..\Shared\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(maya)../../lib;$(LibraryPath);$(SolutionDir)..\..\$(Configuration)\lib</LibraryPath>
+    <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\Shared\;$(MAYA_LOCATION)\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\..\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <TargetName>GyroExporter</TargetName>
+    <OutDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <TargetName>GMayaExporter</TargetName>
     <TargetExt>.mll</TargetExt>
     <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\Shared\;$(MAYA_LOCATION)\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\temp\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\temp\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <TargetName>cs6963</TargetName>
+    <OutDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <TargetName>GMayaExporter</TargetName>
     <TargetExt>.mll</TargetExt>
-    <IncludePath>$(maya);$(SolutionDir)..\..\..\Shared\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(maya)../../lib;;$(SolutionDir)..\..\..\$(Configuration)\lib</LibraryPath>
+    <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\Shared\;$(MAYA_LOCATION)\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)..\..\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <TargetName>GyroExporter</TargetName>
+    <OutDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <TargetName>GMayaExporter</TargetName>
     <TargetExt>.mll</TargetExt>
     <IncludePath>C:\Program Files\Autodesk\Maya2014\include\;$(SolutionDir)..\..\Shared\;$(MAYA_LOCATION)\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files\Autodesk\Maya2014\lib;$(SolutionDir)..\..\bin\$(Platform)\$(Configuration)\lib;$(MAYA_LOCATION)\include\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

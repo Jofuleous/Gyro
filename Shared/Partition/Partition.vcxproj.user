@@ -4,4 +4,8 @@
     <LocalDebuggerCommandArguments>"$(SolutionDir)Assets\FBXScenes\ctf_v12-MeshOnly-NoEmbed.fbx" "$(SolutionDir)$(Configuration)data\FBXScenes\ctf_v12-MeshOnly-NoEmbed.sceneb"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>"$(SolutionDir)Assets\FBXScenes\ctf_v12-MeshOnly-NoEmbed.fbx" "$(SolutionDir)$(Configuration)data\FBXScenes\ctf_v12-MeshOnly-NoEmbed.sceneb"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
