@@ -2,8 +2,11 @@
 #include "Actor/ComponentManager.h"
 #include "../../../Renderer/Source/ResourceTypes/Mesh.h"
 #include "../../../Renderer/Source/RenderManager.h"
+#include "Animation/GAnimationUtil.h"
 #include "Animation/GSkeleton.h"
+#include "Animation/GAnimClip.h"
 #include "GRenderComponent.h"
+#include "Utility/Clock.h"
 
 const GHashedString GAnimComponent::m_typeName = "Anim";
 u32 GAnimComponent::m_typeId = ComponentManager::GetNextTypeId();
@@ -16,6 +19,7 @@ IActorComponent* GAnimComponent::Create()
 void GAnimComponent::Initialize(GActorHandle actor, LuaPlus::LuaObject& i_obj)
 {
 	m_skeletonInstance = NULL;
+	m_clip = GAnimationUtil::LoadAnimClip("Avatar/Player/DudeWalk.banm");
 }
 
 void GAnimComponent::Update(GActorHandle actor)
@@ -35,6 +39,11 @@ void GAnimComponent::Update(GActorHandle actor)
 	}
 	else
 	{
+		if (m_clip && m_clip->m_ClipLength > g_Clock::Get().SecondsSinceStart() * 2.0f)
+		{
+			m_clip->UpdateSkeletonInstace(m_skeletonInstance, g_Clock::Get().SecondsSinceStart() * 2.0f);
+			m_skeletonInstance->EvaluateFullInstance();
+		}
 		if (m_debugDraw)
 		{
 			// loop through first 30 or so bones and draw...
@@ -47,6 +56,7 @@ void GAnimComponent::Update(GActorHandle actor)
 			worldPos._x = worldPos._x + 50.0f;
 			GMatrix4 rot = a->m_rotation;
 			rot.SetScale( GVector3( 5.0f, 5.0f, 5.0f ) );
+
 
 			for (int i = 1; i < m_skeletonInstance->m_Bones.Count(); i++)
 			{

@@ -65,8 +65,10 @@ MStatus GAnimExporter::writer( const MFileObject& i_file, const MString& i_optio
 MStatus GAnimExporter::Export( const MString& i_fileName, GMayaAnimClip& i_clip )
 {
 
-	//FILE* targetFile = fopen(i_fileName.asChar(), "w");
-
+	FILE* targetFile = fopen(i_fileName.asChar(), "w+b");
+	i_clip.m_Clip.Serialize(targetFile);
+	
+	fclose(targetFile);
 	// You will need to write this function so that it exports the vertex and index buffer information in your file format
 	return MStatus::kSuccess;
 }

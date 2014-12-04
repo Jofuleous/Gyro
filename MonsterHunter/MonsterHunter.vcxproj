@@ -99,36 +99,44 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/Gyro/Source/;$(DXSDK_DIR)include;$(SolutionDir)External/;..\Renderer\Source;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
-    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/Gyro/Source/;$(DXSDK_DIR)include;$(SolutionDir)External/;..\Renderer\Source;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\$(Configuration);$(SolutionDir)\$(Configuration)\lib;$(LibraryPath);$(SolutionDir)\$(Configuration)\lib\</LibraryPath>
-    <IncludePath>$(SolutionDir)/Gyro/Source/;$(DXSDK_DIR)include;..\External\libconfig-1.4.9\lib;..\External\Cheesy\Exports\Cheesy;$(IncludePath)</IncludePath>
-    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\$(Configuration);$(SolutionDir)\$(Configuration)\lib;$(LibraryPath);$(SolutionDir)\$(Configuration)\lib\</LibraryPath>
-    <IncludePath>$(SolutionDir)/Gyro/Source/;$(DXSDK_DIR)include;..\External\libconfig-1.4.9\lib;..\External\Cheesy\Exports\Cheesy;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)bin/$(Platform)/$(Configuration)/lib/;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/External;$(SolutionDir)/Gyro/Source;$(DXSDK_DIR)include;$(SolutionDir)Shared;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -196,7 +204,7 @@
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)\Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -222,7 +230,7 @@
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)\Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -248,7 +256,7 @@
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions);ENABLE_PROFILING</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)\Gyro\Source\Platform\Target.h;%(ForcedIncludeFiles);$(SolutionDir)\Gyro\Source\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
@@ -273,7 +281,7 @@
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions);ENABLE_PROFILING</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)\Gyro\Source\Platform\Target.h;%(ForcedIncludeFiles);$(SolutionDir)\Gyro\Source\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>

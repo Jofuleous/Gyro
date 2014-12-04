@@ -2,12 +2,30 @@
 
 void GAnimClip::Serialize( FILE* o_file )
 {
+	// write out the track to bone map.  the count tells us how many tracks there are.
 
+	// CLIP LENGTH
+	fwrite(&this->m_ClipLength, sizeof(float), 1, o_file);
+
+	m_TrackToBone.Serialize(o_file);
+	for (int i = 0; i < m_Tracks.Count(); i++)
+		m_Tracks[i].Serialize(o_file);
 }
 
-void GAnimClip::DeSerialize( FILE* o_file )
+void GAnimClip::DeSerialize( FILE* i_file )
 {
+	// CLIP LENGTH
+	fread(&this->m_ClipLength, sizeof(float), 1, i_file);
 
+	// TRACK 2 BONE
+	m_TrackToBone.DeSerialize(i_file);
+
+	m_Tracks.Resize(m_TrackToBone.Count());
+	for (int i = 0; i < m_TrackToBone.Count(); i++)
+	{
+		m_Tracks[i].DeSerialize(i_file);
+		m_Tracks.SetCount(i);
+	}
 }
 
 u32 GAnimClip::CreateTrack( u32 i_boneId )
@@ -37,12 +55,12 @@ void GAnimClip::UpdateSkeletonInstace( GSkeletonInstance* o_instance, float i_ti
 		if (keyOne != keyTwo)
 		{
 			float alpha = (i_time - m_Tracks[i].m_RotKeys[keyOne].m_Time) / (m_Tracks[i].m_RotKeys[keyTwo].m_Time - m_Tracks[i].m_RotKeys[keyOne].m_Time);
-			o_instance->m_Bones[m_TrackToBone[i]].m_LocalRot.Slerp(m_Tracks[i].m_RotKeys[keyOne].m_Rotation, m_Tracks[i].m_RotKeys[keyTwo].m_Rotation, alpha);
+			o_instance->m_Bones[m_TrackToBone[i]].m_LocalRot = o_instance->m_Bones[m_TrackToBone[i]].m_LocalRot.Slerp(m_Tracks[i].m_RotKeys[keyOne].m_Rotation, m_Tracks[i].m_RotKeys[keyTwo].m_Rotation, alpha);
 		}
 		else
 			o_instance->m_Bones[m_TrackToBone[i]].m_LocalRot = m_Tracks[i].m_RotKeys[keyOne].m_Rotation;
 
-
+		/*
 		m_Tracks[i].GetKeyTranslationIndices(keyOne, keyTwo, i_time);
 		if (keyOne != keyTwo)
 		{
@@ -51,5 +69,6 @@ void GAnimClip::UpdateSkeletonInstace( GSkeletonInstance* o_instance, float i_ti
 		}
 		else
 			o_instance->m_Bones[m_TrackToBone[i]].m_LocalTranslation = m_Tracks[i].m_TranslationKeys[keyOne].m_Translation;
+		*/
 	}
 }

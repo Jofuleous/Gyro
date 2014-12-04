@@ -94,32 +94,40 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)\lib\</LibraryPath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
     <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
-    <IntDir>$(SolutionDir)$(Configuration)\intermediate\</IntDir>
-    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)\lib\</LibraryPath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
     <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)/lib/</LibraryPath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
     <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
-    <IntDir>$(SolutionDir)$(Configuration)\intermediate\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)$(Configuration)/lib/</LibraryPath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
     <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)\$(Configuration)\lib\</LibraryPath>
-    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\libconfig-1.4.9\lib\;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
+    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|x64'">
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)\$(Configuration)\lib\</LibraryPath>
-    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\libconfig-1.4.9\lib\;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</LibraryPath>
+    <IncludePath>$(ProjectDir)\Source\;$(SolutionDir)\External\;$(DXSDK_DIR)\Include;$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -173,7 +181,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib</AdditionalDependencies>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib;Navigation.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -194,7 +202,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib</AdditionalDependencies>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib;Navigation.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|Win32'">
@@ -204,7 +212,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;_MBCS;%(PreprocessorDefinitions);_WIN32;ENABLE_PROFILING</PreprocessorDefinitions>
-      <ForcedIncludeFiles>;$(MSBuildProjectDirectory)\Source\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>..\External\Cheesy\Exports\Cheesy;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -212,6 +220,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib;Navigation.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Win32 Profile|x64'">
     <ClCompile>
@@ -220,7 +231,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>LIBCONFIGXX_STATIC;_MBCS;%(PreprocessorDefinitions);_WIN32;ENABLE_PROFILING</PreprocessorDefinitions>
-      <ForcedIncludeFiles>;$(MSBuildProjectDirectory)\Source\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)Shared\Platform\Target.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>..\External\Cheesy\Exports\Cheesy;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -228,6 +239,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Memory.lib;Utility.lib;Math.lib;LuaPlus.lib;Navigation.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Actor\ComponentManager.h" />

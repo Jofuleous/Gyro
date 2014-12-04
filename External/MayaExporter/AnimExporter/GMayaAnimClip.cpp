@@ -12,11 +12,13 @@
 #include <maya/MAnimControl.h>
 
 #include "GMayaAnimClip.h"
+#include "Containers/GArray.h"
 
 
 bool GMayaAnimClip::ProcessAnim( )
 {
 	m_BoneCount = -1;
+	m_Clip.m_ClipLength = 0.0f;
 
 	MStatus status;
 	for (MItDag dagIt(MItDag::kDepthFirst, MFn::kJoint, &status);
@@ -86,6 +88,8 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 			GVector3 vTrans(translation.x, translation.y, translation.z);
 			m_Clip.PushRotKeyFrame( trackIndex, quat, (float) frame.value() ); // only push joint anims for now...
 			//m_Clip->PushTransKeyFrame(vTrans, frame, (float)frame.value()); // push translation and rotation for now :(
+			if ( frame.value() > m_Clip.m_ClipLength )
+				m_Clip.m_ClipLength = frame.value();
 
 			iter.next();
 		}

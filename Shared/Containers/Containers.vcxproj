@@ -173,9 +173,6 @@
     <ClInclude Include="GHashMap.h" />
     <ClInclude Include="GLinkedList.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\SomeGame\Shared\Containers\GHashMap.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

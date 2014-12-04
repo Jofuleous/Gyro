@@ -37,7 +37,21 @@ public:
 	GAnimTrack() {}
 	GArray<GRotationKey>	m_RotKeys;
 	GArray<GTranslationKey>	m_TranslationKeys;
+	GAnimTrack(const GAnimTrack& i_other) { Copy(i_other); }
 	void GetKeyRotationIndices( u32& i_keyOne, u32& i_keyTwo, float i_time );
 	void GetKeyTranslationIndices(u32& i_keyOne, u32& i_keyTwo, float i_time );
+	void Serialize(FILE* o_file);
+	void DeSerialize(FILE* o_file);
+	void Copy( const GAnimTrack& i_other)
+	{
+		// Do array deep copy.
+		m_RotKeys = i_other.m_RotKeys;
+		m_TranslationKeys = i_other.m_TranslationKeys;
+	}
+	GAnimTrack& operator=(const GAnimTrack& i_other)
+	{
+		Copy(i_other);
+		return *this;
+	}
 };
 #endif

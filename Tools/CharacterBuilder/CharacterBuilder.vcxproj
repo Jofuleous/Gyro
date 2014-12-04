@@ -68,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
     <IncludePath>..\..\Shared;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -77,11 +77,13 @@
     <IncludePath>..\..\Shared;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\$(Configuration)\tools\</OutDir>
-    <IntDir>$(SolutionDir)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
     <IncludePath>..\..\Shared;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -89,6 +91,8 @@
     <IncludePath>..\..\Shared;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\tools\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

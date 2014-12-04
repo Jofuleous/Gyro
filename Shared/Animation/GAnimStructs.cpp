@@ -33,3 +33,15 @@ void GAnimTrack::GetKeyTranslationIndices(u32& i_lowerKey, u32& i_upperKey, floa
 		//break;
 	}
 }
+
+void GAnimTrack::Serialize(FILE* o_file)
+{
+	m_RotKeys.Serialize(o_file);
+	// m_TranslationKeys.Serialize(o_file);
+}
+
+void GAnimTrack::DeSerialize(FILE* i_file)
+{
+	m_RotKeys.DeSerialize(i_file);
+	// m_TranslationKeys.DeSerialize(o_file);
+}

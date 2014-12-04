@@ -319,6 +319,20 @@ assets =
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},
+	Anims =
+	{
+		tool = "AnimBuilder",
+		extensions =
+		{
+			source = "anm",
+			target = "banm",
+		},
+		names =
+		{
+			"Avatar/Player/DudeWalk",
+		},
+		shouldAssetsAlwaysBeBuilt = false,
+	},
 	Materials =
 	{
 		tool = "MaterialBuilder",

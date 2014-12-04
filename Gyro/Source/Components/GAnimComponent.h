@@ -5,6 +5,7 @@
 #include "Actor/IActorComponent.h"
 
 class GSkeletonInstance;
+class GAnimClip;
 
 class GAnimComponent : public IActorComponent
 {
@@ -29,6 +30,7 @@ public:
 
 	void					DebugDrawBones();
 
+	GAnimClip*				m_clip;
 	bool					m_debugDraw;
 	GSkeletonInstance*		m_skeletonInstance;
 };
