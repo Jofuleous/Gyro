@@ -58,8 +58,10 @@ public:
 	GSkeletonInstance( GSkeleton* i_skeleton);
 	GSkeleton*					m_MasterSkeleton;
 	GArray<GAnimBoneInstance>	m_Bones;
+	GArray<GMatrix4>			m_DeltaBoneTransform;
 	void						BuildBindPose();
 	void						EvaluateFullInstance();
+	void						CreateBoneMatrices();
 };
 
 #endif

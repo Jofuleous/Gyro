@@ -24,6 +24,11 @@ public:
 		m_indexBuffer->Release();
 	}
 
+	MeshData() : m_skeletonInstance(NULL)
+	{
+
+	}
+
 	unsigned int				m_vertexCount;
 	unsigned int				m_indexCount;
 	unsigned int				m_triangleCount;

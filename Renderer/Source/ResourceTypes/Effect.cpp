@@ -24,6 +24,7 @@ EffectReference* EffectLoader::Load( const char* i_filename )
 		return false;
 	}
 
+
 	EffectReference* reference = new EffectReference();
 	reference->rm_Reference.m_effectId = ResourceManager<EffectReference>::m_nextId;
 
@@ -32,6 +33,11 @@ EffectReference* EffectLoader::Load( const char* i_filename )
 	file >> data;
 
 	reference->rm_Reference.m_effectId = ResourceManager<EffectReference>::m_resourceMap.size();
+
+	if (strstr(i_filename, "Skinned"))
+		reference->rm_Reference.m_skinHack = true;
+	else
+		reference->rm_Reference.m_skinHack = false;
 
 	while( data.compare( "<Technique" ) == 0 )
 	{

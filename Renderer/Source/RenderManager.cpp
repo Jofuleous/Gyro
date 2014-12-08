@@ -13,6 +13,7 @@
 #include "d3d9.h"
 #include "RenderDevices.h"
 #include "MainWindow.h"
+#include "Animation/GSkeleton.h"
 
 RenderManager::RenderManager() : m_lines( 5000 ), m_hud( 30 ), m_currentScene( NULL )
 {
@@ -612,6 +613,11 @@ void RenderManager::SetUniformData( Entity* currentEntity, ResourcePtr<EffectRef
 		result = g_RenderDevices.GetDevice()->SetPixelShader( pData->m_pixelShader );
 		assert( SUCCEEDED( result ) );
 
+		if ( !effectRef->rm_Reference.m_skinHack )
+			g_RenderDevices.GetDevice()->SetVertexDeclaration(g_RenderDevices.GetDefaultVertexDeclaration());
+		else
+			g_RenderDevices.GetDevice()->SetVertexDeclaration(g_RenderDevices.GetSkinnedVertexDeclaration());
+
 		if( effectRef->rm_Reference.m_alpha || effectRef->rm_Reference.m_UI )
 		{
 			//alpha type
@@ -978,6 +984,27 @@ void RenderManager::SetUniformData( Entity* currentEntity, ResourcePtr<EffectRef
 
 				g_RenderDevices.GetDevice()->SetTexture( index, texture);
 				assert( SUCCEEDED( result ) );
+			}
+		}
+
+		// hack hack hack
+		if ( currentEntity && currentEntity->m_mesh->m_reference->rm_Reference.m_skeletonInstance)
+		{
+			int count = currentEntity->m_mesh->m_reference->rm_Reference.m_skeletonInstance->m_DeltaBoneTransform.Count();
+			if (count > 0)
+			{
+				variable = vData->m_vertexShaderConstantTable->GetConstantByName(topLevelVariable, "g_bones");
+
+				if (variable != NULL)
+				{
+					GMatrix4* begin = &currentEntity->m_mesh->m_reference->rm_Reference.m_skeletonInstance->m_DeltaBoneTransform[0];
+					int count = currentEntity->m_mesh->m_reference->rm_Reference.m_skeletonInstance->m_DeltaBoneTransform.Count();
+					vData->m_vertexShaderConstantTable->SetMatrixArray(g_RenderDevices.GetDevice(), variable, (D3DXMATRIX*)begin, count);
+					assert(SUCCEEDED(result));
+				}
+
+				//GMatrix4* begin = &currentEntity->m_mesh->m_reference->rm_Reference.m_skeletonInstance->m_DeltaBoneTransform[0];
+				//result = g_RenderDevices.GetDevice()->SetVertexShaderConstantF(8, (float*)begin, count * 4);
 			}
 		}
 	}

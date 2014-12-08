@@ -91,6 +91,14 @@ bool RenderDevices::InitializeVertexDeclarataions()
 		return false;
 	}
 
+	result = m_direct3dDevice->CreateVertexDeclaration(s_SkinnedVertexTextureNormalTangentBinormalElements, &m_SkinnedVertexDeclaration);
+	if (!SUCCEEDED(result))
+	{
+		// Failed to create the vertex declaration
+		assert(0);
+		return false;
+	}
+
 	result = m_direct3dDevice->SetVertexDeclaration( m_vertexDeclaration );
 	if ( SUCCEEDED( result ) )
 		return true;

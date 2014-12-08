@@ -43,6 +43,7 @@ void GAnimComponent::Update(GActorHandle actor)
 		{
 			m_clip->UpdateSkeletonInstace(m_skeletonInstance, g_Clock::Get().SecondsSinceStart() * 2.0f);
 			m_skeletonInstance->EvaluateFullInstance();
+			m_skeletonInstance->CreateBoneMatrices();
 		}
 		if (m_debugDraw)
 		{

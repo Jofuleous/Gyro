@@ -40,6 +40,7 @@ public:
 	Technique*		m_postProcess;
 	Technique*		m_UI;
 	Technique*		m_shadow;
+	bool			m_skinHack;
 	unsigned __int16				m_effectId; // todo: turn back to u8
 };
 

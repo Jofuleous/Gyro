@@ -14,6 +14,8 @@ GSkeletonInstance::GSkeletonInstance(GSkeleton* i_skeleton)
 		boneInstance.m_ParentId = i_skeleton->m_RefBones[i].m_ParentId;
 		boneInstance.m_SkeletonInstance = this;
 		m_Bones.Push( boneInstance );
+		m_DeltaBoneTransform.Resize(m_Bones.Count());
+		m_DeltaBoneTransform.SetCount(m_Bones.Count());
 	}
 
 	BuildBindPose();
@@ -46,6 +48,15 @@ void GSkeletonInstance::EvaluateFullInstance( )
 	{
 		m_Bones[i].m_AbsRot = m_Bones[i].m_LocalRot * m_Bones[m_Bones[i].m_ParentId].m_AbsRot;
 		m_Bones[i].m_AbsTranslation = m_Bones[m_Bones[i].m_ParentId].m_AbsTranslation + (m_Bones[m_Bones[i].m_ParentId].m_AbsRot * m_Bones[i].m_LocalTranslation);
+	}
+}
+
+void GSkeletonInstance::CreateBoneMatrices()
+{
+	for (int i = 0; i < m_Bones.Count(); i++)
+	{
+		(m_MasterSkeleton->m_RefBones[i].m_BindRot * m_Bones[i].m_AbsRot).GetMatrix(m_DeltaBoneTransform[i]);
+		m_DeltaBoneTransform[i].PokeTranslation(m_Bones[i].m_AbsTranslation + m_MasterSkeleton->m_RefBones[i].m_BindTranslation);
 	}
 }
 

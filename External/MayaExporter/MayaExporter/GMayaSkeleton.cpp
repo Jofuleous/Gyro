@@ -5,6 +5,11 @@
 #include <maya/MFnTransform.h>
 #include <maya/MVector.h>
 #include "Animation/GAnimClip.h"
+#include <maya/MFnMesh.h>
+#include <maya/MItDependencyNodes.h>
+#include <maya/MFnSkinCluster.h>
+#include <maya/MItGeometry.h>
+#include <maya/MFloatArray.h>
 
 bool GMayaSkeleton::Extract( MDagPath i_path, int i_parent )
 {
@@ -24,6 +29,8 @@ bool GMayaSkeleton::Extract( MDagPath i_path, int i_parent )
 	bone.m_LocalTranslation.x(translation.x);
 	bone.m_LocalTranslation.y(translation.y);
 	bone.m_LocalTranslation.z(translation.z);
+	MStatus status;
+	const char* pathName = i_path.fullPathName(&status).asChar();
 
 	// Set the inverted bind pose values.
 	transform.getRotationQuaternion(qx, qy, qz, qw, MSpace::kWorld);
@@ -34,6 +41,7 @@ bool GMayaSkeleton::Extract( MDagPath i_path, int i_parent )
 	bone.m_BindTranslation = -transl;
 
 	m_Skeleton.m_RefBones.Push(bone);
+	m_bonePaths.push_back(i_path);
 
 	for (unsigned int i = 0; i < i_path.childCount(); ++i)
 	{
@@ -70,4 +78,78 @@ bool GMayaSkeleton::Extract()
 		return true;
 	else
 		return false;
+}
+
+bool GMayaSkeleton::ExtractSkinningData()
+{
+	MStatus status;
+
+	MItDag i(MItDag::kDepthFirst, MFn::kMesh);
+	// Get the first mesh.  If exporting is occuring properly, there should only ever be one mesh.
+	while (!i.isDone())
+	{
+		if (i.getType(&status) != MFn::kJoint)
+			break;
+	}
+	if (i.isDone(&status))
+		return false;
+
+	MFnMesh mesh(i.item());
+	MDagPath meshDagPath;
+	i.getPath(meshDagPath);
+
+	MItDependencyNodes depNodeIt(MFn::kSkinClusterFilter);
+	if (depNodeIt.isDone())
+		return false;
+	MObject depNodeObject = depNodeIt.item();
+
+	MFnSkinCluster skinCluster( depNodeObject, &status );
+	int shapeIndex = skinCluster.indexForOutputShape( meshDagPath.node(), &status );
+
+	// make the influence index id to bone index map!
+	int* infIndexToBoneID = new int[m_bonePaths.size()];
+	for (int i = 0; i < m_bonePaths.size(); i++)
+	{
+		unsigned int index = skinCluster.indexForInfluenceObject(m_bonePaths[i], &status);
+		infIndexToBoneID[index] = i;
+	}
+
+	MObject mayaInputObject = skinCluster.inputShapeAtIndex( shapeIndex, &status );
+	// numVertices() should be the same for input and output shape.
+	int numVertices = mesh.numVertices();
+	m_influences.resize( numVertices );
+
+	int pointCounter = 0;
+	for (MItGeometry geometryIt(mayaInputObject);
+		!geometryIt.isDone();
+		geometryIt.next(), ++pointCounter)
+	{
+		MObject mayaComponent = geometryIt.component();
+		MFloatArray mayaWeightArray;
+		unsigned int numInfluences; // is going to be discarded
+
+		skinCluster.getWeights( meshDagPath,
+			mayaComponent,
+			mayaWeightArray,
+			numInfluences);
+
+		// put them into a more convenient format
+		for (int j = 0; j < mayaWeightArray.length(); ++j)
+		{
+			// I know: we are working with floats, but Maya has a
+			// function to eliminate weights, that are too small
+			if (mayaWeightArray[j] != 0)
+			{
+				GMayaInfluence influence;
+				influence.m_BoneId = infIndexToBoneID[j];
+				influence.m_Weight = mayaWeightArray[j];
+				m_influences[pointCounter].push_back(influence);
+			}
+		}
+	}
+
+	int infSize = m_influences.size();
+	int infOneSize = m_influences[0].size();
+
+	delete infIndexToBoneID;
 }

@@ -57,6 +57,8 @@ assets =
 			"uivertexshader",
 			"debugLinesVS",
 			"hudVS",
+			"depth_SkinnedNormalMapVertex",
+			"skinnedVertices",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},
@@ -427,6 +429,7 @@ assets =
 			"HUDEffect",
 			"toonEffect",
 			"AlphaBlendBasic",
+			"SkinnedNormalMapEffect",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},	
@@ -453,7 +456,7 @@ assets =
 			"Enemies/CtfAiPlayer",
 			"Prototype/QuaternTest",
 		},
-		shouldAssetsAlwaysBeBuilt = true,		
+		shouldAssetsAlwaysBeBuilt = false,		
 	},
 	Audio =
 	{

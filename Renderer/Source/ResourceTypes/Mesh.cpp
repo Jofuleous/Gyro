@@ -21,7 +21,7 @@ MeshLoader* Mesh::DefaultMeshLoader = new MeshLoader();
 
 Mesh::Mesh( ) : m_meshLoader( Mesh::DefaultMeshLoader )
 {
-
+	m_parentEntity = NULL;
 }
 
 MeshReference* StdMeshLoader::Load( const char* i_filename )
@@ -191,11 +191,19 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 	fread( &reference->rm_Reference.m_vertexCount, sizeof(unsigned), 1, file );
 	//read triangle count
 	fread( &reference->rm_Reference.m_triangleCount, sizeof( unsigned), 1, file ) ;
+	// vertex type
+	unsigned vertexType;
+	fread(&vertexType, sizeof(unsigned), 1, file);
 	// read the bone count
 	fread( &boneCount, sizeof( unsigned ), 1, file );
 	reference->rm_Reference.m_indexCount = reference->rm_Reference.m_triangleCount * 3;
 
-	unsigned int vertexBufferSize = reference->rm_Reference.m_vertexCount * sizeof( GVertices::s_vertexTNTB );
+
+	unsigned int vertexBufferSize;
+	if ( vertexType == 0)
+		vertexBufferSize = reference->rm_Reference.m_vertexCount * sizeof(GVertices::s_vertexTNTB);
+	else
+		vertexBufferSize = reference->rm_Reference.m_vertexCount * sizeof(GVertices::s_SkinnedVertexTNTB);
 	unsigned int indexBufferSize = reference->rm_Reference.m_indexCount * sizeof( UINT16 );
 
 	//SETUP VERTEX BUFFER ON CARD/ADAPTER
@@ -247,13 +255,22 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 
 	// BEGIN VERTEX READING PROCESS
 	GVertices::s_vertexTNTB* vertexData;
+	GVertices::s_SkinnedVertexTNTB* skinnedVertexData;
 
 	//LOCK VERTEX BUFFER
 	{
 		unsigned int lockEntireBuffer = 0;
 		DWORD useDefaultLockingBehavior = 0;
-		HRESULT result = reference->rm_Reference.m_vertexBuffer->Lock( lockEntireBuffer, lockEntireBuffer,
-			reinterpret_cast<void**>( &vertexData ), useDefaultLockingBehavior );
+		if (vertexType == 0)
+		{
+			HRESULT result = reference->rm_Reference.m_vertexBuffer->Lock(lockEntireBuffer, lockEntireBuffer,
+				reinterpret_cast<void**>(&vertexData), useDefaultLockingBehavior);
+		}
+		else if (vertexType == 1)
+		{
+			HRESULT result = reference->rm_Reference.m_vertexBuffer->Lock(lockEntireBuffer, lockEntireBuffer,
+				reinterpret_cast<void**>(&skinnedVertexData), useDefaultLockingBehavior);
+		}
 		if ( FAILED( result ) )
 		{
 			//cs6963::LogMessage( "Failed to lock the vertex buffer" );
@@ -265,7 +282,10 @@ MeshReference* MeshLoader::Load( const char* i_filename )
 
 	//FINALLY, FILL VERTEX BUFFER...
 	//vertexData = (s_vertexColor*) malloc( vertexCount * sizeof( s_vertexColor ));
-	fread( vertexData, sizeof( GVertices::s_vertexTNTB ), reference->rm_Reference.m_vertexCount, file );
+	if ( vertexType == 0 )
+		fread( vertexData, sizeof( GVertices::s_vertexTNTB ), reference->rm_Reference.m_vertexCount, file );
+	else if ( vertexType == 1 )
+		fread( skinnedVertexData, sizeof(GVertices::s_SkinnedVertexTNTB), reference->rm_Reference.m_vertexCount, file);
 
 	//UNLOCK VERTEX BUFFER
 	{
@@ -351,7 +371,11 @@ void Mesh::Draw( void )
 		unsigned int streamIndex = 0;
 		unsigned int bufferOffset = 0;
 		// The "stride" defines how large a single vertex is in the stream of data
-		unsigned int bufferStride = sizeof( GVertices::s_vertexTNTB );
+		unsigned int bufferStride; // hack hack hack
+		if ( m_parentEntity && m_parentEntity->m_material->rm_Reference.m_effect->rm_Reference.m_skinHack )
+			bufferStride = sizeof( GVertices::s_SkinnedVertexTNTB );
+		else
+			bufferStride = sizeof(GVertices::s_vertexTNTB );
 		result = g_RenderDevices.GetDevice()->SetStreamSource( streamIndex, m_reference->rm_Reference.m_vertexBuffer, bufferOffset, bufferStride );
 		assert( SUCCEEDED( result ) );
 	}

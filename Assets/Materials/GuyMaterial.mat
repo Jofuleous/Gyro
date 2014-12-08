@@ -1,5 +1,5 @@
 NAME GuyMaterial
-EFFECT SpecularNormal.efxb
+EFFECT SkinnedNormalMapEffect.efxb
 <PARAMETERS>
 PFLOAT g_specularPower 20
 TEXTURE g_diffuseMap marble.png

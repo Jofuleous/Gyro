@@ -30,6 +30,7 @@ public:
 
 	//todo: come up with better way of setting vertex declarations
 	IDirect3DVertexDeclaration9*	GetDefaultVertexDeclaration() { return m_vertexDeclaration; }
+	IDirect3DVertexDeclaration9*	GetSkinnedVertexDeclaration() { return m_SkinnedVertexDeclaration; }
 
 private:
 
@@ -40,6 +41,7 @@ private:
 	// Ideally a game would have many different vertex declarations,
 	// but we will only use a single one for our class
 	IDirect3DVertexDeclaration9*	m_vertexDeclaration;
+	IDirect3DVertexDeclaration9*	m_SkinnedVertexDeclaration;
 
 	bool InitializeVertexDeclaration();
 };

@@ -20,6 +20,7 @@
 #include <maya/MPoint.h>
 #include <maya/MPointArray.h>
 #include <maya/MSelectionList.h>
+#include <maya/MFnSkinCluster.h>
 #include <sstream>
 #include <string>
 #include <malloc.h>
@@ -34,6 +35,7 @@ namespace
 {
 	struct s_vertex
 	{
+		int positionIndex;
 		float x, y, z;
 		float nx, ny, nz;
 		float tx, ty, tz;
@@ -41,10 +43,11 @@ namespace
 		float u, v;
 		uint8_t r, g, b, a;
 
-		s_vertex( const MPoint& i_position, const MFloatVector& i_normal, const MFloatVector& i_tangent, const MFloatVector& i_binormal,
+		s_vertex( int i_positionIndex, const MPoint& i_position, const MFloatVector& i_normal, const MFloatVector& i_tangent, const MFloatVector& i_binormal,
 			const float i_texcoordU, const float i_texcoordV,
 			const MColor& i_vertexColor )
 			:
+			positionIndex(i_positionIndex),
 			x( static_cast<float>( i_position.x ) ), y( static_cast<float>( i_position.y ) ), z( static_cast<float>( i_position.z ) ),
 			nx( i_normal.x ), ny( i_normal.y ), nz( i_normal.z ),
 			tx( i_tangent.x ), ty( i_tangent.y ), tz( i_tangent.z ),
@@ -136,11 +139,14 @@ MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<con
 
 	//write header
 	char vertexCount[128];
-	size = sprintf(vertexCount, "VertexCount: %d\nTriangleCount: %d\nVertices\n", i_vertexBuffer.size(), i_indexBuffer.size() /3 );
+	int vertexType = 0; // later 
+	if (i_skelly.m_influences.size() > 0)
+		vertexType = 1;
+	size = sprintf(vertexCount, "VertexCount: %d\nTriangleCount: %d\nVertexType: %d\nVertices\n", i_vertexBuffer.size(), i_indexBuffer.size() /3, vertexType );
 	fwrite( vertexCount, size, 1, targetFile );
 
 	unsigned int position = 0;
-	char* vertexBuffer = (char*) malloc( 238 * i_vertexBuffer.size() );
+	char* vertexBuffer = (char*) malloc( 350 * i_vertexBuffer.size() ); // hack: figure out later.
 	for(unsigned int i = 0; i < i_vertexBuffer.size(); i++ )
 	{
 		//X
@@ -238,7 +244,48 @@ MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<con
 		//if(i_vertexBuffer[i].bz > 9999999999)
 		//	return MStatus::kFailure;
 		size = sprintf( vertexBuffer+position, "%f", i_vertexBuffer[i].bz ); //negate these because of the right hand conversion
-		vertexBuffer[position+size]='\n'; //new line..
+
+		//////////////////////////////////////////////////////
+		// Skinning Data
+		//////////////////////////////////////////////////////
+
+		if (vertexType > 0 )
+		{
+			vertexBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+
+			//float mag = 0.0f;
+
+			for (int j = 0; j < 4; j++)
+			{
+				if (j < i_skelly.m_influences[i_vertexBuffer[i].positionIndex].size())
+				{
+					size = sprintf(vertexBuffer + position, "%d", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_BoneId);
+					//mag += i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight;
+				}
+				else
+					size = sprintf( vertexBuffer + position, "%d", 0 );
+
+					vertexBuffer[position + size] = ' '; //space..
+					position += (size + 1);
+			}
+
+			for (int j = 0; j < 4; j++)
+			{
+				if (j < i_skelly.m_influences[i_vertexBuffer[i].positionIndex].size())
+					size = sprintf(vertexBuffer + position, "%f", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight);
+				else
+					size = sprintf(vertexBuffer + position, "%f", 0.0f );
+
+				if (j < 4 - 1)
+				{
+					vertexBuffer[position + size] = ' '; //space..
+					position += (size + 1);
+				}
+			}
+		}
+
+		vertexBuffer[position + size] = '\n'; //new line..
 		position += (size + 1);
 	}
 	
@@ -276,120 +323,123 @@ MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<con
 	size = sprintf( boneCount, "\nSkeletonBoneCount: %d\n", i_skelly.m_Skeleton.m_RefBones.Count() );
 	fwrite(boneCount, size, 1, targetFile);
 
-	// at max, we support 16 characters per value.  10 for the significand and 6 for the precision.
-	// we have a max bone size of
-	// bone id = 4
-	// parent id = 4
-	// qx = 16, qy = 16, qz = 16, qw = 16 --local rot = 64
-	// x = 16, y = 16, z = 16 = 112 bytes --local trans = 48
-	// qx = 16, qy = 16, qz = 16, qw = 16 -- absolute rot = 64
-	// x = 16, y = 16, z = 16 --absolute trans... = 48
-	// + spaces (10) + new line (6) =  240..round up to 256 for the children :)
-	position = 0;
-	char* skeletonBuffer = (char*) malloc(i_skelly.m_Skeleton.m_RefBones.Count() * 300);
-	for (int i = 0; i < i_skelly.m_Skeleton.m_RefBones.Count(); i++)
+	if (i_skelly.m_Skeleton.m_RefBones.Count() > 0)
 	{
-		// bone id
-		size = sprintf(skeletonBuffer + position, "%d", i );
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// parent id
-		size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ParentId);
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// LOCAL ROTATION
-		// qx
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_X);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qy
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Y);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qz
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Z);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qw
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_W);
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// LOCAL TRANSLATION
-		// tx
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.x() );
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// ty
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.y());
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// tz
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.z());
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// BIND ROTATION.
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_X);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qy
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Y);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qz
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Z);
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// qw
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_W);
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// BIND TRANSLATION
-		// tx
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.x());
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// ty
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.y());
-		skeletonBuffer[position + size] = ' '; //space..
-		position += (size + 1);
-		// tz
-		size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.z());
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		// now let's write out all the children...
-		size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount);
-		skeletonBuffer[position + size] = '\n'; //newline..
-		position += (size + 1);
-
-		for (int q = 0; q < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount; q++)
+		// at max, we support 16 characters per value.  10 for the significand and 6 for the precision.
+		// we have a max bone size of
+		// bone id = 4
+		// parent id = 4
+		// qx = 16, qy = 16, qz = 16, qw = 16 --local rot = 64
+		// x = 16, y = 16, z = 16 = 112 bytes --local trans = 48
+		// qx = 16, qy = 16, qz = 16, qw = 16 -- absolute rot = 64
+		// x = 16, y = 16, z = 16 --absolute trans... = 48
+		// + spaces (10) + new line (6) =  240..round up to 256 for the children :)
+		position = 0;
+		char* skeletonBuffer = (char*)malloc(i_skelly.m_Skeleton.m_RefBones.Count() * 300);
+		for (int i = 0; i < i_skelly.m_Skeleton.m_RefBones.Count(); i++)
 		{
-			size = sprintf(skeletonBuffer + position, "%d", (int)i_skelly.m_Skeleton.m_RefBones[i].m_Children[q]);
-			if (q + 1 < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount)
+			// bone id
+			size = sprintf(skeletonBuffer + position, "%d", i);
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// parent id
+			size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ParentId);
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// LOCAL ROTATION
+			// qx
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_X);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qy
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Y);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qz
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_Z);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qw
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalRot.m_W);
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// LOCAL TRANSLATION
+			// tx
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.x());
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// ty
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.y());
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// tz
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_LocalTranslation.z());
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// BIND ROTATION.
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_X);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qy
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Y);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qz
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_Z);
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// qw
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindRot.m_W);
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// BIND TRANSLATION
+			// tx
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.x());
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// ty
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.y());
+			skeletonBuffer[position + size] = ' '; //space..
+			position += (size + 1);
+			// tz
+			size = sprintf(skeletonBuffer + position, "%f", i_skelly.m_Skeleton.m_RefBones[i].m_BindTranslation.z());
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			// now let's write out all the children...
+			size = sprintf(skeletonBuffer + position, "%d", i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount);
+			skeletonBuffer[position + size] = '\n'; //newline..
+			position += (size + 1);
+
+			for (int q = 0; q < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount; q++)
 			{
-				skeletonBuffer[position + size] = ' '; //newline..
+				size = sprintf(skeletonBuffer + position, "%d", (int)i_skelly.m_Skeleton.m_RefBones[i].m_Children[q]);
+				if (q + 1 < i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount)
+				{
+					skeletonBuffer[position + size] = ' '; //newline..
+					position += (size + 1);
+				}
+			}
+
+			if (i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount > 0)
+			{
+				skeletonBuffer[position + size] = '\n'; //newline..
 				position += (size + 1);
 			}
 		}
 
-		if (i_skelly.m_Skeleton.m_RefBones[i].m_ChildCount > 0)
-		{
-			skeletonBuffer[position + size] = '\n'; //newline..
-			position += (size + 1);
-		}
+		fwrite(skeletonBuffer, position - 1, 1, targetFile);
+		free(skeletonBuffer);
 	}
-
-	fwrite( skeletonBuffer, position-1, 1, targetFile );
 
 
 	free(indexBuffer);
 	free(vertexBuffer);
-	free(skeletonBuffer);
 
 	fclose( targetFile );
 
@@ -427,7 +477,10 @@ namespace
 	MStatus ProcessSkeleton( GMayaSkeleton& i_skeleton )
 	{
 		if (i_skeleton.Extract())
+		{
+			i_skeleton.ExtractSkinningData();
 			return MStatus::kSuccess;
+		}
 
 		return MStatus::kFailure;
 	}
@@ -528,6 +581,7 @@ namespace
 			}
 		}
 
+
 		// Get a list of the vertex colors
 		MColorArray vertexColors;
 		{
@@ -577,6 +631,7 @@ namespace
 										return status;
 									}
 								}
+								
 								int vertexColorIndex = -1;
 								MColor vertexColor( 1.0f, 1.0f, 1.0f, 1.0f );
 								{
@@ -599,7 +654,7 @@ namespace
 									texcoordIndex, vertexColorIndex );
 								indexToKeyMap.insert( std::make_pair( positionIndex, vertexKey ) );
 								uniqueVertices.insert( std::make_pair( vertexKey,
-									s_vertex( positions[positionIndex], normals[normalIndex], tangents[tangentIndex], binormals[binormalIndex],
+									s_vertex( positionIndex, positions[positionIndex], normals[normalIndex], tangents[tangentIndex], binormals[binormalIndex],
 										texcoordUs[texcoordIndex], texcoordVs[texcoordIndex],
 										vertexColor ) ) );
 							}

@@ -93,7 +93,7 @@ Entity* Entity::LoadEntity( const char* i_filename )
 			entity->m_mesh = new Mesh();
 			if( entity->m_mesh->Load( data.c_str() ) )
 			{
-
+				entity->m_mesh->m_parentEntity = entity;
 			}
 			else
 				assert( entity->m_mesh );

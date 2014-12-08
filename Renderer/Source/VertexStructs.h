@@ -1,6 +1,8 @@
 #ifndef __VERTEXSTRUCTS_H_
 #define __VERTEXSTRUCTS_H_
 
+#include "Initialization.h"
+
 namespace GVertices
 {
 	//until i have some better way of doing this.
@@ -33,6 +35,17 @@ namespace GVertices
 		float nx, ny, nz;
 		float tx, ty, tz;
 		float bx, by, bz;
+	};
+
+	struct s_SkinnedVertexTNTB
+	{
+		float		x, y, z;
+		float		u, v;
+		float		nx, ny, nz;
+		float		tx, ty, tz;
+		float		bx, by, bz;
+		float		weight[4];
+		unsigned char		bonedId[4];
 	};
 }
 
