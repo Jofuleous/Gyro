@@ -56,7 +56,7 @@ void GSkeletonInstance::CreateBoneMatrices()
 	for (int i = 0; i < m_Bones.Count(); i++)
 	{
 		(m_MasterSkeleton->m_RefBones[i].m_BindRot * m_Bones[i].m_AbsRot).GetMatrix(m_DeltaBoneTransform[i]);
-		m_DeltaBoneTransform[i].PokeTranslation(m_Bones[i].m_AbsTranslation + m_MasterSkeleton->m_RefBones[i].m_BindTranslation);
+		m_DeltaBoneTransform[i].PokeTranslation(m_Bones[i].m_AbsTranslation + (m_Bones[i].m_AbsRot * m_MasterSkeleton->m_RefBones[i].m_BindTranslation));
 	}
 }
 

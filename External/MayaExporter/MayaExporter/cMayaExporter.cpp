@@ -254,14 +254,13 @@ MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<con
 			vertexBuffer[position + size] = ' '; //space..
 			position += (size + 1);
 
-			//float mag = 0.0f;
-
+			float mag = 0.0f;
 			for (int j = 0; j < 4; j++)
 			{
 				if (j < i_skelly.m_influences[i_vertexBuffer[i].positionIndex].size())
 				{
 					size = sprintf(vertexBuffer + position, "%d", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_BoneId);
-					//mag += i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight;
+					mag += i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight;
 				}
 				else
 					size = sprintf( vertexBuffer + position, "%d", 0 );
@@ -273,7 +272,12 @@ MStatus cs6963::cMayaExporter::Export(const MString& i_fileName, std::vector<con
 			for (int j = 0; j < 4; j++)
 			{
 				if (j < i_skelly.m_influences[i_vertexBuffer[i].positionIndex].size())
-					size = sprintf(vertexBuffer + position, "%f", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight);
+				{
+					if ( mag <= 0.0f )
+						size = sprintf(vertexBuffer + position, "%f", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight);
+					else
+						size = sprintf(vertexBuffer + position, "%f", i_skelly.m_influences[i_vertexBuffer[i].positionIndex][j].m_Weight / mag);
+				}
 				else
 					size = sprintf(vertexBuffer + position, "%f", 0.0f );
 

@@ -10,9 +10,18 @@
 #include <maya/MVector.h>
 #include <maya/MAnimUtil.h>
 #include <maya/MAnimControl.h>
+#include <maya/MQuaternion.h>
+#include <maya/MMatrix.h>
 
 #include "GMayaAnimClip.h"
 #include "Containers/GArray.h"
+
+static float RightToLeftMatData2[4][4] = {
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, -1, 0,
+	0, 0, 0, 1,
+};
 
 
 bool GMayaAnimClip::ProcessAnim( )
@@ -28,6 +37,7 @@ bool GMayaAnimClip::ProcessAnim( )
 		MDagPath i_path;
 		dagIt.getPath(i_path);
 		int parent = -1;
+
 		ProcessJoints(i_path);
 
 		// children have all been evaluated.
@@ -65,6 +75,9 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 	MPlugArray animatedPlugs;
 	MAnimUtil::findAnimatedPlugs(jointPath, animatedPlugs);
 	MTime currentTime = MAnimControl::animationStartTime();
+	MMatrix rightToLeft( RightToLeftMatData2 );
+
+	const char* pathName = jointPath.fullPathName().asChar();
 
 	if (animatedPlugs.length() > 0)
 	{
@@ -81,9 +94,10 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 			MAnimControl::setCurrentTime(frame);
 			MFnTransform transform( jointPath );
 
-			double qx, qy, qz, qw;
-			transform.getRotationQuaternion(qx, qy, qz, qw, MSpace::kTransform );
-			GQuat quat(qx, qy, qz, qw);
+			MQuaternion mQuat;
+			MMatrix mat = rightToLeft * transform.transformation().asMatrix() * rightToLeft;
+			mQuat = mat;
+			GQuat quat(mQuat.x, mQuat.y, mQuat.z, mQuat.w);
 			MVector translation = transform.getTranslation( MSpace::kTransform );
 			GVector3 vTrans(translation.x, translation.y, translation.z);
 			m_Clip.PushRotKeyFrame( trackIndex, quat, (float) frame.value() ); // only push joint anims for now...
