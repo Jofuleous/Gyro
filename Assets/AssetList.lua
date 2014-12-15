@@ -151,6 +151,7 @@ assets =
 			"cyan",
 			"red",
 			"blue",
+			"GoblinTexture",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},
@@ -318,6 +319,7 @@ assets =
 			"pyramid",
 			"Axis",
 			"Dude",
+			"Goblin",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},
@@ -332,6 +334,8 @@ assets =
 		names =
 		{
 			"Avatar/Player/DudeWalk",
+			"Avatar/Player/GoblinRun",
+			"Avatar/Player/GoblinIdle",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},

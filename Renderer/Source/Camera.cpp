@@ -12,8 +12,8 @@ Camera::Camera( void ) :
 	m_up( 0.0f, 1.0f, 0.0f ),
 	m_FOV( D3DXToRadian(45.0f) ),
 	m_aspectRatio( ((float)g_MainWindow.GetWidth()) / ((float)g_MainWindow.GetHeight()) ),
-	m_nearPlane( 100.0f ),
-	m_farPlane( 30000.0f ), // increase in this is probably going to fuck up shadow maps...
+	m_nearPlane( 1.0f ),
+	m_farPlane( 3000.0f ), // increase in this is probably going to fuck up shadow maps...
 	m_yRotation( 0.0f )
 {
 }

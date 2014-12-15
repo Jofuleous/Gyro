@@ -4,14 +4,14 @@ PlayerOne=
 	{
 		GroundFollower =
 		{
-			RayOrigin = { 0.0, 100.0, 0.0, }, --from the actor position
-			RayDownLength = 100.0,
-			RayForwardLength = 50.0,
+			RayOrigin = { 0.0, 1.0, 0.0, }, --from the actor position
+			RayDownLength = 1.0,
+			RayForwardLength = 1.0,
 			
-			MaxSpeedXZ = 400.0,
-			MaxSpeedY = 1000.0,
-			AccelerationXZ = 2000.0,
-			Gravity = { 0.0, -500.0, 0.0, },
+			MaxSpeedXZ = 10.0,
+			MaxSpeedY = 30.0,
+			AccelerationXZ = 100.0,
+			Gravity = { 0.0, -1.0, 0.0, },
 		},
 		Collision =
 		{
@@ -21,10 +21,10 @@ PlayerOne=
 			--Callback = "Trigger",
 			AABB =
 			{
-				Center = { 0.0, 79.318, 0.0, },
-				HalfX = 31.7215,
-				HalfY = 79.318,
-				HalfZ = 15.0,
+				Center = { 0.0, 1.0, 0.0, },
+				HalfX = 0.5,
+				HalfY = 1.0,
+				HalfZ = 0.5,
 			},
 		},
 		Team=
@@ -34,9 +34,9 @@ PlayerOne=
 		Player=
 		{
 			Decelerate = 0.1,
-			MaxSpeed = 400.0,
-			Acceleration = 2000.0,
-			CameraOffsetY = 200.0,
+			MaxSpeed = 10.0,
+			Acceleration = 100.0,
+			CameraOffsetY = 3.0,
 		},
 		Renderer=
 		{
@@ -44,7 +44,27 @@ PlayerOne=
 		},
 		Anim =
 		{
-			
+			AnimNodes = 
+			{
+				GoblinRun =
+				{
+					ClipName = "Avatar/Player/GoblinRun.banm",
+					TrimStart = 8.0,
+					TrimEnd = 22.0,
+					BlendIn = 0.0,
+					Loop = true,
+					PlayRate = 14.0,
+				},
+				GoblinIdle =
+				{
+					ClipName = "Avatar/Player/GoblinIdle.banm",
+					TrimStart = 0.0,
+					TrimEnd = 30.0,
+					BlendIn = 0.0,
+					Loop = true,
+					PlayRate = 5.0,
+				},
+			},
 		},
 	},
 }

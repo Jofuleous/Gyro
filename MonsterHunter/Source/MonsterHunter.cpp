@@ -22,10 +22,10 @@ namespace MonsterHunter
 		GameInit::RegisterTriggerFuncs();
 
 		/// CTF
-		g_World::Get().LoadEditorObjects( "data/Levels/BrapbrapQuat.brox" );
-		g_Renderer::Get().LoadBinaryScene("data/Levels/BrapbrapQuat.scx" );
-		g_Collision::Get().LoadBinarySceneCollision( "data/Levels/BrapbrapQuat.scx" );
-		g_CTFManager::Get().Initialize();
+		g_World::Get().LoadEditorObjects( "data/Levels/AnimFinalProj.brox" );
+		g_Renderer::Get().LoadBinaryScene("data/Levels/AnimFinalProj.scx" );
+		g_Collision::Get().LoadBinarySceneCollision( "data/Levels/AnimFinalProj.scx" );
+		//g_CTFManager::Get().Initialize();
 		g_AudioManager.PlayMusic( "data/Audio/Music/allidoiswin.mp3" ); 
 		
 		return true;
@@ -44,12 +44,14 @@ namespace MonsterHunter
 			pC->HandleInput( player, i_CharID, i_keyDown );
 		}
 
+		/*
 		GActorHandle quatHandle = world.GetActorByName("QuaternTest");
 		if (quatHandle)
 		{
 			QuatTestComp* comp = GetComponent<QuatTestComp>(quatHandle);
 			comp->HandleInput(player, i_CharID, i_keyDown);
 		}
+		*/
 	}
 
 	void BeginUpdate( )
@@ -74,7 +76,7 @@ namespace MonsterHunter
 		if( player )
 			g_AudioManager.UpdateListenerPosition( player->m_position, player->m_rotation.Dir(), player->m_rotation.Up() );
 		/// CTF
-		g_CTFManager::Get().Update();
+		//g_CTFManager::Get().Update();
 
 	}
 

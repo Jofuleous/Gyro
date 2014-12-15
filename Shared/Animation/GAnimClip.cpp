@@ -60,15 +60,16 @@ void GAnimClip::UpdateSkeletonInstace( GSkeletonInstance* o_instance, float i_ti
 		else
 			o_instance->m_Bones[m_TrackToBone[i]].m_LocalRot = m_Tracks[i].m_RotKeys[keyOne].m_Rotation;
 
-		/*
+		// we can probably just use key one, key two, and alpha if we keep our sampling method...until then, search again.
 		m_Tracks[i].GetKeyTranslationIndices(keyOne, keyTwo, i_time);
 		if (keyOne != keyTwo)
 		{
-			float alpha = (i_time - m_Tracks[i].m_TranslationKeys[keyOne].m_Time) / (m_Tracks[i].m_TranslationKeys[keyTwo].m_Time - m_Tracks[i].m_TranslationKeys[keyOne].m_Time);
-			o_instance->m_Bones[m_TrackToBone[i]].m_LocalTranslation = GVector3::Lerp( m_Tracks[i].m_TranslationKeys[keyOne].m_Translation, m_Tracks[i].m_TranslationKeys[keyTwo].m_Translation, 1.0f - alpha);
+			// potentially smooth step here.
+			float alpha = GMath::SmoothStep(m_Tracks[i].m_TranslationKeys[keyOne].m_Time, m_Tracks[i].m_TranslationKeys[keyTwo].m_Time, i_time);
+			//float alpha = (i_time - m_Tracks[i].m_TranslationKeys[keyOne].m_Time) / (m_Tracks[i].m_TranslationKeys[keyTwo].m_Time - m_Tracks[i].m_TranslationKeys[keyOne].m_Time);
+			o_instance->m_Bones[m_TrackToBone[i]].m_LocalTranslation = GVector3::Lerp( m_Tracks[i].m_TranslationKeys[keyOne].m_Translation, m_Tracks[i].m_TranslationKeys[keyTwo].m_Translation, alpha);
 		}
 		else
 			o_instance->m_Bones[m_TrackToBone[i]].m_LocalTranslation = m_Tracks[i].m_TranslationKeys[keyOne].m_Translation;
-		*/
 	}
 }

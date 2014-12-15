@@ -5,10 +5,12 @@
     <ClInclude Include="GSkeleton.h" />
     <ClInclude Include="GAnimStructs.h" />
     <ClInclude Include="GAnimClip.h" />
+    <ClInclude Include="GAnimNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GSkeleton.cpp" />
     <ClCompile Include="GAnimStructs.cpp" />
     <ClCompile Include="GAnimClip.cpp" />
+    <ClCompile Include="GAnimNode.cpp" />
   </ItemGroup>
 </Project>

@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClInclude Include="GAnimationUtil.h" />
     <ClInclude Include="GAnimClip.h" />
+    <ClInclude Include="GAnimNode.h" />
     <ClInclude Include="GAnimStructs.h" />
     <ClInclude Include="GSkeleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GAnimClip.cpp" />
+    <ClCompile Include="GAnimNode.cpp" />
     <ClCompile Include="GAnimStructs.cpp" />
     <ClCompile Include="GSkeleton.cpp" />
   </ItemGroup>
@@ -78,24 +80,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Shared\;$(SolutionDir)\External\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Shared\;$(SolutionDir)\External\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Shared\;$(SolutionDir)\External\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Shared\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Shared\;$(SolutionDir)\External\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,6 +116,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>LuaPlus.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -124,6 +133,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>LuaPlus.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -142,6 +154,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>LuaPlus.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -160,6 +175,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>LuaPlus.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

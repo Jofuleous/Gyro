@@ -141,9 +141,9 @@ void GMatrix4::PokeScale( const GVector3& i_scale )
 
 void GMatrix4::PokeScale( float i_x, float i_y, float i_z )
 {
-	m_elements[0][0] = i_x; // x
-	m_elements[1][1] = i_y; // y
-	m_elements[2][2] = i_z; // z
+	m_elements[0][0] = m_elements[0][0] * i_x; // x
+	m_elements[1][1] = m_elements[1][1] * i_y; // y
+	m_elements[2][2] = m_elements[1][1] * i_z; // z
 
 #if defined( TEMP_MATRIX ) && defined( _DEBUG ) && defined( _WIN32 )
 	D3DXMATRIX temp;

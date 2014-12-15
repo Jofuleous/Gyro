@@ -158,7 +158,7 @@ void GEAxisMarker::LoadEntity()
 	FbxImporter* pImporter = FbxImporter::Create( FBXProcessor::g_FbxSdkManager,"AxisMarker importer.");
 	FbxScene* fbxScene = FbxScene::Create( FBXProcessor::g_FbxSdkManager,"AxisMarker scene?");
 
-	bool succeeded = pImporter->Initialize( "../Assets/Models/AxisMarker.fbx", -1, FBXProcessor::g_FbxSdkManager->GetIOSettings() );
+	bool succeeded = pImporter->Initialize( "../../../Assets/Models/AxisMarker.fbx", -1, FBXProcessor::g_FbxSdkManager->GetIOSettings() );
 	if( !succeeded )
 	{
 		assert( 0 );

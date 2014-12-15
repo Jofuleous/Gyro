@@ -99,9 +99,9 @@ void GMayaAnimClip::GetJointAnims( const MDagPath& jointPath )
 			mQuat = mat;
 			GQuat quat(mQuat.x, mQuat.y, mQuat.z, mQuat.w);
 			MVector translation = transform.getTranslation( MSpace::kTransform );
-			GVector3 vTrans(translation.x, translation.y, translation.z);
+			GVector3 vTrans(translation.x, translation.y, -translation.z);
 			m_Clip.PushRotKeyFrame( trackIndex, quat, (float) frame.value() ); // only push joint anims for now...
-			//m_Clip->PushTransKeyFrame(vTrans, frame, (float)frame.value()); // push translation and rotation for now :(
+			m_Clip.PushTransKeyFrame( trackIndex, vTrans, frame.value() );
 			if ( frame.value() > m_Clip.m_ClipLength )
 				m_Clip.m_ClipLength = frame.value();
 

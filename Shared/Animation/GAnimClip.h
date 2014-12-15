@@ -23,6 +23,7 @@ public:
 	void	GetBoneTranslation( GQuat& o_rot, float i_time );
 	void	GetBoneRotation( GQuat& o_rot, float i_time );
 	void	UpdateSkeletonInstace( GSkeletonInstance* o_instance, float i_time ); // This is not efficient or very modular.  hack.
+	//void	UpdateSkeletonInstance(GSkeletonInstance* o_instance, float i_time);
 
 	GArray<GAnimTrack>	m_Tracks;		// All tracks
 	GArray<u32>			m_TrackToBone;	// Track index -> Bone Index

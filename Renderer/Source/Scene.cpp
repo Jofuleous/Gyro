@@ -85,8 +85,8 @@ bool Scene::LoadBlankScene( )
 	m_camera = new Camera();
 	D3DXVECTOR3 cameraPos;
 	cameraPos.x = 0.0f;
-	cameraPos.y = 100.0f;
-	cameraPos.z = 100.0f;
+	cameraPos.y = 0.0f;
+	cameraPos.z = 0.0f;
 	m_camera->m_position = cameraPos;
 	m_camera->LookAtPoint( D3DXVECTOR3( 0.0f, 0.0f, 0.0f ) );
 

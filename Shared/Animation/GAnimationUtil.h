@@ -12,6 +12,9 @@ namespace GAnimationUtil
 
 		GAnimClip* clip = new GAnimClip();
 		clip->DeSerialize(file);
+		sprintf(clip->m_Name, "%s", i_fileName );
+		//clean up hack
+		free(filepath);
 		return clip;
 	}
 }

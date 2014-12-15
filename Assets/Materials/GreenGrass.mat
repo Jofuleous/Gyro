@@ -1,5 +1,5 @@
 NAME GreenGrass
-EFFECT Diffuse.efxb
+EFFECT BasicDiffuse.efxb
 <PARAMETERS>
 TEXTURE g_diffuseMap grass.png
 </PARAMETERS>

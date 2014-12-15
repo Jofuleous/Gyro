@@ -10,13 +10,14 @@
 #include "Misc/DebugConsole.h"
 #include "Math/GTransform.h"
 #include "Math/GQuat.h"
+#include "Components/GAnimComponent.h"
 
 const GHashedString PlayerComponent::m_typeName = "Player";
 u32 PlayerComponent::m_typeId =ComponentManager::GetNextTypeId();
 
 static const GVector3 DEFAULT_FOWARD( 0.0f, 0.0f, 1.0f );
-static const float DEFAULT_CAMERA_XZ_DISTANCE = 600.0f; // was 600
-static const float DEFAULT_CAMERA_Y_DISTANCE = 150.0f; // usual = 150
+static const float DEFAULT_CAMERA_XZ_DISTANCE = 11.0f; // was 600
+static const float DEFAULT_CAMERA_Y_DISTANCE = 3.0f; // usual = 150
 static const float MAX_STAMINA = 10.0f;
 // not assigning this here because it's not safe to assume the compiler will execute in any certain order for globals.
 static float DEFAULT_CAMERA_DISTANCE;
@@ -316,6 +317,15 @@ void PlayerComponent::HandleInputUpdate( GActorHandle i_actor )
 		GVector3 movementVector( m_inputVector ); // multiply by direction vectors later...
 		if( movementVector.z() == 0.0f )
 		{
+
+			//animcomponent
+			if (follower->m_velocity.LengthSquared() > 0.1f)
+			{
+				GAnimComponent* animComp = GetComponent<GAnimComponent>(i_actor);
+				if (animComp)
+					animComp->PlayAnim("Avatar/Player/GoblinIdle.banm");
+			}
+
 			if( follower->m_onGround )
 			{
 				GMath::MoveToValue( follower->m_velocity._x, 0.0f, fabs( follower->m_velocity._x ) * m_decelerate * g_Clock::Get().SecondsSinceLastFrame() );
@@ -360,6 +370,13 @@ void PlayerComponent::HandleInputUpdate( GActorHandle i_actor )
 			//float difference = g_Clock::Get().SecondsSinceLastFrame() * DEFAULT_TURN_SPEED * movementVector._x ;
 			if( fabs(movementVector._z ) > 0.0f )
 			{
+				//animcomponent
+				if (follower->m_velocity.LengthSquared() <= 0.1f)
+				{
+					GAnimComponent* animComp = GetComponent<GAnimComponent>(i_actor);
+					if (animComp)
+						animComp->PlayAnim("Avatar/Player/GoblinRun.banm");
+				}
 				float pitchRads = ((float)m_mouse.GetTotalDeltaY() / (float) Gyro::UserSettings::GetScreenHeight() / 2.0f) * ( (3.14159f));
 				float yawRads = -((float)m_mouse.GetTotalDeltaX() / (float) Gyro::UserSettings::GetScreenHeight() / 2.0f) * ( (3.14159f) ); /* ( (3.14159f) */;
 				GVector3 lookingDir( -cos( yawRads )*cos( pitchRads ), -sin( pitchRads), -sin( yawRads )*cos( pitchRads ) );
@@ -367,8 +384,10 @@ void PlayerComponent::HandleInputUpdate( GActorHandle i_actor )
 				float difference = asinf( movementVector._x ) ;
 				rots+= difference;
 
-				orientation.SetRotY( rots );
-				actor->m_rotation = orientation;
+				orientation.SetRotY(rots);
+				GMatrix4 actorOrientHack;
+				actorOrientHack.SetRotY(rots + GMath::Pi);
+				actor->m_rotation = actorOrientHack;
 			}
 			else
 			{

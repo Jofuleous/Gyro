@@ -15,9 +15,29 @@ namespace GMath
 		return ( i_radians * 180.f ) / Pi;
 	}
 
+	inline float Max(float i_one, float i_two)
+	{
+		if (i_one > i_two)
+			return i_one;
+		return i_two;
+	}
+
+	inline float Min(float i_one, float i_two)
+	{
+		if (i_one > i_two)
+			return i_two;
+		return i_one;
+	}
+
 	inline float Lerp( float i_source, float i_dest, float i_destPercent )
 	{
 		return i_source * (1.0f - i_destPercent) + i_dest * i_destPercent;
+	}
+
+	inline float SmoothStep(float i_min, float i_max, float i_value )
+	{
+		float val = Max(0.f, Min(1.f, (i_value - i_min) / (i_max - i_min)));
+		return val * val * (3.f - 2.f * val);
 	}
 
 	inline float Sign( float i_input )

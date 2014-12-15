@@ -11,9 +11,9 @@ class GEAxisMarker
 public:
 				GEAxisMarker( )
 				{
-					m_xBox = GAABB( 112.0f, 4.5f, 4.5f, 0.0f, -4.5f, -4.5f ); 
-					m_yBox = GAABB( 4.5f, 112.0f, 4.5f, -4.5f, 0.0f, -4.5f );
-					m_zBox = GAABB( 4.5f, 4.5f, 112.0f, -4.5f, -4.5f, 0.0f ); 
+					m_xBox = GAABB(1.0f, 0.1f, 0.1f, 0.0f, -0.1f, -0.1f);
+					m_yBox = GAABB(0.1f, 1.0f, 0.1f, -0.1f, 0.0f, -0.1f);
+					m_zBox = GAABB(0.1f, 0.1f, 1.0f, -0.1f, -0.1f, 0.0f);
 					m_selectedAxis = 0;
 					m_markerEntity = NULL;
 				}

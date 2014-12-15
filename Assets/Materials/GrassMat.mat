@@ -1,5 +1,5 @@
 NAME GrassMat
-EFFECT toonEffect.efxb
+EFFECT BasicDiffuse.efxb
 <PARAMETERS>
 TEXTURE g_diffuseMap ground.png
 </PARAMETERS>

@@ -2,6 +2,6 @@ NAME GuyMaterial
 EFFECT SkinnedNormalMapEffect.efxb
 <PARAMETERS>
 PFLOAT g_specularPower 20
-TEXTURE g_diffuseMap marble.png
+TEXTURE g_diffuseMap GoblinTexture.png
 TEXTURE g_normalMap mossystonepathnormalmap.png
 </PARAMETERS>
