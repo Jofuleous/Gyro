@@ -13,12 +13,13 @@ class GAnimNode
 	GAnimNode(){}
 public:
 	static GAnimNode* Create( LuaPlus::LuaObject& i_obj );
+	float		CalculateBlendInto();
 	void		Begin();
 	void		End();
 	bool		Update( GSkeletonInstance* i_skelly, float i_dt );
 	GAnimClip*	m_clip;
 	bool		m_loop;
-	float		m_blendInAmt;
+	float		m_blendInEndFrame;
 	float		m_trimStart;
 	float		m_trimEnd;
 	float		m_playRate;

@@ -2,7 +2,7 @@
 #include "Actor/ComponentManager.h"
 #include "../../../Renderer/Source/ResourceTypes/Mesh.h"
 #include "../../../Renderer/Source/RenderManager.h"
-//#include "Animation/GAnimationUtil.h" this caused a linker error.  investigate later.
+#include "Animation/GAnimationUtil.h"
 #include "Animation/GSkeleton.h"
 #include "Animation/GAnimClip.h"
 #include "GRenderComponent.h"
@@ -33,7 +33,9 @@ void GAnimComponent::Initialize(GActorHandle actor, LuaPlus::LuaObject& i_obj)
 	//m_clip = GAnimationUtil::LoadAnimClip("Avatar/Player/GoblinRun.banm");
 	m_currentNode = m_nodeMap[GHashedString::Hash("Avatar/Player/GoblinIdle.banm")]->m_data;
 	m_currentNode->Begin();
+	m_prevNode = NULL;
 	m_clipTime = 0.0f;
+	m_debugDraw = false;
 }
 
 void GAnimComponent::PlayAnim(const char* i_name)
@@ -41,6 +43,9 @@ void GAnimComponent::PlayAnim(const char* i_name)
 	GHashNode<u32, GAnimNode*>* node = m_nodeMap[GHashedString::Hash(i_name)];
 	if (node)
 	{
+		if (node->m_data->m_blendInEndFrame > node->m_data->m_trimStart && node->m_data != m_currentNode )
+			m_prevNode = m_currentNode;
+
 		m_currentNode = node->m_data;
 		m_currentNode->Begin();
 	}
@@ -59,24 +64,17 @@ void GAnimComponent::Update(GActorHandle actor)
 			return;
 
 		m_skeletonInstance = obj->m_entity->m_mesh->m_reference->rm_Reference.m_skeletonInstance;
-		m_debugDraw = true;
 	}
 	else
 	{
-
-		if (m_currentNode )
-		{
+		if ( m_currentNode )
 			m_currentNode->Update(m_skeletonInstance, g_Clock::Get().SecondsSinceLastFrame());
-			//m_clip->UpdateSkeletonInstace(m_skeletonInstance, m_clipTime);
-			//m_clipTime += 15.0f * g_Clock::Get().SecondsSinceLastFrame();
-		}
-		else if (!m_currentNode)
-			m_skeletonInstance->BuildBindPose();
-		else
-			m_clipTime = 0.0f;
 
-		m_skeletonInstance->EvaluateFullInstance();
-		m_skeletonInstance->CreateBoneMatrices();
+		if ( m_prevNode )
+			m_prevNode->Update(m_skeletonInstance, g_Clock::Get().SecondsSinceLastFrame());
+
+		//else
+		//	m_skeletonInstance->BuildBindPose();
 
 		if (m_debugDraw)
 		{
@@ -106,4 +104,30 @@ void GAnimComponent::Update(GActorHandle actor)
 			}
 		}
 	}
+
+	Evaluate();
+}
+
+void GAnimComponent::Evaluate()
+{
+	if (m_currentNode)
+	{
+		if (m_prevNode)
+		{
+			float into = m_currentNode->CalculateBlendInto();
+			if (into < 1.0f)
+				GAnimationUtil::Evaluate_AnimClipBlend(m_skeletonInstance, m_currentNode->m_clip, m_prevNode->m_clip, m_currentNode->m_currTime, m_prevNode->m_currTime, into);
+			else
+			{
+				GAnimationUtil::Evaluate_AnimClip(m_skeletonInstance, m_currentNode->m_clip, m_currentNode->m_currTime );
+				m_prevNode = NULL;
+			}
+		}
+		else
+			GAnimationUtil::Evaluate_AnimClip(m_skeletonInstance, m_currentNode->m_clip, m_currentNode->m_currTime );
+	}
+
+
+	m_skeletonInstance->EvaluateFullInstance();
+	m_skeletonInstance->CreateBoneMatrices();
 }

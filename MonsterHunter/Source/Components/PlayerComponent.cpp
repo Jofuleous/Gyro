@@ -442,7 +442,7 @@ void PlayerComponent::DrawFoundPath( )
 
 void PlayerComponent::HandleInput( GActorHandle actor, unsigned int i_CharID, bool i_keyDown )
 {
-	if( i_CharID == 87 || i_CharID == 68 || i_CharID == 65 || i_CharID == 83 || i_CharID == VK_SPACE || i_CharID == VK_CONTROL )
+	if (i_CharID == 87 || i_CharID == 68 || i_CharID == 65 || i_CharID == 83 || i_CharID == VK_SPACE || i_CharID == VK_CONTROL || i_CharID == 0x59 || i_CharID == 0x55 || i_CharID == 0x54)
 	{
 		if( i_CharID == VK_CONTROL && i_keyDown )
 		{
@@ -467,6 +467,16 @@ void PlayerComponent::HandleInput( GActorHandle actor, unsigned int i_CharID, bo
 				// locomotion is jacked up right now.  don't jump.  use stamina.
 				m_usingStamina = true;
 			//	m_inputVector.y( 1.0f );
+			}
+			if (i_CharID == 0x59 || i_CharID == 0x55 || i_CharID == 0x54 )
+			{
+				GAnimComponent* animComp = GetComponent<GAnimComponent>(actor);
+				if (animComp && i_CharID == 0x54 )
+					animComp->PlayAnim("Avatar/Player/GoblinDance.banm");
+				if (animComp && i_CharID == 0x59 )
+					animComp->PlayAnim("Avatar/Player/GoblinRunSlow.banm");
+				else if (animComp && i_CharID == 0x55)
+					animComp->PlayAnim("Avatar/Player/GoblinDanceSlow.banm");
 			}
 		}
 		else

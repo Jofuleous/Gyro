@@ -27,9 +27,9 @@ AnimFinalProj =
 			},
 			Translation = 
 			{
-				0,
-				0.20000000298023,
-				0,
+				1.1,
+				0.2,
+				1.0,
 			},
 			Type = "character",
 		},

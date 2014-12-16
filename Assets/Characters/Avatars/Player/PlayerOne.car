@@ -11,7 +11,7 @@ PlayerOne=
 			MaxSpeedXZ = 10.0,
 			MaxSpeedY = 30.0,
 			AccelerationXZ = 100.0,
-			Gravity = { 0.0, -1.0, 0.0, },
+			Gravity = { 0.0, -20.0, 0.0, },
 		},
 		Collision =
 		{
@@ -51,7 +51,7 @@ PlayerOne=
 					ClipName = "Avatar/Player/GoblinRun.banm",
 					TrimStart = 8.0,
 					TrimEnd = 22.0,
-					BlendIn = 0.0,
+					BlendInPercent = 0.5,
 					Loop = true,
 					PlayRate = 14.0,
 				},
@@ -60,9 +60,36 @@ PlayerOne=
 					ClipName = "Avatar/Player/GoblinIdle.banm",
 					TrimStart = 0.0,
 					TrimEnd = 30.0,
-					BlendIn = 0.0,
+					BlendInPercent = 0.01,
 					Loop = true,
 					PlayRate = 5.0,
+				},
+				GoblinDance =
+				{
+					ClipName = "Avatar/Player/GoblinDance.banm",
+					TrimStart = 0.0,
+					TrimEnd = 95.0,
+					BlendInPercent = 0.0,
+					Loop = true,
+					PlayRate = 20.0,
+				},
+				GoblinRunSlow =
+				{
+					ClipName = "Avatar/Player/GoblinRunSlow.banm",
+					TrimStart = 8.0,
+					TrimEnd = 22.0,
+					BlendInPercent = 0.0,
+					Loop = true,
+					PlayRate = 1.0,
+				},
+				GoblinDanceSlow =
+				{
+					ClipName = "Avatar/Player/GoblinDanceSlow.banm",
+					TrimStart = 0.0,
+					TrimEnd = 95.0,
+					BlendInPercent = 0.0,
+					Loop = true,
+					PlayRate = 3.0,
 				},
 			},
 		},

@@ -335,7 +335,10 @@ assets =
 		{
 			"Avatar/Player/DudeWalk",
 			"Avatar/Player/GoblinRun",
+			"Avatar/Player/GoblinRunSlow",
 			"Avatar/Player/GoblinIdle",
+			"Avatar/Player/GoblinDance",
+			"Avatar/Player/GoblinDanceSlow",
 		},
 		shouldAssetsAlwaysBeBuilt = false,
 	},

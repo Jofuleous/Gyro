@@ -30,6 +30,7 @@ public:
 	virtual void						Initialize(GActorHandle actor, LuaPlus::LuaObject& i_obj);
 	virtual GHashedString				Name(void) const { return m_typeName; }
 	void								PlayAnim( const char* i_name );
+	void								Evaluate();
 
 	void					DebugDrawBones();
 

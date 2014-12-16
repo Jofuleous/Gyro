@@ -95,8 +95,8 @@ void Camera::HandleInput( float i_x, float i_y, float i_z, float i_dt )
 	float x = cos( m_yRotation );
 	D3DXVECTOR3 facing( x, 0.0f, z );
 	D3DXVECTOR3 velocity( facing );
-	D3DXVec3Scale( &velocity, &velocity, i_dt * 500.0f * i_z ); // move 500 units in one second?
-	D3DXVECTOR3 velocityY( 0.0f, i_y * i_dt * 500.0f, 0.0f);
+	D3DXVec3Scale( &velocity, &velocity, i_dt * 50.0f * i_z ); // move 500 units in one second?
+	D3DXVECTOR3 velocityY( 0.0f, i_y * i_dt * 50.0f, 0.0f);
 	D3DXVec3Add( &velocity, &velocity, &velocityY ); 
 	D3DXVec3Add( &m_position, &velocity, &m_position );
 	D3DXVec3Add( &m_lookAtPoint, &facing, &m_position );

@@ -26,6 +26,7 @@
     <ClInclude Include="GSkeleton.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GAnimationUtil.cpp" />
     <ClCompile Include="GAnimClip.cpp" />
     <ClCompile Include="GAnimNode.cpp" />
     <ClCompile Include="GAnimStructs.cpp" />

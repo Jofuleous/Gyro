@@ -12,5 +12,6 @@
     <ClCompile Include="GAnimStructs.cpp" />
     <ClCompile Include="GAnimClip.cpp" />
     <ClCompile Include="GAnimNode.cpp" />
+    <ClCompile Include="GAnimationUtil.cpp" />
   </ItemGroup>
 </Project>
