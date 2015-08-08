@@ -5,9 +5,7 @@
 #include "GameInit.h"
 #include "Renderer/GRenderer.h"
 #include "Collision/CollisionManager.h"
-#include "Misc/DebugConsole.h"
-#include "LuaPlus/LuaPlus.h"
-#include "CaptureFlagManager.h"
+// #include "CaptureFlagManager.h"  CTF INCLUDE
 #include "Audio/GAudioManager.h"
 #include "Components/QuatTestComp.h"
 
@@ -15,9 +13,8 @@ namespace MonsterHunter
 {
 
 	//Since we don't have a level file or anything yet.
-	bool Initialize( )
+	bool Initialize()
 	{
-
 		GameInit::RegisterComponents();
 		GameInit::RegisterTriggerFuncs();
 
@@ -38,39 +35,23 @@ namespace MonsterHunter
 		Gyro::World& world = g_World::Get();
 		GActorHandle player = world.GetActorByName( "PlayerOne" );
 		
-		if( player )
+		if ( player )
 		{
 			PlayerComponent* pC = GetComponent<PlayerComponent>( player );
-			pC->HandleInput( player, i_CharID, i_keyDown );
-		}
+			pC->HandleInput(player, i_CharID, i_keyDown);
 
-		/*
-		GActorHandle quatHandle = world.GetActorByName("QuaternTest");
-		if (quatHandle)
-		{
-			QuatTestComp* comp = GetComponent<QuatTestComp>(quatHandle);
-			comp->HandleInput(player, i_CharID, i_keyDown);
+			QuatTestComp* comp = GetComponent<QuatTestComp>( player );
+			if ( comp )
+				comp->HandleInput( player, i_CharID, i_keyDown );
 		}
-		*/
 	}
 
-	void BeginUpdate( )
+	void BeginUpdate()
 	{
 	}
 
-	void Update( )
+	void Update()
 	{
-		/*
-		Gyro::World& world = g_World::Get();
-
-		std::vector<GActorHandle> monsters;
-		world.GetActorsByName( "BasicMonster", monsters);
-
-		GActorHandle player = world.GetActorByName( "Player" );
-			
-		PlayerComponent* pComp = NULL;
-		*/
-
 		GActorHandle playerHandle = g_World::Get().GetActorByName( "PlayerOne" );
 		GActor* player = GActor::FromHandle( playerHandle );
 		if( player )
@@ -80,7 +61,7 @@ namespace MonsterHunter
 
 	}
 
-	void EndUpdate( )
+	void EndUpdate()
 	{
 	}
 
