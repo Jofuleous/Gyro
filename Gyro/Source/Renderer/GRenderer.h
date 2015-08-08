@@ -1,13 +1,15 @@
 #ifndef _RENDERER_H_
 #define _RENDERER_H_
 
-// Really, this class only exists because of smart pointers right now...
-// I'm going to try to rip these out soon for smart handles.
+// =========================================================================
+// GRenderer.h
+// Provides an interface to the renderer from the engine/game layers.
+// Allows for the user to not have to worry about renderer implementions.
+// =========================================================================
 
 #include <vector>
 #include "Actor/GActor.h"
 #include "Utility/Singleton.h"
-#include "Utility/GSharedPtr.h"
 #include "Math/GMatrix4.h"
 #include "../../Renderer/Source/ResourceTypes/Entity.h"
 
@@ -19,8 +21,6 @@ namespace Gyro
 	public:
 		GActorHandle						m_actor;
 		Entity*								m_entity;
-		//GMatrix4							m_transform;
-
 
 											RendererObject( ) {}
 											RendererObject( GActorHandle i_actor ): m_actor( i_actor ){ }
@@ -52,12 +52,13 @@ namespace Gyro
 		bool								LoadScene( const char* i_filename );
 		bool								LoadBinaryScene( const char* i_filename );
 
+		static void							DrawDebugLine( const GVector3& i_vStart, const GVector3& i_vEnd, float i_fStartRadius, float i_fEndRadius, uint64_t i_iColor );
+
 	private:
 											GRenderer( ) { }
 											GRenderer( GRenderer& physics ) {}
 		
 		std::vector<RendererObject*>		m_objectsDatabase;
-		
 	};
 }
 

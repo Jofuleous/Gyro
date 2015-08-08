@@ -6,30 +6,30 @@
 #include "Math/GVector3.h"
 
 // If we want to draw lines, this is required...  The interface will be different with the renderer overhaul.
-#include "../../Renderer/Source/RenderManager.h"
+#include "Renderer/GRenderer.h"
 
 const GHashedString QuatTestComp::m_typeName = "QuatTest";
 u32 QuatTestComp::m_typeId = ComponentManager::GetNextTypeId();
 
-void QuatTestComp::Initialize(GActorHandle i_actor, LuaPlus::LuaObject& i_obj)
+void QuatTestComp::Initialize( GActorHandle i_actor, LuaPlus::LuaObject& i_obj )
 {
 	m_keyDown = false;
 	m_quat.Identify();
 }
 
-QuatTestComp::~QuatTestComp()
+QuatTestComp::~QuatTestComp( )
 {
 
 }
 
-void QuatTestComp::Update(GActorHandle i_actor)
+void QuatTestComp::Update( GActorHandle i_actor )
 {
-	HandleInputUpdate(i_actor);
+	HandleInputUpdate( i_actor );
 }
 
-void QuatTestComp::EndUpdate(GActorHandle i_actor)
+void QuatTestComp::EndUpdate( GActorHandle i_actor )
 {
-	if (m_keyDown)
+	if ( m_keyDown )
 	{
 		// Attempt 1.  Works, but weird...
 		/*
@@ -46,39 +46,31 @@ void QuatTestComp::EndUpdate(GActorHandle i_actor)
 		target.Normalize();
 		GVector3 current = m_quat * GVector3::Forward;
 		current.Normalize();
-		float dot = target.Dot(current);
+		float dot = target.Dot( current );
 		if (dot < 0.99999f)
 		{
-		GVector3 cross = current.Cross(target);
-		float sign = GMath::Sign(cross.y());
-		cross.Normalize();
-		GQuat delta;
-		delta.FromAngleAxis(  GMath::Deg2Rad(30.0f) * g_Clock::Get().SecondsSinceLastFrame(), cross );
-		m_quat = m_quat * delta;
-		if (GMath::Sign((m_quat * GVector3::Forward).Cross(m_targetQuat * GVector3::Forward).y()) != sign)
-		m_quat = m_targetQuat;
-
+			GVector3 cross = current.Cross( target );
+			float sign = GMath::Sign( cross.y() );
+			cross.Normalize();
+			GQuat delta;
+			delta.FromAngleAxis( GMath::Deg2Rad( 30.0f ) * g_Clock::Get().SecondsSinceLastFrame(), cross );
+			m_quat = m_quat * delta;
+			if( GMath::Sign( ( m_quat * GVector3::Forward ).Cross( m_targetQuat * GVector3::Forward ).y() ) != sign )
+				m_quat = m_targetQuat;
 		}
 
 	}
 
-	GActor* actor = GActor::FromHandle(i_actor);
-	assert(actor);
+	GActor* actor = GActor::FromHandle( i_actor );
+	assert( actor );
 
-	GVector3 up = actor->m_position + (m_quat * GVector3::Forward * 100.0f);
-	D3DXVECTOR3 upD3DX;
-	up.ToD3DX(upD3DX);
-	D3DXVECTOR3 pos;
-	actor->m_position.ToD3DX(pos);
-	D3DXCOLOR	color(1.0f, 0.0f, 0.0f, 1.0f);
-	g_RenderManager.m_lines.AddLine(pos, upD3DX, 0.001f, 0.001f, 1.5f, color);
+	GVector3 vStartPoint = actor->m_position;
+	GVector3 vEndPoint = actor->m_position + ( m_quat * GVector3::Forward * 100.0f );
+	Gyro::GRenderer::DrawDebugLine( vStartPoint, vEndPoint, 0.001f, 0.001f, 0x11000011 );
 
+	GVector3 vEndTargetPoint = actor->m_position + ( m_targetQuat * GVector3( 0.0f, 0.0f, 100.0f ) );
 
-	D3DXCOLOR	blue(0.0f, 0.0f, 1.0f, 1.0f);
-	GVector3 randomVector = actor->m_position + (m_targetQuat * GVector3(0.0f, 0.0f, 100.0f));
-	D3DXVECTOR3 randD3D(randomVector.x(), randomVector.y(), randomVector.z());
-
-	g_RenderManager.m_lines.AddLine(pos, randD3D, 0.001f, 0.001f, 1.5f, blue);
+	Gyro::GRenderer::DrawDebugLine( vStartPoint, vEndTargetPoint, 0.001f, 0.001f, 0x00001111 );
 }
 
 IActorComponent* QuatTestComp::Create()
@@ -86,7 +78,7 @@ IActorComponent* QuatTestComp::Create()
 	return new QuatTestComp();
 }
 
-void QuatTestComp::HandleInputUpdate(GActorHandle i_Handle)
+void QuatTestComp::HandleInputUpdate( GActorHandle i_Handle )
 {
 
 	if ( m_keyDown )
@@ -95,47 +87,47 @@ void QuatTestComp::HandleInputUpdate(GActorHandle i_Handle)
 	}
 	else
 	{
-		ResetCalculation(i_Handle);
+		ResetCalculation( i_Handle );
 	}
 }
 
-void QuatTestComp::ResetCalculation(GActorHandle i_Handle)
+void QuatTestComp::ResetCalculation( GActorHandle i_Handle )
 {
-	GActor* actor = GActor::FromHandle(i_Handle);
+	GActor* actor = GActor::FromHandle( i_Handle );
 	GVector3 facing = -actor->m_rotation.Dir(); // TODO: Fix the z-hack soon..
-	GVector3 worldZ(0.0f, 0.0f, 1.0f);
-	float angle = acosf(worldZ.Dot(facing));
-	GVector3 ortho = worldZ.Cross(facing);
-	if (ortho.LengthSquared() > 0.0f)
+	GVector3 worldZ( 0.0f, 0.0f, 1.0f );
+	float angle = acosf( worldZ.Dot( facing ) );
+	GVector3 ortho = worldZ.Cross( facing );
+	if( ortho.LengthSquared() > 0.0f )
 	{
 		ortho.Normalize();
-		m_quat.FromAngleAxis(angle, ortho);
+		m_quat.FromAngleAxis( angle, ortho );
 	}
 }
 
-void QuatTestComp::NewRandomVector()
+void QuatTestComp::NewRandomVector( )
 {
 	m_targetQuat.Identify();
-	GVector3 randomVector(0.0f, 0.5f, 0.0f);
-	randomVector.x((float)(rand() % 100) / 100.0f - 0.5f);
-	randomVector.z((float)(rand() % 100) / 100.0f - 0.5f);
+	GVector3 randomVector( 0.0f, 0.5f, 0.0f );
+	randomVector.x( static_cast<float>( rand() % 100) / 100.0f - 0.5f );
+	randomVector.z( static_cast<float>( rand() % 100 ) / 100.0f - 0.5f );
 	randomVector.Normalize();
 
-	float angle = acosf(randomVector.Dot(GVector3::Forward));
-	GVector3 cross = GVector3::Forward.Cross(randomVector);
+	float angle = acosf( randomVector.Dot( GVector3::Forward ) );
+	GVector3 cross = GVector3::Forward.Cross( randomVector );
 	cross.Normalize();
-	m_targetQuat.FromAngleAxis(angle, cross);
+	m_targetQuat.FromAngleAxis( angle, cross );
 }
 
-void QuatTestComp::HandleInput(GActorHandle actor, unsigned int i_CharID, bool i_keyDown)
+void QuatTestComp::HandleInput( GActorHandle actor, unsigned int i_CharID, bool i_keyDown )
 {
-	switch (i_CharID)
+	switch ( i_CharID )
 	{
 	case 0x49: // I
-		if (m_keyDown != i_keyDown)  // If we are now key down, but were not before...
+		if( m_keyDown != i_keyDown )  // If we are now key down, but were not before...
 		{
-			ResetCalculation(actor);
-			if (m_keyDown)
+			ResetCalculation( actor );
+			if( m_keyDown )
 				NewRandomVector();
 		}
 		m_keyDown = i_keyDown;
