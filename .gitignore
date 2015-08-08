@@ -28,6 +28,7 @@
 *.opensdf
 *.pdb
 *.ilk
+*.wwdb
 
 #Built Files
 bin/Win32
