@@ -1,20 +1,15 @@
 #ifndef __QUAT_TEST_COMP_H_
 #define __QUAT_TEST_COMP_H_
 
+//	======================================================================================================================
+//	QuatTestComp.h
+//	A component to test out quaternion math to ensure that it is all correct.
+//	The reason it is a component is so that that component's actor can be used as the origin location for debug lines.
+//========================================================================================================================
+
 #include "Actor/GActor.h"
 #include "Actor/IActorComponent.h"
-#include "Utility/GSharedPtr.h"
-#include "Math/GVector3.h"
-#include "Misc/GMouse.h"
-#include "Misc/RBuffer.h"
-#include "Core/GMessageManager.h"
-#include "Navigation/GWayPointManager.h"
-#include "Audio/GAudioManager.h"
-#include "Math/GTransform.h"
-#include "Containers/GArray.h"
-
-// I'll need to see how camera's are *supposed* to be done later...
-//#include "../../../Renderer/Source/
+#include "Math/GQuat.h"
 
 class QuatTestComp : public IActorComponent
 {
@@ -37,16 +32,15 @@ public:
 	virtual IActorComponent*			Create();
 	virtual void						Initialize(GActorHandle actor, LuaPlus::LuaObject& i_obj);
 	virtual GHashedString				Name(void) const { return m_typeName; }
-	//virtual bool						HasUpdate() const { return false; };
-	//virtual bool						HasEndUpdate() const { return false; };
 
 	void								HandleInput(GActorHandle actor, unsigned int i_CharID, bool i_keyDown);
-	void								HandleInputUpdate();
+	void								HandleInputUpdate(GActorHandle i_Handle);
+	void								ResetCalculation(GActorHandle i_Handle);
+	void								NewRandomVector();
 
 	GQuat								m_quat;
-	bool								m_Up;
-	bool								m_Left;
-	bool								m_Forward;
+	GQuat								m_targetQuat;
+	bool								m_keyDown;
 };
 
 #endif
