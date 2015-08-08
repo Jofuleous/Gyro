@@ -38,6 +38,7 @@ PlayerOne=
 			Acceleration = 100.0,
 			CameraOffsetY = 3.0,
 		},
+		QuatTest = {},
 		Renderer=
 		{
 			Entity = "Guy.entityb",
