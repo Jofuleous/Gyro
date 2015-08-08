@@ -2,6 +2,7 @@
 #define	_TARGET_H_
 
 //This is force included for all builds...
+#include <stdint.h>
 
 #ifdef _WIN32
 #include "Target.Win32.h"
