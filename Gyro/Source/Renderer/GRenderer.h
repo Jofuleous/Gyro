@@ -53,6 +53,7 @@ namespace Gyro
 		bool								LoadBinaryScene( const char* i_filename );
 
 		static void							DrawDebugLine( const GVector3& i_vStart, const GVector3& i_vEnd, float i_fStartRadius, float i_fEndRadius, uint64_t i_iColor );
+		static void							DrawHudBox( float i_topLeftXP, float i_topLeftYP, float i_widthP, float i_heightP );
 
 	private:
 											GRenderer( ) { }

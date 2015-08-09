@@ -182,19 +182,4 @@ namespace Gyro
 	{
 		return g_RenderManager.GetCurrentScene()->LoadBinaryScene( i_filename );
 	}
-
-	void GRenderer::DrawDebugLine( const GVector3& i_vStart, const GVector3& i_vEnd, float i_fStartRadius, float i_fEndRadius, uint64_t i_iColor )
-	{
-		// Convert vectors to D3D vectors...
-		D3DXVECTOR3	vStart( i_vStart.x(), i_vStart.y(), i_vStart.z() );
-		D3DXVECTOR3 vEnd( i_vEnd.x(), i_vEnd.y(), i_vEnd.z() );
-
-		// Convert hex color to D3DCOLOR
-		D3DXCOLOR color(static_cast<float>( i_iColor & 0x11000000 ) / 255.f, static_cast<float>( i_iColor & 0x00110000 ) / 255.f, static_cast<float>( i_iColor & 0x00001100 ) / 255.f,
-			static_cast<float>( i_iColor & 0x00000011 ) / 255.f );
-
-		float fAspectRatio = static_cast<float>(UserSettings::GetScreenWidth()) / static_cast<float>(UserSettings::GetScreenHeight());
-
-		g_RenderManager.m_lines.AddLine( vStart, vEnd, i_fStartRadius, i_fEndRadius, fAspectRatio, color );
-	}
 }
