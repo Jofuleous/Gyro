@@ -14,7 +14,7 @@ class GDebugDraw
 public:
 	static void	DrawLine( const GVector3& i_vStart, const GVector3& i_vEnd, float i_fStartRadius, float i_fEndRadius, uint32_t i_iColor );
 	static void	DrawHudBox( float i_fTopLeftXPerc, float i_fTopLeftYPerc, float i_fWidthPerc, float i_fHeightPerc, uint32_t i_iColor );
-	static void DrawHudText( int32_t i_iLeft, int32_t i_iTop, int32_t i_iRight, int32_t i_iBottom, uint32_t i_iColor, const char* i_cText );
+	static void DrawHudText( int i_iLeft, int i_iTop, int i_iRight, int i_iBottom, uint32_t i_iColor, const char* i_cText );
 
 	static const uint32_t BLACK;
 	static const uint32_t WHITE;
