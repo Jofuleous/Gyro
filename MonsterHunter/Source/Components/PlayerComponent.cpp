@@ -11,6 +11,7 @@
 #include "Math/GTransform.h"
 #include "Math/GQuat.h"
 #include "Components/GAnimComponent.h"
+#include "Renderer/GDebugDraw.h"
 
 const GHashedString PlayerComponent::m_typeName = "Player";
 u32 PlayerComponent::m_typeId =ComponentManager::GetNextTypeId();
@@ -108,7 +109,6 @@ void PlayerComponent::Initialize( GActorHandle i_actor, LuaPlus::LuaObject& i_ob
 	m_pant = g_AudioManager.PlayEffect( "data/Audio/Dialog/heavy-breathing-off-mic-loop.mp3", true, false );
 	m_pant->setVolume( 0.0f );
 	m_walkOnMetalSlow->setVolume( 0.0f );
-	//m_walkOnGroundFast = g_AudioManager.PlayEffect( "data/Audio/Dialog/heavy-breathing-off-mic-loop.mp3", true, true );
 	m_pathToTarget.m_pathFound = false;
 	m_mouse.Initialize();
 }
@@ -125,43 +125,15 @@ void PlayerComponent::Update( GActorHandle i_actor )
 		if( m_pathToTarget.m_pathFound )
 			DrawFoundPath();
 
-	D3DXVECTOR3 zero( 0.0f, 30.0f, 0.0f );
-	D3DXVECTOR3 top( 0.0f, 90.0f, 0.0f );
-	D3DXCOLOR	color( 1.0f, 0.0f, 0.0f, 1.0f );
-	g_RenderManager.m_lines.AddLine( zero, top, 0.001f, 0.001f, 1.5f, color );
-
-	
-	D3DXVECTOR3 zero1( 10.0f, 10.0f, 0.0f );
-	D3DXVECTOR3 top1( 10.0f, 20.0f, 0.0f );
-	g_RenderManager.m_lines.AddLine( zero1, top1, 0.01f, 0.01f, 1.5f, color );
-
-	D3DXCOLOR	color2( 1.0f, 1.0f, 1.0f, 1.0f );
-	D3DXVECTOR3 zero2( 20.0f, 10.0f, 0.0f );
-	D3DXVECTOR3 top2( 30.0f, 20.0f, 0.0f );
-	g_RenderManager.m_lines.AddLine( zero2, top2, 0.01f, 0.007f, 1.5f, color2 );
-
-	D3DXCOLOR	grey( 0.2f, 0.2f, 0.2f, 0.9f );
-	g_RenderManager.m_hud.AddHUDBox( 0.0f, 0.0f, 1.0f, 0.04f, grey );
-
-	u32 fps = (u32)(1000.0f / g_Clock::Get().MillisecondsSinceLastFrame());
-
-	if( g_Clock::Get().MillisecondsSinceStart() - m_lastPosted > 50.0f )
-	{
-		sprintf( m_fpsBuffer, "FPS: %u", fps );
-		m_lastPosted = g_Clock::Get().MillisecondsSinceStart();
-	}
-
-	g_RenderManager.m_hud.AddHUDText( 10, 0, 80, 30, color2, m_fpsBuffer );
-
-	// do a simple reticle.
+	// Do a simple reticle.  Later, reticles will be drawn by our weapon system.
 	// top
-	g_RenderManager.m_hud.AddHUDBox( 0.498f, 0.48f, 0.502f, 0.495f, color2 );
+	GDebugDraw::DrawHudBox( 0.498f, 0.48f, 0.502f, 0.495f, GDebugDraw::WHITE );
 	// bottom
-	g_RenderManager.m_hud.AddHUDBox( 0.498f, 0.505f, 0.502f, 0.52f, color2 );
+	GDebugDraw::DrawHudBox( 0.498f, 0.505f, 0.502f, 0.52f, GDebugDraw::WHITE );
 	// left
-	g_RenderManager.m_hud.AddHUDBox( 0.488f, 0.497f, 0.498f, 0.503, color2 );
+	GDebugDraw::DrawHudBox( 0.488f, 0.497f, 0.498f, 0.503, GDebugDraw::WHITE );
 	// right
-	g_RenderManager.m_hud.AddHUDBox( 0.502f, 0.497f, 0.512f, 0.503, color2 );
+	GDebugDraw::DrawHudBox( 0.502f, 0.497f, 0.512f, 0.503, GDebugDraw::WHITE );
 
 	if( m_usingStamina )
 		m_staminaMeter -= g_Clock::Get().SecondsSinceLastFrame() * 5.0f;
@@ -170,10 +142,7 @@ void PlayerComponent::Update( GActorHandle i_actor )
 
 	GMath::Clamp( &m_staminaMeter, 0.0f, 10.0f );
 
-	D3DXCOLOR	green( 0.0f, 1.0f, 0.0f, 0.5f ); // green
-	g_RenderManager.m_hud.AddHUDBox( 0.19,  0.04f, 0.79f * ( m_staminaMeter / MAX_STAMINA ), 0.06, green );
-
-
+	GDebugDraw::DrawHudBox( 0.19, 0.04f, 0.79f * ( m_staminaMeter / MAX_STAMINA ), 0.06, GDebugDraw::GREEN );
 
 	HandleInputUpdate( i_actor );
 }

@@ -6,7 +6,7 @@
 #include "Math/GVector3.h"
 
 // If we want to draw lines, this is required...  The interface will be different with the renderer overhaul.
-#include "Renderer/GRenderer.h"
+#include "Renderer/GDebugDraw.h"
 
 const GHashedString QuatTestComp::m_typeName = "QuatTest";
 u32 QuatTestComp::m_typeId = ComponentManager::GetNextTypeId();
@@ -66,11 +66,10 @@ void QuatTestComp::EndUpdate( GActorHandle i_actor )
 
 	GVector3 vStartPoint = actor->m_position;
 	GVector3 vEndPoint = actor->m_position + ( m_quat * GVector3::Forward * 100.0f );
-	Gyro::GRenderer::DrawDebugLine( vStartPoint, vEndPoint, 0.001f, 0.001f, 0x11000011 );
+	GDebugDraw::DrawLine( vStartPoint, vEndPoint, 0.001f, 0.001f, GDebugDraw::RED );
 
 	GVector3 vEndTargetPoint = actor->m_position + ( m_targetQuat * GVector3( 0.0f, 0.0f, 100.0f ) );
-
-	Gyro::GRenderer::DrawDebugLine( vStartPoint, vEndTargetPoint, 0.001f, 0.001f, 0x00001111 );
+	GDebugDraw::DrawLine( vStartPoint, vEndTargetPoint, 0.001f, 0.001f, GDebugDraw::BLUE );
 }
 
 IActorComponent* QuatTestComp::Create()

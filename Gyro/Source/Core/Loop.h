@@ -15,6 +15,8 @@ namespace Gyro
 	void EndUpdate( );
 
 	void Shutdown( );
+
+	void DrawFrameStats( );
 }
 
 #endif

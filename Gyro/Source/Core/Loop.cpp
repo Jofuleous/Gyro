@@ -10,9 +10,9 @@
 #include "Core/GMessageManager.h"
 #include "Profiling/GProfiling.h"
 #include "Misc/DebugConsole.h"
+#include "Renderer/GDebugDraw.h"
 #include "Navigation/GWayPointManager.h"
 #include "Audio/GAudioManager.h"
-
 
 bool Gyro::Initialize( HWND i_windowHandle )
 {
@@ -44,6 +44,8 @@ void Gyro::BeginUpdate( )
 {
 	g_Clock::Get().Update();
 
+	// Don't want this in retail.  Gate later.
+	DrawFrameStats( );
 }
 
 void Gyro::Update( )
@@ -111,4 +113,22 @@ void Gyro::Shutdown( )
 
 	delete GSharedPtrBase::s_refPool;
 	delete GVector3::m_allocator;
+}
+
+void Gyro::DrawFrameStats( )
+{
+	static char s_fpsBuffer[32];
+	static float s_lastPosted = 0.0f;
+
+	GDebugDraw::DrawHudBox( 0.0f, 0.0f, 1.0f, 0.04f, GDebugDraw::DARK_GREY );
+
+	u32 fps = (u32)( 1000.0f / g_Clock::Get( ).MillisecondsSinceLastFrame( ) );
+
+	if(g_Clock::Get( ).MillisecondsSinceStart( ) - s_lastPosted > 50.0f)
+	{
+		sprintf( s_fpsBuffer, "FPS: %u", fps );
+		s_lastPosted = g_Clock::Get( ).MillisecondsSinceStart( );
+	}
+
+	GDebugDraw::DrawHudText( 10, 0, 80, 30, GDebugDraw::WHITE, s_fpsBuffer );
 }
