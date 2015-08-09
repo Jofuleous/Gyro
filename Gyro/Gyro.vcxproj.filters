@@ -99,6 +99,9 @@
     <ClInclude Include="Source\Components\GAnimComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Renderer\GDebugDraw.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\World.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="Source\Components\GAnimComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\GDebugDraw.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

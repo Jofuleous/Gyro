@@ -268,6 +268,7 @@
     <ClInclude Include="Source\Misc\RBuffer.h" />
     <ClInclude Include="Source\Misc\UserSettings.h" />
     <ClInclude Include="Source\Physics\GPhysics.h" />
+    <ClInclude Include="Source\Renderer\GDebugDraw.h" />
     <ClInclude Include="Source\Renderer\GRenderer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +291,7 @@
     <ClCompile Include="Source\Misc\GMouse.cpp" />
     <ClCompile Include="Source\Misc\UserSettings.cpp" />
     <ClCompile Include="Source\Physics\GPhysics.cpp" />
+    <ClCompile Include="Source\Renderer\GDebugDraw.cpp" />
     <ClCompile Include="Source\Renderer\GRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
