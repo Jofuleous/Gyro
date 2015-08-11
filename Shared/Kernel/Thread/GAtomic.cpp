@@ -1,0 +1,1 @@
+// Kind of stupid, but a .cpp file is required to add C++ settings in the configuration property...lame.
