@@ -1,5 +1,14 @@
-#ifndef __GTRANSFORM_H_
-#define __GTRANSFORM_H_
+#ifndef __MATH_GTRANSFORM_H_
+#define __MATH_GTRANSFORM_H_
+
+//========================================================================================================
+// GTransform.h
+// Creator: Jon Futch
+// Created: December 2014
+//
+// Represents rotation, translation, and scale.
+// TODO: Have the actor class use a transform instead of invidual position, rotation matrix, and scale.
+//=========================================================================================================
 
 #include "GVector3.h"
 #include "GQuat.h"

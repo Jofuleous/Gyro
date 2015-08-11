@@ -2,9 +2,12 @@
 #define __KERNEL_THREAD_GATOMIC_H_
 
 //===================================================================
-//	GAtomic.h
-//	Wrapper on OS specific atomic synchronization functions.
-//	Most platforms will have their own definitions of these functions...
+// GAtomic.h
+// Author:	Jon Futch
+// Created:	August, 2015
+//
+// Wrapper on OS specific atomic synchronization functions.
+// Most platforms will have their own definitions of these functions...
 //===================================================================
 
 #include <stdint.h>

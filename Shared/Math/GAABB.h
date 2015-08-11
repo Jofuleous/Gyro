@@ -1,5 +1,13 @@
-#ifndef __GAABB_H_
-#define __GAABB_H_
+#ifndef __MATH_GAABB_H_
+#define __MATH_GAABB_H_
+
+//========================================================================================================
+// GAABB.h
+// Author: Jon Futch 
+// Created: Unknown 2012-2014
+// 
+// An AABB class.  'Nuff said.
+//=========================================================================================================
 
 #include "Math/GVector3.h"
 #include "Math/GMatrix4.h"

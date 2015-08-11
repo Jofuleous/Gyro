@@ -139,18 +139,6 @@ const GVector3& GVector3::operator/=( const float value )
 	return *this;
 }
 
-void* GVector3::operator new( size_t size )
-{	
-	//make sure the dynamic initializer didn't fail on creation.
-	assert( m_allocator );
-	return m_allocator->Allocate( size );
-}
-
-void GVector3::operator delete( void* addr )
-{
-	GVector3::m_allocator->Free( addr );
-}
-
 GVector3& GVector3::Normalize( void )
 {
 	float mag = Length();

@@ -1,12 +1,23 @@
-#ifndef __GANIMCLIP_H_
-#define __GANIMCLIP_H_
+#ifndef __ANIMATION_GANIMCLIP_H_
+#define __ANIMATION_GANIMCLIP_H_
+
+//===========================================================================================
+// GAnimClip.h
+// Author:	Jon Futch
+// Created:	December, 2014
+//
+// Represents an animation for a set of bones.
+//
+// TODO: Make sure that this is only representing the bones that are keyed in Maya.
+// Right now, I think when we "bake" the animations to the rig's bones, we're baking 
+// keys to bones that aren't even being animated.  This could be a very big performance
+// optimization if we get rid of this.
+//===========================================================================================
 
 #include "Containers/GArray.h"
 #include "GAnimStructs.h"
 #include "GSkeleton.h"
 
-
-// Put in optimization later 
 class GAnimClip
 {
 public:
@@ -23,7 +34,6 @@ public:
 	void	GetBoneTranslation( GQuat& o_rot, float i_time );
 	void	GetBoneRotation( GQuat& o_rot, float i_time );
 	void	UpdateSkeletonInstance(GSkeletonInstance* o_instance, GAnimClip* i_other, float i_time );
-	//void	UpdateSkeletonInstance(GSkeletonInstance* o_instance, float i_time);
 
 	GArray<GAnimTrack>	m_Tracks;		// All tracks
 	GArray<u32>			m_TrackToBone;	// Track index -> Bone Index

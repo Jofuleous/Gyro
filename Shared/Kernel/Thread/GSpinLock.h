@@ -3,7 +3,10 @@
 
 //======================================================
 // GSpinLock.h
-// Threads wait until the lock is acquired.
+// Author:	Jon Futch
+// Created:	August, 2015
+//
+// Basic spinlock class.  Threads block until a lock is acquired.
 // I haven't tested this too hard yet.  TODO: Test this hard.
 //======================================================
 

@@ -1,27 +1,28 @@
-#ifndef __GOCTREE_H_
-#define __GOCTREE_H_
+#ifndef __PARTITION_GOCTREE_H_
+#define __PARTITION_GOCTREE_H_
 
+//==================================================================================================================
+// GOctree.h
+// Author: Jon Futch
+// Created: Unknown 2013-2014
+//
+// Represents a loose octree.  Makes the assumption that items will not be removed from the 
+// tree for now...but will be queried.
 /*
-=============================
-GOctree - Represents a loose octree for the current assignment.  Makes the assumption that items will not be removed from the 
-tree for now...but will be queried.
-=============================
+TOP_BACK_LEFT      --------------- TOP_BACK_RIGHT
+  /_|___ /______/|
+/  | 	/|     / |
+TOP_FRONT_LEFT  --------------/ TOP_FRONT_RIGHT
+|   |	 |	  |  |
+BOTTOM_BACK_LEFT|   |----|----|--| BOTTOM_BACK_RIGHT
+|  /	 |/   |  /
+| /______/____| /
+|/		/	  |/
+BOTTOM_FRONT_LEFT	--------------- BOTTOM_FRONT_RIGHT
 */
+//==================================================================================================================
 #include <vector>
 #include "Math/GVector3.h"
-
-/*********************************************************************
-	TOP_BACK_LEFT      --------------- TOP_BACK_RIGHT
-					  /_|___ /______/| 
-					 /  | 	/|     / |
-	TOP_FRONT_LEFT  --------------/ TOP_FRONT_RIGHT
-					|   |	 |	  |  |
-	BOTTOM_BACK_LEFT|   |----|----|--| BOTTOM_BACK_RIGHT
-					|  /	 |/   |  /
-					| /______/____| /
-					|/		/	  |/
-BOTTOM_FRONT_LEFT	--------------- BOTTOM_FRONT_RIGHT
-***********************************************************************/
 
 template<typename T>
 class GOctreeNode;

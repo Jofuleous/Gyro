@@ -1,9 +1,18 @@
-#ifndef __GANIMNODE_H_
-#define __GANIMNODE_H_
+#ifndef __ANIMATION_GANIMNODE_H_
+#define __ANIMATION_GANIMNODE_H_
+
+//==================================================================================
+// GAnimNode.h
+// Author:	Jon Futch
+// Created:	December, 2014
+//
+// Represents the way that a clip should be played.
+// TODO: It is possible that this can (and probably should) be instanced.
+// Right now, though, it's probably not eating up enough memory to warrant this...
+//==================================================================================
 
 #include "LuaPlus/LuaPlus.h"
-#include "LuaPlus/LuaState.h"
-#include "LuaPlus/LuaTableIterator.h"
+
 
 class GSkeletonInstance;
 class GAnimClip;

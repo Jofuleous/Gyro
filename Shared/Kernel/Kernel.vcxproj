@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Thread\GAtomic.h" />
+    <ClInclude Include="Thread\GLock.h" />
     <ClInclude Include="Thread\GSpinLock.h" />
   </ItemGroup>
   <ItemGroup>

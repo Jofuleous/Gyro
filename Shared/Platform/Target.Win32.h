@@ -1,5 +1,5 @@
-#ifndef _TARGET_WIN32_H_
-#define _TARGET_WIN32_H_
+#ifndef __PLATFORM_TARGET_WIN32_H_
+#define __PLATFORM_TARGET_WIN32_H_
 
 #pragma warning(disable: 4996)
 

@@ -1,8 +1,17 @@
-#ifndef __GANIMSTRUCTS_H_
-#define __GANIMSTRUCTS_H_
+#ifndef __ANIMATION_GANIMSTRUCTS_H_
+#define __ANIMATION_GANIMSTRUCTS_H_
 
-#include "Math/GTransform.h"
+//===============================================
+// GAnimStructs.h
+// Author:	Jon Futch
+// Created:	December, 2014
+//
+// The structs that make up an anim clip.
+//===============================================
+
 #include "Containers/GArray.h"
+#include "Math/GVector3.h"
+#include "Math/GQuat.h"
 
 // Keys for the translation track.
 class GTranslationKey

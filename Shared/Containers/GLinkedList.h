@@ -1,8 +1,14 @@
-// Since a linked list is traversed linearly, it will probably be best to use a memory pool or some type of contiguous
-// memory for nodes if the user specifies a set amount of nodes...this may not be safely possible, but i can figure something out later.
+#ifndef __CONTAINERS_GLINKEDLIST_H_
+#define __CONTAINERS_GLINKEDLIST_H_
 
+//============================================================
+// GLinkedList.h
+// Author:	Jon Futch
+// Created:	Unknown 2012-2014
+//
+// A singlely linked list container.
+//============================================================
 
-// use the linked nodes to iterate through.
 template<typename T>
 class GLinkedNode
 {
@@ -81,3 +87,5 @@ inline void GLinkedList<T>::Remove( T i_data )
 		current = current->m_next;
 	}
 }
+
+#endif

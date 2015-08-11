@@ -1,6 +1,19 @@
 #ifndef _GMEMORY_POOL_H_
 #define _GMEMORY_POOL_H_
 
+//===================================================================================================================
+// GMemoryPool.h
+// Author: Jon Futch
+// Created: Fall 2012
+//
+// A fix-sized memory allocator.
+//
+// TODO: This makes no optimizations in terms of storing of the "next free" item.  It's really kind of stupid.
+// We should get rid of using the "BitField" and store the "next free" item in a header on each memory pool entry...
+// Much like what you would do with a memory manager.
+// The only way it was written like this was to fulfill an engineering assignment.
+//===================================================================================================================
+
 #include "Platform/Target.h"
 
 class GBitField;

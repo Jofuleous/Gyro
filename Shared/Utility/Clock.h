@@ -1,5 +1,15 @@
-#ifndef _CLOCK_H_
-#define _CLOCK_H_
+#ifndef __UTILITY_CLOCK_H_
+#define __UTILITY_CLOCK_H_
+
+//============================================================================================
+// Clock.h
+// Author:	Jon Futch
+// Created: Unknown 2012-2014
+//
+// A basic clock/program timer singleton class.
+// Query the processor for the current cycle and estimated time.
+// TODO: Move this to the Kernel project.
+//============================================================================================
 
 #include <windows.h>
 #include "Utility/Debugging.h"
@@ -7,7 +17,6 @@
 
 namespace Gyro
 {
-
 
 class Clock
 {
@@ -25,7 +34,6 @@ protected:
 
 public:
 
-	//wont worry about this too much for now.
 	Clock( ) : m_isPaused( false )
 	{
 	}
@@ -34,7 +42,6 @@ public:
 	{
 		LARGE_INTEGER li;
 
-		//remove check later.
 		if(!QueryPerformanceFrequency(&li))
 			DEBUG_PRINT( "Query performance frequency failed." );
 
@@ -105,7 +112,6 @@ public:
 	}
 
 };
-
 
 }
 

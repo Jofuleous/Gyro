@@ -1,5 +1,14 @@
 #ifndef __SINGLETON_
 #define __SINGLETON_
+
+//============================================================================================
+// Singleton.h
+// Author:	Jon Futch
+// Created: Unknown 2012-2014
+//
+// We all want to hate on singletons, but...they are nice for a lot of things ;X
+//============================================================================================
+
 #include <assert.h>
 
 template<class T>

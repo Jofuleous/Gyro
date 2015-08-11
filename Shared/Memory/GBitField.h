@@ -1,13 +1,24 @@
-#ifndef _BITFIELD_H_
-#define _BITFIELD_H_
+#ifndef __MEMORY_BITFIELD_H_
+#define __MEMORY_BITFIELD_H_
+
+//===============================================================================================================
+// GBitField.h
+// Author: Jon Futch
+// Created: Fall 2012
+//
+// A bit field is essentially a N sized list of bits that can be set to 1 and 0.
+// This is good for things like memory pools, where we need to keep a mapping of 
+// Whether an index into a memory pool is used or unused.
+//===============================================================================================================
 
 #include "Platform/Target.h"
 
-//possibly align later
 class GBitField
 {
 public:
 								~GBitField( );
+
+	// Creates a bit field capable of holding "i_numItems".
 	static GBitField*			Create( u32 i_numItems );
 
 	inline u32					GetNextFree( void ) const;

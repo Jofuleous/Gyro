@@ -6,7 +6,6 @@
     <ClInclude Include="NamedBitSet.h" />
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="Clock.h" />
-    <ClInclude Include="GLock.h" />
     <ClInclude Include="GHandleManager.h" />
     <ClInclude Include="GSharedPtrBase.h" />
     <ClInclude Include="GSharedPtr.h" />

@@ -3,6 +3,9 @@
 #include "GAnimationUtil.h"
 #include "GSkeleton.h"
 
+#include "LuaPlus/LuaState.h"
+#include "LuaPlus/LuaTableIterator.h"
+
 GAnimNode* GAnimNode::Create(LuaPlus::LuaObject& i_obj)
 {
 	const char* clipName = i_obj["ClipName"].GetString();

@@ -1,5 +1,15 @@
-#ifndef __SHARED_PTR_
-#define __SHARED_PTR_
+#ifndef __UTILITY_GSHAREDPTR_
+#define __UTILITY_GSHAREDPTR_
+
+//============================================================================================
+// GSharedPtr.h
+// Author:	Jon Futch
+// Created: Unknown 2012-2014
+//
+// A basic shared/smart pointer implementation.  
+// TODO: Figure out why I chose to use a pool for the ref counts?  Was this an assignment requirement
+// or something?
+//============================================================================================
 
 #include "GSharedPtrBase.h"
 #include "Debugging.h"

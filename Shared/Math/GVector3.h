@@ -1,7 +1,13 @@
-#ifndef _VECTOR3_H_
-#define _VECTOR3_H_
+#ifndef __MATH_VECTOR3_H_
+#define __MATH_VECTOR3_H_
 
-class GMemoryPool;
+//========================================================================
+// GVector3.h
+// Author: Jon Futch
+// Created: Fall 2012
+//
+// A basic vector3 class.
+//========================================================================
 
 class GVector3
 {
@@ -9,39 +15,35 @@ public:
 
 	float _x, _y, _z;
 
-	//we may want this to be specific to levels.  keep public for now.
-	static GMemoryPool* m_allocator;
-
-	//constructors
 							GVector3( void ) {}
 	inline					GVector3( float i_x, float i_y, float i_z );
 	inline					GVector3(float i_val);
-	//copy
 	inline					GVector3( const GVector3& i_v );
-	inline void				Set( float i_x, float i_y, float i_z );
 
-	//accessors...kind of useless now that i've make the members public.
+	// Accessors
+
 	inline const float		x( void ) const;
 	inline const float		y( void ) const;
 	inline const float		z( void ) const;
 
-	//setters
+	// Setters
+
+	inline void				Set( float i_x, float i_y, float i_z );
 	inline void				x( const float i_x );
 	inline void				y( const float i_y);
 	inline void				z( const float i_z );
 
-	//assignment operators
+	// Assignment operators
+
 	inline const GVector3&	operator=(const GVector3& rhs);
 	inline const GVector3&	operator+=(const GVector3& rhs);
 	inline const GVector3&	operator-=(const GVector3& rhs);
 	inline const GVector3&	operator*=(const GVector3& rhs);
 	inline const GVector3&	operator*=(const float rhs);
 	inline const GVector3&	operator/=(const float rhs);
-	inline void*			operator new( size_t size );
-	inline void				operator delete( void* addr );	
-
 	
 	//Utility!
+
 	inline GVector3&		Normalize( void );
 	inline GVector3			Normal( void ) const;
 	inline float			Length( void ) const;
@@ -51,7 +53,7 @@ public:
 	inline GVector3			Cross( const GVector3& rhs) const;
 	inline float			LengthSquared() const;
 
-	// this is a basic memcpy.  probably isn't that fast.
+
 	inline void				ToD3DX( void* o_vector ) const;
 
 	static GVector3			FromD3DX( const void* i_vector );

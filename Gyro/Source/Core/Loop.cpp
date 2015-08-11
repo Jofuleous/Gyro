@@ -112,7 +112,7 @@ void Gyro::Shutdown( )
 	//g_Profiler::Release();
 
 	delete GSharedPtrBase::s_refPool;
-	delete GVector3::m_allocator;
+	//delete GVector3::m_allocator;
 }
 
 void Gyro::DrawFrameStats( )

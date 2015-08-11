@@ -1,12 +1,19 @@
-#ifndef __GARRAY_H_
-#define __GARRAY_H_
+#ifndef __CONTAINERS_GARRAY_H_
+#define __CONTAINERS_GARRAY_H_
+
+//============================================================================
+// GArray.h
+// Author:	Jon Futch
+// Created:	Unknown 2012-2014
+//
+// A dynamicly sized array container.  Behaves much like the STL vector.
+//============================================================================
 
 #include <assert.h>
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
 
-//#define _PROFILE
 #ifdef _PROFILE
 #include <vector>
 #include "Profiling/GProfiling.h"

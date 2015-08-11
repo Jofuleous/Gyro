@@ -11,7 +11,7 @@ const GVector3 GVector3::Down(0.0f, -1.0f, 0.0f);
 const GVector3 GVector3::Right(1.0f, 0.0f, 0.0f);
 const GVector3 GVector3::Forward(0.0f, 0.0f, 1.0f);
 
-GMemoryPool* GVector3::m_allocator = GMemoryPool::Create( sizeof( GVector3 ), POOL_SIZE);
+//GMemoryPool* GVector3::m_allocator = GMemoryPool::Create( sizeof( GVector3 ), POOL_SIZE);
 
 GVector3 GVector3::FromD3DX( const void* i_vector )
 {

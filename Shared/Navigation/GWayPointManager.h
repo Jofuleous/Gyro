@@ -1,11 +1,18 @@
-#ifndef __GWAYPATH_H_
-#define __GWAYPATH_H_
+#ifndef __NAVIGATION_GWAYPATHMANAGER_H_
+#define __NAVIGATION_GWAYPATHMANAGER_H_
 
-/*
-	This is a really naive approach to path finding, but it needs to work so I can graduate.
-	Plus, I think you should write a system a few times before making a final version of it.
-	Plus, this will be swapped to use nav-meshes eventually.
-*/
+//================================================================================================
+// GWayPointManager.h
+// Author: Jon Futch
+// Created: Spring 2014
+//
+// A list of path finding nodes that can be searched using A* and a linear distance heuristic.
+// to find the shortest path to a node closest to a desired position.
+//
+// This is a really naive approach to path finding, but it needs to work so I can graduate.
+// Plus, I think you should write a system a few times before making a final version of it.
+// Plus, this will be swapped to use nav-meshes eventually.
+//================================================================================================
 
 #include <vector>
 #include "Memory/GMemoryPool.h"
@@ -25,7 +32,6 @@ public:
 	u16		m_FirstNode;		
 	u16		m_SecondNode;		
 };
-
 
 class GWayNode
 {

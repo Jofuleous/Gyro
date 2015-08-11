@@ -66,10 +66,10 @@ void QuatTestComp::EndUpdate( GActorHandle i_actor )
 
 	GVector3 vStartPoint = actor->m_position;
 	GVector3 vEndPoint = actor->m_position + ( m_quat * GVector3::Forward * 100.0f );
-	GDebugDraw::DrawLine( vStartPoint, vEndPoint, 0.001f, 0.001f, GDebugDraw::RED );
+	GDebugDraw::DrawLine( vStartPoint, vEndPoint, 0.002f, 0.002f, GDebugDraw::RED );
 
 	GVector3 vEndTargetPoint = actor->m_position + ( m_targetQuat * GVector3( 0.0f, 0.0f, 100.0f ) );
-	GDebugDraw::DrawLine( vStartPoint, vEndTargetPoint, 0.001f, 0.001f, GDebugDraw::BLUE );
+	GDebugDraw::DrawLine( vStartPoint, vEndTargetPoint, 0.002f, 0.002f, GDebugDraw::BLUE );
 }
 
 IActorComponent* QuatTestComp::Create()

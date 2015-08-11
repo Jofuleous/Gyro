@@ -167,7 +167,6 @@
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="GHandleManager.h" />
     <ClInclude Include="GHashedString.h" />
-    <ClInclude Include="GLock.h" />
     <ClInclude Include="NamedBitSet.h" />
     <ClInclude Include="GSharedPtr.h" />
     <ClInclude Include="GSharedPtrBase.h" />

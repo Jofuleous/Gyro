@@ -1,6 +1,14 @@
 #ifndef __GANIMATION_UTIL_H_
 #define __GANIMATION_UTIL_H_
 
+//==============================================
+// GAnimUtil.h
+// Author:	Jon Futch
+// Created:	December, 2014
+//
+// Utility functions for the animation system...
+//==============================================
+
 #include "GAnimClip.h"
 
 namespace GAnimationUtil

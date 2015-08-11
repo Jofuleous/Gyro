@@ -1,9 +1,14 @@
 #ifndef _GHASHMAP_H_
 #define _GHASHMAP_H_
 
-/*
-A sRendererle hashmap container.
-*/
+//==================================================
+// GHashMap.h
+// Author:	Jon Futch
+// Created:	Unknown 2012-2014
+//
+// A hashmap container.  Currently uses chaining for collision resolution.
+// Potentially switch to linear/quadratic probing if there's any performance degradation.
+//==================================================
 
 #include "Platform/Target.h"
 

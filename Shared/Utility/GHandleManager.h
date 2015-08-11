@@ -1,4 +1,3 @@
-//#include "GHandle.h"
 #ifndef __GHANDLE_MANAGER_H_
 #define __GHANDLE_MANAGER_H_
 

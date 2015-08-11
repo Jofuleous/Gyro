@@ -1,16 +1,16 @@
-/*****************
-  This could still use a lot of optimization + organization.
-  todo: Get rid of for loops and the array later.  just use float members.
-******************/
+#ifndef __MATH_GMATRIX4_H_
+#define __MATH_GMATRIX4_H_
 
-#ifndef __GMATRIX4_H_
-#define __GMATRIX4_H_
-
-//#define TEMP_MATRIX
-
-#include "GVector3.h"
-
-
+//=============================================================================================
+// GMatrix.h
+// Author: Jon Futch
+// Created: Unknown 2012-2014
+//
+// A 4x4 row-major affine matrix class.
+//
+// This could still use a lot of optimization + organization.
+// todo: Get rid of for loops and the array later.  just use float members.
+//
 // MATRIX LAYOUT
 // ROW - MAJOR
 /*
@@ -28,6 +28,9 @@ Explanation on Row vs Column Major:
 http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-4-geometry/conventions-again-row-major-vs-column-major-vector/
 
 */
+//=============================================================================================
+
+#include "GVector3.h"
 
 class GMatrix4
 {

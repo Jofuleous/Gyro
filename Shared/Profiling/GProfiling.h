@@ -1,6 +1,14 @@
 #ifndef __GPROFILING_H_
 #define __GPROFILING_H_
 
+//===========================================================================================
+// GProfiling.h
+// Author:	Jon Futch
+// Created:	Unknown 2012-2014
+//
+// A class that allows for profiling routines using scope blocks.
+//===========================================================================================
+
 #include "Utility/Clock.h"
 #include "Containers/GHashMap.h"
 #include "Utility/Singleton.h"

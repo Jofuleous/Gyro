@@ -1,14 +1,17 @@
-// Based on the Irrlict Engine.
+#ifndef __MATH_GQUAT_H_
+#define __MATH_GQUAT_H_
 
-#ifndef __GQUAT_H_
-#define __GQUAT_H_
+//====================================================================
+// GQuat.h
+// Author: Irrlicht Bros.  I just copied it from their engine.  I am not a quat ninja yet.
+// Created: December 2014 
+//
+// A quaternion class based on the Irrlict Engine's implementation
+//====================================================================
 
 #include "GVector3.h"
 #include "GMatrix4.h"
 
-//! GQuat class for representing rotations.
-/** It provides cheap combinations and avoids gimbal locks.
-Also useful for interpolations. */
 class GQuat
 {
 public:

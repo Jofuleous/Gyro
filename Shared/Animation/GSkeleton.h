@@ -1,5 +1,15 @@
-#ifndef __GSKELETON_H_
-#define __GSKELETON_H_
+#ifndef __ANIMATION_GSKELETON_H_
+#define __ANIMATION_GSKELETON_H_
+
+//===========================================================================
+// GAnimNode.h
+// Author:	Jon Futch
+// Created:	December, 2014
+//
+// The classes that make up a skeleton and skeleton instance.
+// TODO: The bone instances should maybe be stored in a cache-aligned buffer so that a threaded animation task can blow through them.
+// TODO: Thread this shit.
+//===========================================================================
 
 #include "Containers/GArray.h"
 #include "Math/GQuat.h"

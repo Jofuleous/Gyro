@@ -1,5 +1,11 @@
-#ifndef __SHAREDPTR_BASE_
-#define __SHAREDPTR_BASE_
+#ifndef __UTILITY_GSHAREDPTRBASE_H_
+#define __UTILITY_GSHAREDPTRBASE_H_
+
+//============================================================================================
+// GSharedPtrBase.h
+// Author:	Jon Futch
+// Created:	Unknown 2012-2014
+//============================================================================================
 
 #include "Memory/GMemoryPool.h"
 

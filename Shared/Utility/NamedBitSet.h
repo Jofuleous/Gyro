@@ -1,5 +1,5 @@
-#ifndef __NAMEDBITSET_H_
-#define __NAMEDBITSET_H_
+#ifndef __UTILITY_NAMEDBITSET_H_
+#define __UTILITY_NAMEDBITSET_H_
 
 #include "GHashedString.h"
 #include "Platform/Target.h"

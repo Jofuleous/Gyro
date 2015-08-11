@@ -3,7 +3,6 @@
 
 void ConsolePrint( short verbosity, const char* fmt, ... );
 
-
 //I chose to make each verbosity level their own macro like I had discussed in class.
 //I'm assuming that this is okay...
 
